@@ -1,0 +1,21 @@
+RTorCtl
+=======
+
+WARNING: RTorCtl is not ready for *any* form of use besides development at this
+point.
+
+RTorCtl presents a Rubyonic interface to Tor's control port.
+
+Exit Policies
+-------------
+
+--------------------------------------------------------------
+exit_policy = RTorCtl::ExitPolicy.new( <<EXIT_POLICY.strip() )
+accept 4.7.2.3/9:85
+reject *:*
+EXIT_POLICY
+
+exit_policy.accepts?( '4.7.2.15', 85 ) # true
+exit_policy.accepts?( '4.256.2.3', 85 ) # false
+exit_policy.rejects?( '4.7.2.3', 985 ) # true
+--------------------------------------------------------------
