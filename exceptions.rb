@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-class RTorCtl
+module RTorCtl
 	class RTorCtlError < Exception
 	end
 
