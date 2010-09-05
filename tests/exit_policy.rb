@@ -4,7 +4,6 @@ require 'test/unit'
 
 class ExitPolicyTest < Test::Unit::TestCase
 	include RTorCtl
-	IPAddress = ExitPolicy::IPAddress
 	ExitPolicyLine = ExitPolicy::ExitPolicyLine
 
 	def test_any_to_ip_netmask
@@ -137,5 +136,17 @@ accept *:*
 				)
 			end
 		end
+
+		ep = ExitPolicy.new
+		[ "accept 127.0.0.1:9051", "reject *:9051", "accept *:*" ].each do |x|
+			ep << x
+		end
+
+		assert ep.accepts?('127.0.0.1', 9051)
+		assert ep.accepts?('10.0.0.1', 12)
+		assert ep.accepts?('14.16.22.34', 14)
+		assert ep.rejects?('0.0.0.0', 9051)
+		assert ep.rejects?('1.1.1.1', 9051)
+		assert ep.rejects?('10.10.10.10', 9051)
 	end
 end
