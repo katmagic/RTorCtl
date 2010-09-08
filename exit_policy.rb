@@ -64,7 +64,7 @@ module RTorCtl
 		end
 
 		def inspect
-			"<#{self.class}: #{self}>"
+			"#<#{self.class}: #{self}>"
 		end
 
 		def /(nmask)
@@ -135,7 +135,7 @@ module RTorCtl
 		class ExitPolicyLine
 			# epl = ExitPolicyLine.new("accept 1.2.3.4/8:666-1337")
 			# epl.acceptance # :accept
-			# epl.ip # <IPAddress: 1.0.0.0/8>
+			# epl.ip # #<IPAddress: 1.0.0.0/8>
 			# epl.netmask # 8
 			# epl.port_range # (666..1337)
 
@@ -176,6 +176,10 @@ module RTorCtl
 
 			def to_s
 				"#{@acceptance} #{@ip}:#{@port_range.begin}-#{@port_range.end}"
+			end
+
+			def inspect
+				"#<#{self.class}: #{to_s}>"
 			end
 
 			def netmask
@@ -235,6 +239,14 @@ module RTorCtl
 
 		def unshift(rule)
 			insert(0, rule)
+		end
+
+		def to_s
+			@policies.join("\n")
+		end
+
+		def inspect()
+			"#<#{self.class}:\n#{self}\n>"
 		end
 	end
 end

@@ -43,8 +43,8 @@ class ExitPolicyTest < Test::Unit::TestCase
 		assert_equal("47.23.98.5", ip.to_s)
 		assert_equal( ip, IPAddress.new(ip) )
 		assert_equal( ip/8, IPAddress.new("47.0.0.0/8") )
-		assert_equal( "<#{ip.class.name}: 47.23.98.5>", ip.inspect )
-		assert_equal( "<#{ip.class.name}: 47.0.0.0/8>", (ip/8).inspect )
+		assert_equal( "#<#{ip.class.name}: 47.23.98.5>", ip.inspect )
+		assert_equal( "#<#{ip.class.name}: 47.0.0.0/8>", (ip/8).inspect )
 
 		["435425", :erefd, nil, "1.4.2.978"].each do |x|
 			assert_raise(NotAnIPError){ IPAddress.new(x) }
