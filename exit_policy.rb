@@ -201,7 +201,11 @@ module RTorCtl
 			@policies.find{ |pol| pol.matches?(ip, port) }.acceptance == :reject
 		end
 
-		def ===( ip_port )
+		def ==(policy)
+			@policies == policy.policies
+		end
+
+		def ===(ip_port)
 			if policy = @policies.find{ |pol| pol === ip_port }
 				return pol.acceptance == :accept
 			else
