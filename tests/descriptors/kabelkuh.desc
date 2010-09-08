@@ -1,0 +1,29 @@
+router kabelkuh 91.121.208.153 9001 0 0
+platform Tor 0.2.1.26 on Linux i686
+opt protocols Link 1 2 Circuit 1
+published 2010-09-05 10:33:44
+opt fingerprint 486A 6DA7 A148 DECC C437 A807 6B44 2A89 8470 4015
+uptime 913386
+bandwidth 1048576 2097152 2203719
+opt extra-info-digest D84C062BFE72D65D5419215A239A2E1F2D7C3C0D
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBALrrJ3p013jqXPE/4HrjQzxgX62tjnClqkuvamfX1pJ1SDmRjkozCqIn
+bxys9Xbo4zljgXmyXOVGdFuTMcsNnizMA8z3FrDdEnbx23qb//L5zT5FEHLh7hCW
+vWpknkxU+lyfBW6oLmgowOFyp2R4cGW2WTe0SgFGNDsxqF8/40d5AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBALdwTmdeCsy0tx9cW/w4G8fj/mVlE/bhKEC2NZCwGsyDQUgmT80p7M5G
+6eXlxTpzaIzdfYVZVRlzpLPCZ+Q+v+vh7ATY6sLZotRKwc9teQuq/SqJdcCQv7R1
+qZ3K4+/m0cx07sMYPyUIDZ+eQqpiCQIC5O10zF8jsRsqlt4Y1wHTAgMBAAE=
+-----END RSA PUBLIC KEY-----
+opt hidden-service-dir
+contact router's name at enjoys döt it
+reject *:*
+router-signature
+-----BEGIN SIGNATURE-----
+c5uCo8TmL6jG2vjBIG9WZeemisuFaGXh8WAf+i9NIW/STp3wp+/bg6PDzifo7uYh
+c8OAS7rEd8BHoovweil2SzsiSpGb9BZqaOIRb9HvKY7YPUTrFoRdG1jBVvZOIe/G
+4vfBU7vMuyGalYWyQ7GPCejX2Wrmxaqegu1I00TbM2U=
+-----END SIGNATURE-----

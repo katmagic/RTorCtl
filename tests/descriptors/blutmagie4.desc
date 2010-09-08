@@ -1,0 +1,49 @@
+router blutmagie4 192.251.226.205 22 0 0
+platform Tor 0.2.2.15-alpha (git-eba3f37f17a2af4f) on Linux x86_64
+opt protocols Link 1 2 Circuit 1
+published 2010-09-05 07:09:15
+opt fingerprint 7B69 8D32 7F16 9559 0408 FED9 5CDE E156 5774 D136
+uptime 896176
+bandwidth 12288000 16384000 12697871
+opt extra-info-digest D90F75524D6EF88101CF776A682B6486342C0CDF
+opt caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAKIlVXT1qpZt6KMALKaHjA0sOKHFjcrdnNx3nwSATcRQq1ctyxH4aPXh
+SzIz/TLZRSGNIbtqLrBfoIFkKEi3YccJ0uk1WrTx1VuWw34DRWaeROMnewqm7taB
+l5AWraXDganzP3KTz1OQbuZIYoX3uID9PR6Kuf7vQVKnhL8GlQ6FAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBALQ3bu4dCbCybnbfvLe+hHe6T/80ADMX8Rz1MSZCJcZ9HSk6J/xW/DcJ
++FM+gBqbzqbH/eRUvC+mDGLWCTZSPW69SMKPyyLlh+fDWrq5rR62bATHOfmsQGxw
+/im+3cATKeZVH5z0a0PG7iSsh+zixnLjd3SET8YkhiynlaYg+0spAgMBAAE=
+-----END RSA PUBLIC KEY-----
+family $6297B13A687B521A59C6BD79188A2501EC03A065 $66CA87E164F1CFCE8C3BB5C095217A28578B8BAF $67EC84376D9C4C467DCE8621AACA109160B5264E
+opt hidden-service-dir
+contact abuse@blutmagie.de
+reject 0.0.0.0/8:*
+reject 169.254.0.0/16:*
+reject 127.0.0.0/8:*
+reject 192.168.0.0/16:*
+reject 10.0.0.0/8:*
+reject 172.16.0.0/12:*
+reject 192.251.226.205:*
+reject *:25
+reject *:119
+reject *:135-139
+reject *:445
+reject *:465
+reject *:563
+reject *:587
+reject *:1214
+reject *:4661-4666
+reject *:6346-6429
+reject *:6660-6999
+accept *:*
+router-signature
+-----BEGIN SIGNATURE-----
+Fo3zrZpZ/S+vdiChtAjewO7L3Ba7bWjRrZKtwn+l00MYjLTQKa95nJa2dggu+qLe
+UddAULCfuSCdq8LzTsc77eKNM/XBn6qmgT80OkbYTfPZl1ycYMrpngkc8IX9+68y
+SqJUW4hM6FNnEAluyJ9zzKE8QdLGKljKduLm3KIDsOA=
+-----END SIGNATURE-----

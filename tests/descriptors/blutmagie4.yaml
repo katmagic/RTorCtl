@@ -1,0 +1,297 @@
+---
+:nickname: blutmagie4
+:address: !ruby/object:RTorCtl::IPAddress
+  ip: 3237733069
+  netmask: 32
+:or_port: 22
+:dir_port:
+:platform: "Tor 0.2.2.15-alpha (git-eba3f37f17a2af4f) on Linux x86_64"
+:published: 2010-09-05 07:09:15 Z
+:fingerprint: :"7B698D327F1695590408FED95CDEE1565774D136"
+:uptime: 896176
+:bandwidth_average: 12288000
+:bandwidth_burst: 16384000
+:bandwidth_observed: 12697871
+:onion_key: |
+  -----BEGIN RSA PUBLIC KEY-----
+  MIGJAoGBAKIlVXT1qpZt6KMALKaHjA0sOKHFjcrdnNx3nwSATcRQq1ctyxH4aPXh
+  SzIz/TLZRSGNIbtqLrBfoIFkKEi3YccJ0uk1WrTx1VuWw34DRWaeROMnewqm7taB
+  l5AWraXDganzP3KTz1OQbuZIYoX3uID9PR6Kuf7vQVKnhL8GlQ6FAgMBAAE=
+  -----END RSA PUBLIC KEY-----
+
+:signing_key: |
+  -----BEGIN RSA PUBLIC KEY-----
+  MIGJAoGBALQ3bu4dCbCybnbfvLe+hHe6T/80ADMX8Rz1MSZCJcZ9HSk6J/xW/DcJ
+  +FM+gBqbzqbH/eRUvC+mDGLWCTZSPW69SMKPyyLlh+fDWrq5rR62bATHOfmsQGxw
+  /im+3cATKeZVH5z0a0PG7iSsh+zixnLjd3SET8YkhiynlaYg+0spAgMBAAE=
+  -----END RSA PUBLIC KEY-----
+
+:family:
+- $6297B13A687B521A59C6BD79188A2501EC03A065
+- $66CA87E164F1CFCE8C3BB5C095217A28578B8BAF
+- $67EC84376D9C4C467DCE8621AACA109160B5264E
+:contact: abuse@blutmagie.de
+:exit_policy: TODO
+:router_signature: |
+  -----BEGIN SIGNATURE-----
+  Fo3zrZpZ/S+vdiChtAjewO7L3Ba7bWjRrZKtwn+l00MYjLTQKa95nJa2dggu+qLe
+  UddAULCfuSCdq8LzTsc77eKNM/XBn6qmgT80OkbYTfPZl1ycYMrpngkc8IX9+68y
+  SqJUW4hM6FNnEAluyJ9zzKE8QdLGKljKduLm3KIDsOA=
+  -----END SIGNATURE-----
+
+:link_protocols:
+- 1
+- 2
+:circuit_protocols:
+- 1
+:options:
+- :caches_extra_info
+- :hidden_service_dir
+:extra_info_digest: D90F75524D6EF88101CF776A682B6486342C0CDF
+:exit_policy: !ruby/object:RTorCtl::ExitPolicy
+  policies:
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 8
+    port_range: &id001 !ruby/range
+      begin: 0
+      end: 65536
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 169
+      - 254
+      - 0
+      - 0
+      ip: 2851995648
+      netmask: 16
+    port_range: *id001
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 127
+      - 0
+      - 0
+      - 0
+      ip: 2130706432
+      netmask: 8
+    port_range: *id001
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 192
+      - 168
+      - 0
+      - 0
+      ip: 3232235520
+      netmask: 16
+    port_range: *id001
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 10
+      - 0
+      - 0
+      - 0
+      ip: 167772160
+      netmask: 8
+    port_range: *id001
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 172
+      - 16
+      - 0
+      - 0
+      ip: 2886729728
+      netmask: 12
+    port_range: *id001
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 192
+      - 251
+      - 226
+      - 205
+      ip: 3237733069
+      netmask: 32
+    port_range: *id001
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 25
+      end: 25
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 119
+      end: 119
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 135
+      end: 139
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 445
+      end: 445
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 465
+      end: 465
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 563
+      end: 563
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 587
+      end: 587
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 1214
+      end: 1214
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 4661
+      end: 4666
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 6346
+      end: 6429
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :reject
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: !ruby/range
+      begin: 6660
+      end: 6999
+      excl: false
+  - !ruby/object:RTorCtl::ExitPolicy::ExitPolicyLine
+    acceptance: :accept
+    ip: !ruby/object:RTorCtl::IPAddress
+      as_array:
+      - 0
+      - 0
+      - 0
+      - 0
+      ip: 0
+      netmask: 0
+    port_range: *id001
