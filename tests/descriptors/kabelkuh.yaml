@@ -9,9 +9,12 @@
 :published: 2010-09-05 10:33:44 Z
 :fingerprint: :"486A6DA7A148DECCC437A8076B442A8984704015"
 :uptime: 913386
-:bandwidth_average: 1048576
-:bandwidth_burst: 2097152
-:bandwidth_observed: 2203719
+:bandwidth_average: !ruby/object:RTorCtl::Bytes
+  i: 1048576
+:bandwidth_burst: !ruby/object:RTorCtl::Bytes
+  i: 2097152
+:bandwidth_observed: !ruby/object:RTorCtl::Bytes
+  i: 2203719
 :contact: router's name at enjoys döt it
 :extra_info_digest: D84C062BFE72D65D5419215A239A2E1F2D7C3C0D
 :options:

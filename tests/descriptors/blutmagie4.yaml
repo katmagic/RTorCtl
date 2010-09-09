@@ -9,9 +9,12 @@
 :published: 2010-09-05 07:09:15 Z
 :fingerprint: :"7B698D327F1695590408FED95CDEE1565774D136"
 :uptime: 896176
-:bandwidth_average: 12288000
-:bandwidth_burst: 16384000
-:bandwidth_observed: 12697871
+:bandwidth_average: !ruby/object:RTorCtl::Bytes
+  i: 12288000
+:bandwidth_burst: !ruby/object:RTorCtl::Bytes
+  i: 16384000
+:bandwidth_observed: !ruby/object:RTorCtl::Bytes
+  i: 12697871
 :onion_key: |
   -----BEGIN RSA PUBLIC KEY-----
   MIGJAoGBAKIlVXT1qpZt6KMALKaHjA0sOKHFjcrdnNx3nwSATcRQq1ctyxH4aPXh

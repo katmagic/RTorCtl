@@ -39,22 +39,38 @@ module RTorCtl
 		end
 	end
 
-	module Bytes
+	class Bytes
+		def initialize(bytes)
+			@i = bytes
+		end
+
+		def  b() @i / 1024.0**0 end
+		def kb() @i / 1024.0**1 end
+		def mb() @i / 1024.0**2 end
+		def gb() @i / 1024.0**3 end
+		def tb() @i / 1024.0**4 end
+
 		def to_s
-			%w{ b kb mb gb tb }.each do |x|
-				if (1...1024).include? x
-					return "%.3d#{x.upcase}" % send(x)
+			%w{ tb gb mb kb b }.each do |x|
+				if send(x) > 1
+					return "%.2f#{x.upcase}" % send(x)
 				end
 			end
 
-			return "0.000B/s"
+			return "0B"
 		end
 
-		def  b() self / 1024.0**0 end
-		def kb() self / 1024.0**1 end
-		def mb() self / 1024.0**2 end
-		def gb() self / 1024.0**3 end
-		def tb() self / 1024.0**4 end
+		def to_i
+			@i
+		end
+
+		def ==(x)
+			@i == x
+		end
+
+		def method_missing(meth, *args, &block)
+			self.class.new( @i.send(meth, *args, &block) )
+		end
 	end
 
 	class Relay
@@ -72,12 +88,10 @@ module RTorCtl
 		def parse_bandwidth(l)
 			l =~ /^(\d+) (\d+) (\d+)$/
 
-			b = lambda{ |x| x.to_f.extend(Bytes) }
-
 			{
-				:bandwidth_average => b[$1],
-				:bandwidth_burst => b[$2],
-				:bandwidth_observed => b[$3]
+				:bandwidth_average => Bytes.new($1.to_i),
+				:bandwidth_burst => Bytes.new($2.to_i),
+				:bandwidth_observed => Bytes.new($3.to_i)
 			}
 		end
 
