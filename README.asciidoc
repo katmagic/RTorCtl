@@ -19,3 +19,35 @@ exit_policy.accepts?( '4.7.2.15', 85 ) # true
 exit_policy.accepts?( '4.256.2.3', 85 ) # false
 exit_policy.rejects?( '4.7.2.3', 985 ) # true
 --------------------------------------------------------------
+
+Response Codes
+--------------
+
+--------------------------------------------------------------------
+c = RTorCtl::Code.new(512) # #<RTorCtl::Code 512>
+c.desc # "Syntax error in command argument"
+
+c.reply_type # :permanent_negative_completion
+c.success? # false
+c.asynchronous? # false
+c.permanent_negative_completion? # true
+c.secondary_reply_type # :protocol
+
+c.exception # #<RTorCtl::TorError: Syntax error in command argument>
+c.raise # raises c.exception
+--------------------------------------------------------------------
+
+reply_type is one of
+
+- `:positive_completion`
+- `:temporary_negative_completion`
+- `:permanent_negative_completion`
+- `:asynchronous`
+- or `:UNKNOWN`
+
+secondary_reply_type is one of
+
+- `:syntax`
+- `:protocol`
+- `:tor`
+- or `:UNKNOWN`
