@@ -15,15 +15,6 @@ module RTorCtl
 
 		def connect()
 			@connection = TCPSocket.new( "127.0.0.1", @ctlport )
-			authenticate()
-		end
-
-		def quit()
-			self.puts( "QUIT" )
-		end
-
-		def authenticate()
-			self.puts( "AUTHENTICATE #{ quote(@password) }" )
 		end
 
 		def puts(line)
