@@ -6,6 +6,7 @@ require 'quote'
 require 'exceptions'
 require 'exit_policy'
 require 'connection'
+require 'parse_response'
 
 module RTorCtl
 	class RTorCtl
@@ -31,24 +32,9 @@ module RTorCtl
 			or raise RTorCtlError, "couldn't determine password!"
 		end
 
-		def get_basic_response()
-			# Get a response like "512 Authentication error" from Tor and return
-			# [ <RTorCtl::Code 512>, "Authentication error" ]
-
-			unless @connection.gets() =~ /^(\d+) (.*)$/
-				raise NotImplementedError, ""
-			end
-
-			[Code.new($1), $2]
-		end
-
-		def puts(line)
-			@connection.puts(line)
-		end
-
 		def authenticate()
-			puts( "AUTHENTICATE #{Quote[@passwd]}" )
-			get_basic_response()[0].raise
+			@connection.puts( "AUTHENTICATE #{Quote[@passwd]}" )
+			get_response()[0].raise
 		end
 	end
 end
