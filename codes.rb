@@ -83,6 +83,14 @@ module RTorCtl
 
 			Kernel.raise e
 		end
+
+		def ==(x)
+			case x
+				when Numeric then x == @code
+				when self.class then x.code == @code
+				else false
+			end
+		end
 	end
 
 	class TorError < Exception
