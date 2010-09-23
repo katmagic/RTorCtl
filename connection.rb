@@ -21,8 +21,10 @@ module RTorCtl
 			self.write( line + "\r\n" )
 		end
 
-		def gets()
-			@connection.gets()
+		def gets(sep="\r\n")
+			s = @connection.gets(sep)
+			return nil unless s
+			s.chomp("\r\n")
 		end
 
 		def write(data)
