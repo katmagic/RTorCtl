@@ -33,7 +33,8 @@ module RTorCtl
 		end
 
 		def authenticate()
-			@connection.puts( "AUTHENTICATE #{Quote[@passwd]}" )
+			passwd = @passwd.bytes.map{|x| "%02X" % x}.join
+			@connection.puts( "AUTHENTICATE #{passwd}" )
 			get_response()[0].raise
 		end
 	end
