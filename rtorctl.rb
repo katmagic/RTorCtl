@@ -38,5 +38,10 @@ module RTorCtl
 			@connection.puts( "AUTHENTICATE #{passwd}" )
 			get_response()[0].raise
 		end
+
+		def signal(sig)
+			@connection.puts("SIGNAL #{sig}")
+			get_response()[0].raise()
+		end
 	end
 end
