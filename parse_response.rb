@@ -14,41 +14,19 @@ module RTorCtl
 			# stripped lines.
 
 			lines = []
-
-			receiving_data = false;
-			first_line = false
-			current_data = nil
-
 			while line = @connection.gets()
 				# The statements like `when (boolean_expr and line)` will be executed
 				# when boolean_expr is true.
 
 				case line
-					when (receiving_data and line == "." and line)
-						receiving_data = false
-						lines << current_data
-						current_data = nil
-
-					when (receiving_data and !first_line and line)
-						current_data[1] << line
-
 					when /^(\d+)\+(.*)$/
-						lines << current_data if receiving_data
-						current_data = [$2, []]
-						receiving_data = true
-						first_line = true
+						lines << [$2, @connection.gets("\r\n.\r\n").split("\r\n")]
 
 					when /^(\d+)-(.*)$/
-						lines << current_data if receiving_data
 						lines << $2
-
-					when (receiving_data and line)
-						current_data[1] << line
-						first_line = false
 
 					when /^(\d+) (.*)$/
 						code = $1.to_i
-						lines << current_data if receiving_data
 						lines << $2
 						break
 
