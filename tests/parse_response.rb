@@ -51,8 +51,8 @@ class ParseResponseTest < Test::Unit::TestCase
 		},
 
 		:parse_with_empty_data => {
-			"250+address-mappings/all=\r\n250 OK\r\n" =>
-				[ OK, [["address-mappings/all=", []], "OK"] ]
+			"250-address-mappings/all=\r\n250 OK\r\n" =>
+				[ OK, ["address-mappings/all=", "OK"] ]
 		},
 
 		:parse_with_data => {

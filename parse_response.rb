@@ -32,12 +32,6 @@ module RTorCtl
 					when (receiving_data and !first_line and line)
 						current_data[1] << line
 
-					when /^(\d+) (.*)$/
-						code = $1.to_i
-						lines << current_data if receiving_data
-						lines << $2
-						break
-
 					when /^(\d+)\+(.*)$/
 						lines << current_data if receiving_data
 						current_data = [$2, []]
@@ -51,6 +45,12 @@ module RTorCtl
 					when (receiving_data and line)
 						current_data[1] << line
 						first_line = false
+
+					when /^(\d+) (.*)$/
+						code = $1.to_i
+						lines << current_data if receiving_data
+						lines << $2
+						break
 
 					else
 						raise RTorCtlError, "we couldn't handle #{line.inspect}"
