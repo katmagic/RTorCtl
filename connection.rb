@@ -19,12 +19,13 @@ module RTorCtl
 
 		def puts(line)
 			self.write( line + "\r\n" )
+			STDOUT.puts("C: #{line.inspect}") if $DEBUG
 		end
 
 		def gets(sep="\r\n")
 			s = @connection.gets(sep)
 			return nil unless s
-			s.chomp("\r\n")
+			s.chomp("\r\n").tap{|x| STDOUT.puts("S: #{x.inspect}") if $DEBUG}
 		end
 
 		def write(data)
