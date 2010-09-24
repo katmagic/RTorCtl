@@ -11,13 +11,13 @@ class QuoteTest < Test::Unit::TestCase
 
 	def test_quote
 		@@quotes.each do |unquoted, quoted|
-			assert_equal( quoted, quote(unquoted), "quoting #{unquoted.inspect}" )
+			assert_equal( quoted, Quote[unquoted], "quoting #{unquoted.inspect}" )
 		end
 	end
 
 	def test_unquote
 		@@quotes.each do |unquoted, quoted|
-			assert_equal( unquoted, unquote(quoted), "unquoting #{quoted.inspect}" )
+			assert_equal( unquoted, Unquote[quoted], "unquoting #{quoted.inspect}" )
 		end
 	end
 end
