@@ -208,10 +208,10 @@ module RTorCtl
 			descriptors.each do |k, v|
 				@attributes << k unless k == :_unknowns
 
-				instance_variable_set( :"@#{k}", v )
+				instance_variable_set( "@#{k}".to_sym, v )
 
 				self.class.class_eval do
-					define_method(k) { instance_variable_get(:"@#{k}") }
+					define_method(k) { instance_variable_get("@#{k}".to_sym) }
 				end
 			end
 		end
