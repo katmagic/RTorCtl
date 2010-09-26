@@ -314,7 +314,8 @@ module RTorCtl
 		end
 
 		def get_descriptor()
-			process_descriptor(@rtorctl.getinfo("desc/id/#{@fingerprint}"))
+			@descriptor ||= @rtorctl.getinfo("desc/id/#{@fingerprint.delete('!')}")
+			process_descriptor(@descriptor)
 		end
 
 		def method_missing(meth, *args, &proc)
