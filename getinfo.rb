@@ -21,7 +21,8 @@ module RTorCtl
 					info[name.to_sym] = val
 				end
 			end
-			info
+
+			keywords.length == 1 ? info.first[1] : info
 		end
 	end
 end
