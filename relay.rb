@@ -197,7 +197,23 @@ module RTorCtl
 
 		attr_reader :attributes, :options
 
-		def initialize( descriptor )
+		def initialize( rtorctl, fingerprint )
+			@rtorctl = rtorctl
+			@fingerprint = fingerprint
+			@descriptor = nil
+		end
+
+		def self.from_descriptor( descriptor )
+			r = self.allocate
+			r.instance_eval do
+				@descriptor = descriptor
+				process_descriptor(descriptor)
+				@fingerprint = r.fingerprint
+			end
+			r
+		end
+
+		def process_descriptor( descriptor )
 			# Parse the descriptor, perform conversions, and set all the appropriate
 			# values.
 
@@ -291,6 +307,23 @@ module RTorCtl
 
 			@_tmp = nil
 			[attributes, options]
+		end
+
+		def inspect
+			"#<#{self.class} #{@fingerprint}>"
+		end
+
+		def get_descriptor()
+			process_descriptor(@rtorctl.getinfo("desc/id/#{@fingerprint}"))
+		end
+
+		def method_missing(meth, *args, &proc)
+			unless @descriptor
+				get_descriptor()
+				return send(meth, *args, &proc)
+			end
+
+			super
 		end
 	end
 end
