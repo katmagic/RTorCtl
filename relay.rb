@@ -251,7 +251,7 @@ module RTorCtl
 					resp = send("parse_#{_opt}", _data)
 				else
 					warn "unrecognized option #{_opt}"
-					attributes[:_unknowns] << _opt
+					attributes[:_unknowns] << _opt.to_sym
 					resp = _data
 				end
 
