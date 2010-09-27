@@ -257,6 +257,10 @@ module RTorCtl
 			@policies.join(",")
 		end
 
+		def to_a
+			@policies
+		end
+
 		def inspect()
 			"#<#{self.class}: #{self}>"
 		end
