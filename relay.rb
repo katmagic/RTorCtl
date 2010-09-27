@@ -74,6 +74,7 @@ module RTorCtl
 	end
 
 	class Relay
+		private
 		def parse_router(l)
 			l =~ /^(\w+) ([\d\.]{7,15}) (\d+) 0 (\d+)$/
 
@@ -194,6 +195,7 @@ module RTorCtl
 		def parse_extra_info_digest(l)
 			l
 		end
+		public
 
 		attr_reader :attributes, :options
 
@@ -247,7 +249,7 @@ module RTorCtl
 			options = Array.new
 
 			add_val = Proc.new do |_opt, _data|
-				if respond_to? "parse_#{_opt}"
+				if private_methods.include?("parse_#{_opt}")
 					resp = send("parse_#{_opt}", _data)
 				else
 					warn "unrecognized option #{_opt}"
