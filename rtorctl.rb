@@ -8,9 +8,12 @@ require 'exit_policy'
 require 'connection'
 require 'parse_response'
 require 'getinfo'
+require 'relay'
 
 module RTorCtl
 	class RTorCtl
+		attr_reader :relays
+
 		def initialize(passwd=:IMPLIED, ctlport=9051)
 			if passwd == :IMPLIED
 				@passwd = determine_control_password()
@@ -23,6 +26,8 @@ module RTorCtl
 
 			@connection.connect()
 			authenticate()
+
+			@relays = Relays.new(self)
 		end
 
 		def determine_control_password

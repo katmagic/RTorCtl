@@ -328,4 +328,58 @@ module RTorCtl
 			super
 		end
 	end
+
+	class Relays
+		# RTorCtl::RTorCtl.relays
+
+		include Enumerable
+
+		def initialize(rtorctl)
+			@rtorctl = rtorctl
+		end
+
+		def each(&proc)
+			unless @relays
+				@relays = []
+				# See doc/spec/dir-spec-v2.txt in Tor's source.
+				@rtorctl.getinfo("ns/all").each do |l|
+					r = @relays[-1] # Ugh. Annoying scope. Listerine ftw!
+					case l
+						when /^r (\S+) (\S+) (\S+) (\S+ \S+) (\S+) (\S+) (\S+)$/
+							r = RelayInitializer.new
+							@relays << r
+
+							r.nickname = $1
+							r.idkey_hash = $2
+							r.desc_hash = $3
+							r.desc_published = Time.parse("#{$4} UTC")
+							r.ip = IPAddress.new($5)
+							r.or_port = $5.to_i
+							r.dir_port = $6 != "0" ? $6.to_i : nil
+
+						when /^s (.*)$/
+							r.flags = $1.split().map{|x|x.to_sym}
+
+						when /^w Bandwidth=(\d+) (?:Measured=(\d+))?$/
+							r.reported_bandwidth = $1.to_i
+							r.measured_bandwidth = $2 && $2.to_i
+
+						when /^p (accept|reject) (\S+)$/
+							x = $1 # This will get reassigned some time before it's used.
+							r.condensed_exit_policy = ExitPolicy.new
+							$2.split(",").each do |p|
+								r.condensed_exit_policy << "#{x} *:#{p}"
+							end
+							r.condensed_exit_policy << "#{x=='accept'?:reject:x} *:*"
+					end
+				end
+			end
+
+			@relays.each(&proc)
+		end
+
+		def [](x)
+			Relay.new(@rtorctl, x)
+		end
+	end
 end
