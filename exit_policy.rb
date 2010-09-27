@@ -175,7 +175,16 @@ module RTorCtl
 			end
 
 			def to_s
-				"#{@acceptance} #{@ip}:#{@port_range.begin}-#{@port_range.end}"
+				ip = @ip == IPAddress.new("0.0.0.0/0") ? "*" : @ip
+				if @port_range.first == @port_range.last
+					port_range = @port_range.first
+				elsif @port_range == (0..65536)
+					port_range = "*"
+				else
+					port_range = "#{@port_range.begin}-#{@port_range.end}"
+				end
+
+				"#{@acceptance} #{ip}:#{port_range}"
 			end
 
 			def inspect
