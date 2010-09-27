@@ -360,7 +360,7 @@ module RTorCtl
 						when /^s (.*)$/
 							r.flags = $1.split().map{|x|x.to_sym}
 
-						when /^w Bandwidth=(\d+) (?:Measured=(\d+))?$/
+						when /^w Bandwidth=(\d+)(?: Measured=(\d+))?$/
 							r.reported_bandwidth = $1.to_i
 							r.measured_bandwidth = $2 && $2.to_i
 
