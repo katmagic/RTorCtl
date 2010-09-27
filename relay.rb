@@ -74,8 +74,8 @@ module RTorCtl
 	end
 
 	RelayInitializer = Struct.new( *(%w< nickname idkey_hash desc_hash
-		desc_published ip dirport flags reported_bandwidth measured_bandwidth
-		condensed_exit_policy>.map{|x|x.to_sym}) )
+		desc_published ip or_port dir_port flags reported_bandwidth
+		measured_bandwidth condensed_exit_policy>.map{|x|x.to_sym}) )
 
 	class Relay
 		private
