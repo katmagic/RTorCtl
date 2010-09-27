@@ -349,7 +349,7 @@ module RTorCtl
 			relays = []
 			# See doc/spec/dir-spec-v2.txt in Tor's source.
 			@rtorctl.getinfo("ns/all").each do |l|
-				r = @relays[-1] # Ugh. Annoying scope. Listerine ftw!
+				r = relays[-1] # Ugh. Annoying scope. Listerine ftw!
 				case l
 					when /^r (\S+) (\S+) (\S+) (\S+ \S+) (\S+) (\S+) (\S+)$/
 						r = RelayInitializer.new
