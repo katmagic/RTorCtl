@@ -194,11 +194,11 @@ module RTorCtl
 		end
 
 		def accepts?(ip, port)
-			@policies.find{ |pol| pol.matches?(ip, port) }.acceptance == :accept
+			self === [ip, port]
 		end
 
 		def rejects?(ip, port)
-			@policies.find{ |pol| pol.matches?(ip, port) }.acceptance == :reject
+			!(self === [ip, port])
 		end
 
 		def ==(policy)
@@ -206,11 +206,10 @@ module RTorCtl
 		end
 
 		def ===(ip_port)
-			if policy = @policies.find{ |pol| pol === ip_port }
-				return pol.acceptance == :accept
+			if a = @policies.find{ |pol| pol === ip_port }
+				a.acceptance == :accept
 			else
-				raise RTorCtlError, "we've not decided whether to allow " +
-					ip_port.join(":")
+				DEFAULT_POLICY === ip_port
 			end
 		end
 
@@ -252,5 +251,20 @@ module RTorCtl
 		def inspect()
 			"#<#{self.class}:\n#{self}\n>"
 		end
+
+
+		DEFAULT_POLICY = self.new(<<POLICY)
+reject *:25
+reject *:119
+reject *:135-139
+reject *:445
+reject *:563
+reject *:1214
+reject *:4661-4666
+reject *:6346-6429
+reject *:6699
+reject *:6881-6999
+accept *:*
+POLICY
 	end
 end
