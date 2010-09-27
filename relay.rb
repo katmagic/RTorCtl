@@ -314,7 +314,8 @@ module RTorCtl
 		end
 
 		def get_descriptor()
-			@descriptor ||= @rtorctl.getinfo("desc/id/#{@fingerprint.delete('!')}")
+			getinfo_key = "desc/id/#{@fingerprint.to_s.delete('!')}"
+			@descriptor ||= @rtorctl.getinfo(getinfo_key)
 			process_descriptor(@descriptor)
 		end
 
