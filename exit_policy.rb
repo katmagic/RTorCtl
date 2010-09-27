@@ -254,11 +254,11 @@ module RTorCtl
 		end
 
 		def to_s
-			@policies.join("\n")
+			@policies.join(",")
 		end
 
 		def inspect()
-			"#<#{self.class}:\n#{self}\n>"
+			"#<#{self.class}: #{self}>"
 		end
 
 
