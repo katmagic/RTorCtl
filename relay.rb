@@ -73,6 +73,10 @@ module RTorCtl
 		end
 	end
 
+	RelayInitializer = Struct.new( *(%w< nickname idkey_hash desc_hash
+		desc_published ip dirport flags reported_bandwidth measured_bandwidth
+		condensed_exit_policy>.map{|x|x.to_sym}) )
+
 	class Relay
 		private
 		def parse_router(l)
@@ -199,20 +203,14 @@ module RTorCtl
 
 		attr_reader :attributes, :options
 
-		def initialize( rtorctl, fingerprint )
+		def initialize( rtorctl, relay_initializer )
+			relay_initializer.members.each do |m|
+				instance_variable_set( "@#{m}", relay_initializer[m] )
+			end
+
 			@rtorctl = rtorctl
 			@fingerprint = fingerprint
 			@descriptor = nil
-		end
-
-		def self.from_descriptor( descriptor )
-			r = self.allocate
-			r.instance_eval do
-				@descriptor = descriptor
-				process_descriptor(descriptor)
-				@fingerprint = r.fingerprint
-			end
-			r
 		end
 
 		def process_descriptor( descriptor )
@@ -230,7 +228,7 @@ module RTorCtl
 
 				self.class.class_eval do
 					define_method(k) { instance_variable_get("@#{k}".to_sym) }
-				end
+				end unless respond_to?(k)
 			end
 		end
 
