@@ -206,10 +206,10 @@ module RTorCtl
 		def initialize( rtorctl, relay_initializer )
 			relay_initializer.members.each do |m|
 				instance_variable_set( "@#{m}", relay_initializer[m] )
+				self.class.instance_eval{ attr_reader m }
 			end
 
 			@rtorctl = rtorctl
-			@fingerprint = fingerprint
 			@descriptor = nil
 		end
 
