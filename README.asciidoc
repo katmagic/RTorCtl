@@ -79,6 +79,15 @@ tor.getinfo("config-file") # "/usr/local/etc/tor/torrc"
 tor.getinfo("address-mappings/all")
 # ['www.gravatar.com 72.233.69.5 "2010-04-20 04:20:00"',
 #  'github.com 207.97.227.239 "2010-04-20 04:20:00"']
-
-tor.getconf(:SocksPort) # "9051"
 --------------------------------------------------------
+
+`getconf()` can also be used to get information. `getconf()` returns results in
+a semi-structured form, see the `*_CONFOPT` constants in RTorCtl defined in
+`getinfo.rb` for which type values will be converted to specifically.
+
+--------------------------------------------------------------------------------
+tor.getconf(:SocksPort) # 9051
+tor.getconf(:FirewallPorts) # [80, 443]
+tor.getconf(:SafeLogging) # true
+tor.getconf(:CookieAuthFile) # "/tmp/control_cookie"
+--------------------------------------------------------------------------------
