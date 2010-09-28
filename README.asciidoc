@@ -100,3 +100,9 @@ Assigning Configuration Values
 tor.setconf(:SocksPort, 9050)
 tor.setconf(:SocksPort => 9050, :ORPort => 443)
 -----------------------------------------------
+
+License
+-------
+
+RTorCtl is distributed under the http://unlicense.org/[Unlicense], i.e. it is
+in the public domain.
