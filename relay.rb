@@ -360,8 +360,8 @@ module RTorCtl
 						r.desc_hash = $3
 						r.desc_published = Time.parse("#{$4} UTC")
 						r.ip = IPAddress.new($5)
-						r.or_port = $5.to_i
-						r.dir_port = $6 != "0" ? $6.to_i : nil
+						r.or_port = $6.to_i
+						r.dir_port = $7 != "0" ? $7.to_i : nil
 
 					when /^s (.*)$/
 						r.flags = $1.split().map{|x|x.to_sym}
