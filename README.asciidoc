@@ -6,48 +6,77 @@ point.
 
 RTorCtl presents a Rubyonic interface to Tor's control port.
 
-Exit Policies
+Prior to Instantiation
+----------------------
+
+By default, RTorCtl will use environment variables to determine your
+controller's password. If you're using a password, just set `$TORCTL_PASSWD` to
+whatever your password is; if your're using a cookie file, set
+`$TORCTL_PASSWD_FILE` to the location of this file.
+
+TIP: Be careful to make sure that the cookie file is readable by the current
+user!
+
+Also, the command line options `-passwd=<passwd>` and
+`-passwd_file=<passwd_file>` have the same effects as their corresponding
+environment variables.
+
+Instantiation
 -------------
 
---------------------------------------------------------------
-exit_policy = RTorCtl::ExitPolicy.new( <<EXIT_POLICY.strip() )
-accept 4.7.2.3/9:85
-reject *:*
-EXIT_POLICY
+--------------------------
+require 'rtorctl'
 
-exit_policy.accepts?( '4.7.2.15', 85 ) # true
-exit_policy.accepts?( '4.256.2.3', 85 ) # false
-exit_policy.rejects?( '4.7.2.3', 985 ) # true
---------------------------------------------------------------
+tor = RTorCtl::RTorCtl.new
+--------------------------
 
-Response Codes
---------------
+Searching for Relays
+--------------------
 
---------------------------------------------------------------------
-c = RTorCtl::Code.new(512) # #<RTorCtl::Code 512>
-c.desc # "Syntax error in command argument"
+Populating the list of relays is a somewhat expensive process; because of this,
+`tor.relays` is cached, so only the first access should block significantly.
 
-c.reply_type # :permanent_negative_completion
-c.success? # false
-c.asynchronous? # false
-c.permanent_negative_completion? # true
-c.secondary_reply_type # :protocol
+----------------------------------------------------------
+# Find all the stable relays that exit to port 6697.
+tor.relays.find_all{ |relay|
+	[:Running, :Stable].all?{|x| relay.flags.include? x} and
+	relay.condensed_exit_policy.accepts?("0.0.0.0", 6697)
+}
 
-c.exception # #<RTorCtl::TorError: Syntax error in command argument>
-c.raise # raises c.exception
---------------------------------------------------------------------
+# How many relays are there?
+tor.relays.count
+# How many of them are exits?
+tor.relays.count{ |r| r.flags.include? :Exit }
 
-reply_type is one of
+# Find all the relays in 12.0.0.0/8.
+tor.relays.find_all{ |r| r.ip/8 === "12.0.0.0" }
+# How many /8 netblocks does Tor have relays in?
+tor.relays.map{ |r| (r.ip/8)[0] }.uniq.count
+----------------------------------------------------------
 
-- `:positive_completion`
-- `:temporary_negative_completion`
-- `:permanent_negative_completion`
-- `:asynchronous`
-- or `:UNKNOWN`
+CAUTION: At the moment, searching for attributes not in RelayInitializer is
+*very* time consuming.
 
-secondary_reply_type is one of
+Sending Signals
+---------------
 
-- `:syntax`
-- `:protocol`
-- `:tor`
-- or `:UNKNOWN`
+---------------------------------------------
+# Make Tor put new streams on clean circuits.
+tor.signal(:NEWNYM)
+---------------------------------------------
+
+Getting Other Information
+-------------------------
+
+RTorCtl still has a lot of missing functionality. To get an unpolished interface
+to a lot of the data that Tor provides, you can use `getinfo()`. `getinfo()`
+returns either a String consisting of the one line response or an Array
+consisting of Strings (one for each line of the response).
+
+--------------------------------------------------------
+tor.getinfo("config-file") # "/usr/local/etc/tor/torrc"
+
+tor.getinfo("address-mappings/all")
+# ['www.gravatar.com 72.233.69.5 "2010-04-20 04:20:00"',
+#  'github.com 207.97.227.239 "2010-04-20 04:20:00"']
+--------------------------------------------------------
