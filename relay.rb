@@ -79,6 +79,7 @@ module RTorCtl
 
 	class Relay
 		private
+
 		def parse_router(l)
 			l =~ /^(\w+) ([\d\.]{7,15}) (\d+) 0 (\d+)$/
 
@@ -199,19 +200,9 @@ module RTorCtl
 		def parse_extra_info_digest(l)
 			l
 		end
-		public
-
 		attr_reader :attributes, :options
 
-		def initialize( rtorctl, relay_initializer )
-			relay_initializer.members.each do |m|
-				instance_variable_set( "@#{m}", relay_initializer[m] )
-				self.class.instance_eval{ attr_reader m }
-			end
-
-			@rtorctl = rtorctl
-			@descriptor = nil
-		end
+		attr_reader :attributes, :options, *(RelayInitializer.members)
 
 		def process_descriptor( descriptor )
 			# Parse the descriptor, perform conversions, and set all the appropriate
@@ -309,14 +300,25 @@ module RTorCtl
 			[attributes, options]
 		end
 
+		def get_descriptor()
+			getinfo_key = "server/d/#{@desc_hash}"
+			@descriptor ||= @rtorctl.getinfo(getinfo_key)
+			process_descriptor(@descriptor)
+		end
+
+		public
+
 		def inspect
 			"#<#{self.class} #{@nickname}@#{@ip}>"
 		end
 
-		def get_descriptor()
-			getinfo_key = "desc/id/#{@fingerprint.to_s.delete('!')}"
-			@descriptor ||= @rtorctl.getinfo(getinfo_key)
-			process_descriptor(@descriptor)
+		def initialize( rtorctl, relay_initializer )
+			relay_initializer.members.each do |m|
+				instance_variable_set( "@#{m}", relay_initializer[m] )
+			end
+
+			@rtorctl = rtorctl
+			@descriptor = nil
 		end
 
 		def method_missing(meth, *args, &proc)

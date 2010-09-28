@@ -38,15 +38,17 @@ module RTorCtl
 			or raise RTorCtlError, "couldn't determine password!"
 		end
 
+		def signal(sig)
+			@connection.puts("SIGNAL #{sig}")
+			get_response()[0].raise()
+		end
+
+		private
+
 		def authenticate()
 			passwd = @passwd.bytes.map{|x| "%02X" % x}.join
 			@connection.puts( "AUTHENTICATE #{passwd}" )
 			get_response()[0].raise
-		end
-
-		def signal(sig)
-			@connection.puts("SIGNAL #{sig}")
-			get_response()[0].raise()
 		end
 	end
 end
