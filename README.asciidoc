@@ -91,3 +91,11 @@ tor.getconf(:FirewallPorts) # [80, 443]
 tor.getconf(:SafeLogging) # true
 tor.getconf(:CookieAuthFile) # "/tmp/control_cookie"
 --------------------------------------------------------------------------------
+
+Assigning Configuration Values
+------------------------------
+
+-----------------------------------------------
+tor.setconf(:SocksPort, 9050)
+tor.setconf(:SocksPort => 9050, :ORPort => 443)
+-----------------------------------------------
