@@ -79,4 +79,6 @@ tor.getinfo("config-file") # "/usr/local/etc/tor/torrc"
 tor.getinfo("address-mappings/all")
 # ['www.gravatar.com 72.233.69.5 "2010-04-20 04:20:00"',
 #  'github.com 207.97.227.239 "2010-04-20 04:20:00"']
+
+tor.getconf(:SocksPort) # "9051"
 --------------------------------------------------------
