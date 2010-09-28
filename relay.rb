@@ -383,8 +383,8 @@ module RTorCtl
 			@relays = relays.map{|r| Relay.new(@rtorctl, r)}
 		end
 
-		def [](x)
-			Relay.new(@rtorctl, x)
+		def [](nickname)
+			self.find{|r| r.nickname == nickname.to_s}
 		end
 	end
 end
