@@ -73,7 +73,7 @@ module RTorCtl
 		end
 	end
 
-	RelayInitializer = Struct.new( *(%w< nickname idkey_hash desc_hash
+	RelayInitializer = Struct.new( *(%w<nickname idkey_hash desc_hash
 		desc_published ip or_port dir_port flags reported_bandwidth
 		measured_bandwidth condensed_exit_policy>.map{|x|x.to_sym}) )
 
@@ -200,15 +200,12 @@ module RTorCtl
 		def parse_extra_info_digest(l)
 			l
 		end
-		attr_reader :attributes, :options
-
-		attr_reader :attributes, :options, *(RelayInitializer.members)
 
 		def process_descriptor( descriptor )
 			# Parse the descriptor, perform conversions, and set all the appropriate
 			# values.
 
-			@attributes = Array.new
+			@attributes = RelayInitializer.members
 
 			descriptors, @options = parse_descriptor( descriptor )
 
@@ -307,6 +304,8 @@ module RTorCtl
 		end
 
 		public
+
+		attr_reader :attributes, :options, *(RelayInitializer.members)
 
 		def inspect
 			"#<#{self.class} #{@nickname}@#{@ip}>"
