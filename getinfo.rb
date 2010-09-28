@@ -104,7 +104,9 @@ module RTorCtl
 			end
 		end
 
-		def convert_option(opt, val)
+		def convert_option_getter(opt, val)
+			# convert_option_getter( :SafeLogging, "1" ) # true
+
 			case opt.to_sym
 				when INT_CONFOPT then val.to_i
 				when MULTI_INT_CONFOPT then val.split(",").map{|x|x.to_i}
@@ -112,15 +114,33 @@ module RTorCtl
 				when STR_CONFOPT then val
 				when MULTI_STR_CONFOPT then val.split(",")
 				when SPECIAL_CONFOPT
-					if private_methods.include? "convert_opt_#{opt}"
-						send("opt_convert_#{opt}", val)
+					if private_methods.include? "convert_opt_#{opt}_getter"
+						send("opt_convert_#{opt}_getter", val)
 					else
 						val
 					end
 				else val
 			end
 		end
-		private :convert_option
+
+		def convert_option_setter(opt, val)
+			case opt.to_sym
+				when INT_CONFOPT then val.to_s
+				when MULTI_INT_CONFOPT then val.join(",")
+				when BOOL_CONFOPT then val ? "1" : "0"
+				when STR_CONFOPT then val
+				when MULTI_STR_CONFOPT then val.join(",")
+				when SPECIAL_CONFOPT
+					if private_methods.include? "opt_convert_#{opt}_setter"
+						send("opt_convert_#{opt}_getter", val)
+					else
+						val
+					end
+				else val
+			end
+		end
+
+		private :convert_option_getter, :convert_option_setter
 
 		def getconf(*keywords)
 			# tor.getconf(:SocksPort) # "9050"
@@ -133,18 +153,35 @@ module RTorCtl
 			code.raise()
 
 			if keywords.length == 1
-				return convert_option(keywords[0], response[0].split("=", 2)[1])
+				return convert_option_getter(keywords[0], response[0].split("=", 2)[1])
 
 			else
 				results = Hash.new
 
 				response.each do |x|
 					key, value = x.split("=", 2)
-					results[key] = convert_option(key, value)
+					results[key] = convert_option_setter(key, value)
 				end
 
 				return results
 			end
+		end
+
+		def setconf(opt, val=nil)
+			# setconf(:SocksPort, 9050)
+			# setconf(:SocksPort => 9050, :ControlPort => 9051)
+
+			unless opt.is_a? Hash
+				opt = {opt => val}
+			end
+
+			opt.each do |key, val|
+				opt[key] = convert_option_setter(key, val)
+			end
+
+			@connection.puts("SETCONF #{opt.map{|a,b|"#{a}=#{b}"}.join(" ")}")
+			code, response = get_response()
+			code.raise()
 		end
 	end
 end
