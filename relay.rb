@@ -310,7 +310,7 @@ module RTorCtl
 		end
 
 		def inspect
-			"#<#{self.class} #{@fingerprint}>"
+			"#<#{self.class} #{@nickname}@#{@ip}>"
 		end
 
 		def get_descriptor()
