@@ -80,12 +80,12 @@ module RTorCtl
 			:TrackHostExits, :AutomapHostsSuffixes, :ServerDNSTestAddresses,
 			:RecommendedVersions, :RecommendedClientVersions,
 			:RecommendedServerVersions, :AuthDirBadDir, :AuthDirBadExit,
-			:AuthDirInvalid, :AuthDirReject, :HiddenServiceVersion
+			:AuthDirInvalid, :AuthDirReject, :HiddenServiceVersion,
+			:ExcludeNodes, :ExcludeExitNodes, :EntryNodes, :ExitNodes,
 		]
 		SPECIAL_CONFOPT = [
 			:DirServer, :AlternateDirAuthority, :AlternateHSAuthority,
 			:AlternateBridgeAuthority, :Log, :AllowInvalidNodes, :Bridge,
-			:ExcludeNodes, :ExcludeExitNodes, :EntryNodes, :ExitNodes,
 			:HidServAuth, :ReachableAddresses, :ReachableDirAddresses,
 			:ReachableDirAddresses, :ReachableORAddresses, :MapAddress, :NodeFamily,
 			:SocksPolicy, :DNSListenAddress, :WarnPlaintextPorts,
