@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
-require 'exit_policy'
 require 'test/unit'
+require 'rtorctl'
 
 class ExitPolicyTest < Test::Unit::TestCase
 	include RTorCtl

@@ -1,9 +1,7 @@
 #!/usr/bin/ruby
-require 'relay'
 require 'test/unit'
 require 'yaml'
-
-require 'rubygems'; require 'ap'
+require 'rtorctl'
 
 Dir.chdir( File.dirname(File.expand_path(__FILE__)) )
 

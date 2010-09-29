@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 require 'test/unit'
-require 'getinfo'
+require 'rtorctl'
 
 class GetInfoTest < Test::Unit::TestCase
 	def setup

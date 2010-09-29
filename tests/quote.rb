@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
-require 'quote'
 require 'test/unit'
 require 'yaml'
+require 'rtorctl'
 
 
 class QuoteTest < Test::Unit::TestCase

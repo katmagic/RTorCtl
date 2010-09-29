@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 require 'test/unit'
-require 'parse_response'
 require 'stringio'
+require 'rtorctl'
 
 class ParseResponseTest < Test::Unit::TestCase
 	def setup
