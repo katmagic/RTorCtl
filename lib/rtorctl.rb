@@ -22,7 +22,7 @@ module RTorCtl
 			end
 			@ctlport = ctlport
 
-			@connection = Connection.new(@passwd, @ctlport)
+			@connection = Connection.new(@ctlport)
 
 			@connection.connect()
 			authenticate()

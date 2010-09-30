@@ -4,10 +4,7 @@ require 'quote'
 
 module RTorCtl
 	class Connection
-		attr_writer :password, :ctlport, :connection
-
-		def initialize(password, ctlport=9051)
-			@password = password
+		def initialize(ctlport=9051)
 			@ctlport = ctlport
 		end
 
