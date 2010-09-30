@@ -387,5 +387,15 @@ module RTorCtl
 		def [](nickname)
 			self.find{|r| r.nickname == nickname.to_s}
 		end
+
+		def grep(regexp, &block)
+			# Find all relays whose nickname's match a given regular expression. If
+			# the optional _block_ is supplied, each matching element is passed to it,
+			# and the block's result is stored in the output array.
+
+			matches = find_all{ |r| r.nickname =~ regexp }
+
+			block ? matches.map{|r| block[r] } : matches
+		end
 	end
 end
