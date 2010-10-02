@@ -327,6 +327,12 @@ module RTorCtl
 
 			@options.include? :hidden_service_dir
 		end
+
+		def caches_extra_info?
+			# Is this relay a directory cache that provides extra-info?
+
+			@options.include? :caches_extra_info
+		end
 	end
 
 	class Relays
