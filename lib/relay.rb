@@ -150,6 +150,13 @@ module RTorCtl
 		def parse_family(l)
 			l.split
 		end
+		# We have to define a family method separate from its parse method because
+		# it uses @rtorctl.relays, which calls Relay.initialize(), which in turn
+		# calss our parse_family().
+		def family
+			@family.map{|f| @rtorctl.relays[f] || InvalidRelay.new(f)}
+		end
+		public :family
 
 		def parse_history(l)
 			l =~ /^(\d{4}(?:-\d\d){2} \d\d(?::\d\d){2}) \((\d+) s\) ((?:\d+,)*\d+)$/
@@ -303,9 +310,10 @@ module RTorCtl
 			"#<#{self.class} #{@nickname}@#{@address}>"
 		end
 
-		def initialize(descriptor)
+		def initialize(rtorctl, descriptor)
 			# _descriptor_ is an Array containing the lines of the relay's descriptor.
 
+			@rtorctl = rtorctl
 			@descriptor = descriptor
 			process_descriptor(@descriptor)
 		end
@@ -332,6 +340,19 @@ module RTorCtl
 			# Is this relay a directory cache that provides extra-info?
 
 			@options.include? :caches_extra_info
+		end
+	end
+
+	class InvalidRelay
+		# InvalidRelay is a class that represents a relay that is referenced, but
+		# which Tor doesn't know about.
+
+		def initialize(nickname)
+			@nickname = nickname
+		end
+
+		def inspect
+			"#<#{self.class} #{@nickname}>"
 		end
 	end
 
@@ -363,7 +384,7 @@ module RTorCtl
 				end
 			end
 
-			@relays = relays.map{|r| Relay.new(r)}
+			@relays = relays.map{|r| Relay.new(@rtorctl, r)}
 		end
 
 		def [](nickname)
