@@ -315,6 +315,12 @@ module RTorCtl
 
 			@published - @uptime
 		end
+
+		def allows_single_hop_exits?
+			# Does this relay have the AllowSingleHopExits flag set to 1?
+
+			@options.include? :allow_single_hop_exits
+		end
 	end
 
 	class Relays
