@@ -309,6 +309,12 @@ module RTorCtl
 			@descriptor = descriptor
 			process_descriptor(@descriptor)
 		end
+
+		def online_since
+			# When did this relay come online?
+
+			@published - @uptime
+		end
 	end
 
 	class Relays
