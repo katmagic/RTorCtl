@@ -155,20 +155,22 @@ module RTorCtl
 			l.split
 		end
 
-		def parse_read_history(l)
+		def parse_history(l)
 			l =~ /^(\d{4}(?:-\d\d){2} \d\d(?::\d\d){2}) \((\d+) s\) ((?:\d+,)*\d+)$/
 			i_end = Time.parse($1)
 			i_length = $2.to_i
 			i_values = $3.split(",").map{|x|x.to_i}.reverse
 
 			values = Hash.new
-			intrvl_values.each_with_index do |index, val|
-				values[(i_end - i_length*(index+1)) ... (i_end)] = val
+			i_values.each_with_index do |val, index|
+				period = (i_end - i_length*(index+1)) ... (i_end - i_length*index)
+				values[period] = val
 			end
 
 			values
 		end
-		alias :parse_write_history :parse_read_history
+		def parse_read_history(l) { :read_history => parse_history(l) } end
+		def parse_write_history(l) { :write_history => parse_history(l) } end
 
 		def parse_eventdns(l)
 			l == "1"
