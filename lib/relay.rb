@@ -156,7 +156,7 @@ module RTorCtl
 		end
 
 		def parse_read_history(l)
-			l =~ /^(\d{4}-\d\d-\d\d \d\d:\d\d:\d\d) (\d+) ((?:\d+,)*\d+)$/
+			l =~ /^(\d{4}(?:-\d\d){2} \d\d(?::\d\d){2}) \((\d+) s\) ((?:\d+,)*\d+)$/
 			i_end = Time.parse($1)
 			i_length = $2.to_i
 			i_values = $3.split(",").map{|x|x.to_i}.reverse
