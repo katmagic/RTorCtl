@@ -11,6 +11,10 @@ require 'getinfo'
 require 'relay'
 
 module RTorCtl
+	def self.new
+		RTorCtl.new
+	end
+
 	class RTorCtl
 		attr_reader :relays, :connection
 
