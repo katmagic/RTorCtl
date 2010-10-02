@@ -12,8 +12,7 @@ class RelayTest < Test::Unit::TestCase
 		RELAYS.each do |r|
 			verifier = YAML.load_file("descriptors/#{r}.yaml")
 			descriptor = File.open("descriptors/#{r}.desc").read()
-			parsed = RTorCtl::Relay.allocate
-			parsed.send(:process_descriptor, descriptor)
+			parsed = RTorCtl::Relay.new(descriptor)
 
 			verifier.each do |attr, expected|
 				begin

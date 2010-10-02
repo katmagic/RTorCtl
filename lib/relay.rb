@@ -73,10 +73,6 @@ module RTorCtl
 		end
 	end
 
-	RelayInitializer = Struct.new( *(%w<nickname idkey_hash desc_hash
-		desc_published ip or_port dir_port flags reported_bandwidth
-		measured_bandwidth condensed_exit_policy>.map{|x|x.to_sym}) )
-
 	class Relay
 		private
 
@@ -207,7 +203,7 @@ module RTorCtl
 			# Parse the descriptor, perform conversions, and set all the appropriate
 			# values.
 
-			@attributes = RelayInitializer.members
+			@attributes = []
 
 			descriptors, @options = parse_descriptor( descriptor )
 
@@ -299,41 +295,25 @@ module RTorCtl
 			[attributes, options]
 		end
 
-		def get_descriptor()
-			getinfo_key = "server/d/#{@desc_hash}"
-			@descriptor ||= @rtorctl.getinfo(getinfo_key)
-			process_descriptor(@descriptor)
-		end
-
 		public
 
-		attr_reader :attributes, :options, *(RelayInitializer.members)
+		attr_reader :attributes, :options, :descriptor
 
 		def inspect
-			"#<#{self.class} #{@nickname}@#{@ip}>"
+			"#<#{self.class} #{@nickname}@#{@address}>"
 		end
 
-		def initialize( rtorctl, relay_initializer )
-			relay_initializer.members.each do |m|
-				instance_variable_set( "@#{m}", relay_initializer[m] )
-			end
+		def initialize(descriptor)
+			# _descriptor_ is an Array containing the lines of the relay's descriptor.
 
-			@rtorctl = rtorctl
-			@descriptor = nil
-		end
-
-		def method_missing(meth, *args, &proc)
-			unless @descriptor
-				get_descriptor()
-				return send(meth, *args, &proc)
-			end
-
-			super
+			@descriptor = descriptor
+			process_descriptor(@descriptor)
 		end
 	end
 
 	class Relays
 		# RTorCtl::RTorCtl.relays
+		# Warning: This is *very* slow at the moment.
 
 		include Enumerable
 
@@ -351,39 +331,15 @@ module RTorCtl
 
 			relays = []
 			# See doc/spec/dir-spec-v2.txt in Tor's source.
-			@rtorctl.getinfo("ns/all").each do |l|
-				r = relays[-1] # Ugh. Annoying scope. Listerine ftw!
-				case l
-					when /^r (\S+) (\S+) (\S+) (\S+ \S+) (\S+) (\S+) (\S+)$/
-						r = RelayInitializer.new
-						relays << r
-
-						r.nickname = $1
-						r.idkey_hash = $2
-						r.desc_hash = $3
-						r.desc_published = Time.parse("#{$4} UTC")
-						r.ip = IPAddress.new($5)
-						r.or_port = $6.to_i
-						r.dir_port = $7 != "0" ? $7.to_i : nil
-
-					when /^s (.*)$/
-						r.flags = $1.split().map{|x|x.to_sym}
-
-					when /^w Bandwidth=(\d+)(?: Measured=(\d+))?$/
-						r.reported_bandwidth = $1.to_i
-						r.measured_bandwidth = $2 && $2.to_i
-
-					when /^p (accept|reject) (\S+)$/
-						x = $1 # This will get reassigned some time before it's used.
-						r.condensed_exit_policy = ExitPolicy.new
-						$2.split(",").each do |p|
-							r.condensed_exit_policy << "#{x} *:#{p}"
-						end
-						r.condensed_exit_policy << "#{x=='accept'?:reject:x} *:*"
+			@rtorctl.getinfo("desc/all-recent").each do |l|
+				if l =~ /^router /
+					relays << [l]
+				else
+					relays[-1] << l
 				end
 			end
 
-			@relays = relays.map{|r| Relay.new(@rtorctl, r)}
+			@relays = relays.map{|r| Relay.new(r)}
 		end
 
 		def [](nickname)
