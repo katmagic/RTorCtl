@@ -12,7 +12,7 @@ require 'relay'
 
 module RTorCtl
 	class RTorCtl
-		attr_reader :relays
+		attr_reader :relays, :connection
 
 		def initialize(passwd=:IMPLIED, ctlport=9051)
 			if passwd == :IMPLIED
