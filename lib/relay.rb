@@ -321,6 +321,12 @@ module RTorCtl
 
 			@options.include? :allow_single_hop_exits
 		end
+
+		def hidden_service_dir?
+			# Is this relay a hidden service directory?
+
+			@options.include? :hidden_service_dir
+		end
 	end
 
 	class Relays
