@@ -21,7 +21,7 @@ module RTorCtl
 				case line
 					when /^(\d+)\+(.*)$/
 						data = @connection.gets("\r\n.\r\n")
-						lines << [$2, data.split("\r\n").map{|x|x.chomp}]
+						lines << [$2, data.split("\r\n")]
 
 					when /^(\d+)-(.*)$/
 						lines << $2
