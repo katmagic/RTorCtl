@@ -20,7 +20,7 @@ module RTorCtl
 		def gets(sep="\r\n")
 			s = @connection.gets(sep)
 			return nil unless s
-			s.chomp("\r\n").tap{|x| STDOUT.puts("S: #{x.inspect}") if $DEBUG}
+			s[0...-sep.length].tap{|x| STDOUT.puts("S: #{x.inspect}") if $DEBUG}
 		end
 
 		def write(data)
