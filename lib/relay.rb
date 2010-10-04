@@ -225,6 +225,8 @@ module RTorCtl
 			end
 		end
 
+		PARSERS = private_instance_methods.grep(/^parse_(.*)/){$1.to_sym}
+
 		BEGIN_LINE = /^-----BEGIN /
 		END_LINE = /^-----END /
 		def parse_descriptor( descriptor )
@@ -240,7 +242,7 @@ module RTorCtl
 			options = Array.new
 
 			add_val = Proc.new do |_opt, _data|
-				if private_methods.include?("parse_#{_opt}")
+				if PARSERS.include?(_opt.to_sym)
 					resp = send("parse_#{_opt}", _data)
 				else
 					warn "unrecognized option #{_opt}"

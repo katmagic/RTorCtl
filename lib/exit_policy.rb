@@ -38,9 +38,9 @@ module RTorCtl
 		end
 
 		def []=(index, val)
-			if not (0..3).include? index
+			if not (0..3) === index
 				raise ArgumentError, "there are four parts to an IP address"
-			elsif not (0..256).include? val
+			elsif not (0..256) === val
 				raise ArgumentError, "each of the IP parts is between 0 and 256"
 			end
 
@@ -162,7 +162,7 @@ module RTorCtl
 			end
 
 			def matches?(ip, port)
-				@ip === ip and @port_range.include?(port)
+				@ip === ip and @port_range === port
 			end
 			def ===(ip_port)
 				matches?( *ip_port )
