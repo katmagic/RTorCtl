@@ -19,6 +19,8 @@ module RTorCtl
 		attr_reader :netmask
 
 		def netmask=(val)
+			# Set our netmask to _val_.
+
 			@ip = mask(@ip, val)
 			@netmask = val
 		end
@@ -38,6 +40,8 @@ module RTorCtl
 		end
 
 		def []=(index, val)
+			# Set our _index_th quad to the integer _val_.
+
 			if not (0..3) === index
 				raise ArgumentError, "there are four parts to an IP address"
 			elsif not (0..256) === val
@@ -68,6 +72,9 @@ module RTorCtl
 		end
 
 		def /(nmask)
+			# Return a new IPAddress instance with a netmask of _nmask_ with an IP the
+			# same as ours.
+
 			self.class.new(self).tap{|x| x.netmask = nmask}
 		end
 
@@ -78,6 +85,8 @@ module RTorCtl
 		end
 
 		def ===(ip)
+			# Is _ip_ in our IP range?
+
 			self == ( self.class.new(ip) / @netmask )
 		end
 
@@ -112,6 +121,9 @@ module RTorCtl
 		end
 
 		def array_to_int(array)
+			# Turn an array representation of an IP address (e.g. [12, 21, 20, 12])
+			# _array_ to its an equivalent integer representation (e.g. 202707980).
+
 			unless array.all?{ |i| (0..256) === i } and array.length == 4
 				raise NotAnIPError.new(array)
 			end
@@ -120,6 +132,9 @@ module RTorCtl
 		end
 
 		def int_to_array(ip_int)
+			# Turn an integer representation of an IP address (e.g. 202707980)
+			# _ip_int_ to its array equivalent (e.g.  [12, 21, 20, 12]).
+
 			ip_array = Array.new
 
 			4.times do
