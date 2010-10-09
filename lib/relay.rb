@@ -5,6 +5,8 @@ require 'set'
 
 module RTorCtl
 	class TorVersion
+		# Allow us to compare Tor versions.
+
 		include Comparable
 
 		def initialize(version)
