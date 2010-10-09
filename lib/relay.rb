@@ -42,6 +42,12 @@ module RTorCtl
 	end
 
 	class Bytes
+		# Bytes represents size in a user friendly way.
+		#
+		# [141622, 142978, 4723985].map{|x| RTorCtl::Bytes.new(x).to_s}
+		# # ["138.30KB", "139.63KB", "4.51MB"]
+
+
 		def initialize(bytes)
 			@i = bytes
 		end
