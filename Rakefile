@@ -24,7 +24,7 @@ task :mkdoc do
 	system "asciidoc README.asciidoc"
 end
 
-task :gem do
+gem = task :gem do |t|
   require 'rubygems'
 
 	spec = Gem::Specification.new do |s|
@@ -60,3 +60,10 @@ END
 
 	puts Gem::Builder.new(spec).build()
 end
+gem.comment = "Create a Ruby gem."
+gem.add_description <<EOT
+Create a Ruby gem. If the environment variable GEM_SIG_KEY is set, sign the gem
+with the certificate at its location. Additionally, if the environment variable
+GEM_CERT_CHAIN is set, use the comma-seperated list of certificates as the gem's
+certificate chain. (See the documentation for Gem::Specification.cert_chain=().)
+EOT
