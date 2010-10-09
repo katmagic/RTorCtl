@@ -9,7 +9,7 @@ def get_revision_id
 	"%09d" % `git log -n1 --pretty="format:%h"`.strip().to_i(16)
 end
 
-task :test do
+test = task :test do
 	$LOAD_PATH.unshift( "lib" )
 
 	require 'test/unit'
@@ -19,6 +19,7 @@ task :test do
 	require 'tests/quote'
 	require 'tests/relay'
 end
+test.comment = "Run all of the tests."
 
 mkdoc = task :mkdoc do
 	system "asciidoc README.asciidoc"
