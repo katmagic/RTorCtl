@@ -20,9 +20,14 @@ task :test do
 	require 'tests/relay'
 end
 
-task :mkdoc do
+mkdoc = task :mkdoc do
 	system "asciidoc README.asciidoc"
 end
+mkdoc.comment = "Generate documentation."
+mkdoc.add_description <<EOT
+Make README.html from README.asciidoc. asciidoc must be be installed for this to
+work.
+EOT
 
 gem = task :gem do |t|
   require 'rubygems'
