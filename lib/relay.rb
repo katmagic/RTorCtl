@@ -416,6 +416,8 @@ module RTorCtl
 		end
 
 		def [](nickname)
+			# Find a relay by nickname, or return nil.
+
 			self.find{|r| r.nickname == nickname.to_s}
 		end
 
