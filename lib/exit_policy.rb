@@ -236,10 +236,12 @@ module RTorCtl
 			@policies = policy.map{ |line| ExitPolicyLine.new(line) }
 		end
 
+		# Are connections to ip:port accepted?
 		def accepts?(ip, port)
 			self === [ip, port]
 		end
 
+		# Are connections to ip:port rejected?
 		def rejects?(ip, port)
 			!(self === [ip, port])
 		end
@@ -248,6 +250,8 @@ module RTorCtl
 			@policies == policy.policies
 		end
 
+		# Are connections to the IP and port specified in +ip_port+ accepted?
+		# @param [Array<IPAddress, Fixnum>] ip_port something like ["1.4.1.6", 22]
 		def ===(ip_port)
 			if a = @policies.find{ |pol| pol === ip_port }
 				a.acceptance == :accept
@@ -256,33 +260,40 @@ module RTorCtl
 			end
 		end
 
+		# Insert a new rule +rule+ at position +pos+.
 		def insert(pos, rule)
 			rule = ExitPolicyLine.new(rule) unless rule.is_a? ExitPolicyLine
 			@policies.insert( pos, rule )
 		end
 
+		# Delete the rule at position +pos+.
 		def delete(pos)
 			@policies.delete_at(pos)
 		end
 
+		# Append a rule.
 		def push(rule)
 			insert(-1, rule)
 		end
 
+		# Append a rule, returning self.
 		def <<(rule)
 			push(rule)
 
 			self
 		end
 
+		# Remove the last rule.
 		def pop()
 			delete(-1)
 		end
 
+		# Remove the first rule.
 		def shift()
 			delete(0)
 		end
 
+		# Create a rule with the highest precedence.
 		def unshift(rule)
 			insert(0, rule)
 		end
@@ -299,19 +310,18 @@ module RTorCtl
 			"#<#{self.class}: #{self}>"
 		end
 
-
-		DEFAULT_POLICY = self.new(<<POLICY)
-reject *:25
-reject *:119
-reject *:135-139
-reject *:445
-reject *:563
-reject *:1214
-reject *:4661-4666
-reject *:6346-6429
-reject *:6699
-reject *:6881-6999
-accept *:*
-POLICY
+		DEFAULT_POLICY = self.new([
+			"reject *:25",
+			"reject *:119",
+			"reject *:135-139",
+			"reject *:445",
+			"reject *:563",
+			"reject *:1214",
+			"reject *:4661-4666",
+			"reject *:6346-6429",
+			"reject *:6699",
+			"reject *:6881-6999",
+			"accept *:*"
+		])
 	end
 end
