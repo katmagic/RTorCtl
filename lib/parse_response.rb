@@ -6,13 +6,18 @@ module RTorCtl
 	class RTorCtl
 		private
 
-		def get_response()
-			# Get a response back from Tor, returning a two-element array whose first
-			# member is a response code (Integer) and second member is an array whose
-			# members are either a String containing the line recieved or an Array
-			# containing a line and its associated data, represented as an array of
-			# stripped lines.
+=begin
+Get a response from Tor.
 
+@return [Code, Array]
+ The members of the +Array+ are either
+ * a +String+ containing a one-line response; or
+ * an +Array+ containing the first line of the response (that is given
+   alongside the response code) and an +Array+ of lines with their terminators
+   stripped that represent the part of the response associated with the first
+   element in the innermost +Array+.
+=end
+		def get_response()
 			lines = []
 			while line = @connection.gets()
 				# The statements like `when (boolean_expr and line)` will be executed
