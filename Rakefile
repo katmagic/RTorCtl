@@ -51,6 +51,7 @@ END
 		s.platform = Gem::Platform::CURRENT
 		s.required_ruby_version = ">= #{VERSION}"
 		s.add_development_dependency('rake')
+		s.add_development_dependency('yard')
 		s.requirements << 'Tor'
 
 		s.files = FileList["lib/**", "tests/**", "UNLICENSE", "README.asciidoc"]
