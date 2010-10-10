@@ -159,7 +159,7 @@ module RTorCtl
 				results = Hash.new
 
 				response.each do |x|
-					key, value = x.split("=", 2)
+					key, value = x.split("=", 2); key = key.to_sym
 					results[key] = convert_option_setter(key, value)
 				end
 
