@@ -84,24 +84,27 @@ module RTorCtl
 		end
 	end
 
+=begin
+This class represents a relay in the Tor network.
+
+@example
+ relay.nickname # "molko"
+ relay.address # #<IPAddress: 14.16.22.0>
+ relay.or_port # 443
+ relay.dir_port # nil
+ relay.bandiwdth_average # #<Bytes:0x14029078 @i=968>
+ relay.platform # "Windows Vista"
+ relay.published # Tue Jan 19 03:14:07 UTC 2038
+ relay.fingerprint # :"4E1A97201B80A872DA4847ADF022E456876E73F8"
+ relay.hibernating # false
+ relay.uptime # 142978
+ # ^ THIS IS THE UPTIME AS OF relay.published!!! See relay.online_since for a
+ # more informative value.
+ relay.exit_policy # #<ExitPolicy: reject *:25,accept *:*>
+ relay.family # [<Relay: brian@14.2,9.78>]
+ relay.online_since # Sat Oct 09 21:38:01 UTC 2010
+=end
 	class Relay
-		# Relay represents a relay in the Tor network.
-		#
-		# relay.nickname # "molko"
-		# relay.address # #<IPAddress: 14.16.22.0>
-		# relay.or_port # 443
-		# relay.dir_port # nil
-		# relay.bandiwdth_average # #<Bytes:0x14029078 @i=968>
-		# relay.platform # "Windows Vista"
-		# relay.published # Tue Jan 19 03:14:07 UTC 2038
-		# relay.fingerprint # :"4E1A97201B80A872DA4847ADF022E456876E73F8"
-		# relay.hibernating # false
-		# relay.uptime # 142978
-		# # ^ THIS IS THE UPTIME AS OF relay.published!!! See relay.online_since for
-		# # a more informative value.
-		# relay.exit_policy # #<ExitPolicy: reject *:25,accept *:*>
-		# relay.family # [<Relay: brian@14.2,9.78>]
-		# relay.online_since # Sat Oct 09 21:38:01 UTC 2010=
 
 		private
 
@@ -254,18 +257,19 @@ module RTorCtl
 			end
 		end
 
-		PARSERS = private_instance_methods.grep(/^parse_(.*)/){$1.to_sym}
+		# Set this programatically so YARD won't pick them up.
+		const_set(:PARSERS, private_instance_methods.grep(/^parse_(.*)/){$1.to_sym})
 
-		BEGIN_LINE = /^-----BEGIN /
-		END_LINE = /^-----END /
+
+=begin
+Parse descriptors, calling +parse_#{option_name}( rest_of_line || data )+ to
+derive the parsed values. Return an Array containing a Hash of the option names
+and parsed values. The _unknowns value is an Array of options which we were
+unable to parse and used the unparsed value for. In order to facilitate the
+other parse_* options, we initialize @_tmp to a new Hash when we start and set
+it to nil when we finish.
+=end
 		def parse_descriptor( descriptor )
-			# Parse descriptors, calling parse_#{option_name}( rest_of_line || data )
-			# to derive the parsed values. Return an Array containing a Hash of the
-			# option names and parsed values. The _unknowns value is an Array of
-			# options which we were unable to parse and used the unparsed value for.
-			# In order to facilitate the other parse_* options, we initialize @_tmp to
-			# a new Hash when we start and set it to nil when we finish.
-
 			@_tmp = Hash.new
 			attributes = {:_unknowns => []}
 			options = Array.new
@@ -291,10 +295,10 @@ module RTorCtl
 			opt = nil
 			is_opt = false
 			descriptor.each do |line|
-				if line =~ BEGIN_LINE or recieving_data
+				if line =~ /^-{5}BEGIN / or recieving_data
 					data += line
 
-					if line =~ END_LINE
+					if line =~ /^-{5}END /
 						recieving_data = false
 					else
 						recieving_data = true
@@ -314,7 +318,7 @@ module RTorCtl
 					is_opt = false
 				end
 
-				next if line =~ END_LINE
+				next if line =~ /^-{5}END /
 
 				line =~ /^(opt )?([\w\-]+)(?: (.*?))?\r?$/
 				is_opt, opt, data = $~.captures
@@ -335,41 +339,43 @@ module RTorCtl
 
 		public
 
-		attr_reader :attributes, :options, :descriptor
+		# an Array of attributes has the descriptor defined
+		attr_reader :attributes
+		# an Array of symbols with the various options a router has set
+		attr_reader :options
+		# a String containing the actual descriptor
+		attr_reader :descriptor
 
 		def inspect
 			"#<#{self.class} #{@nickname}@#{@address}>"
 		end
 
+		# @param [RTorCtl] rtorctl an RTorCtl instance we can query for extra info
+		# @param [Array] descriptor the lines of the relay's descriptor.
 		def initialize(rtorctl, descriptor)
-			# _descriptor_ is an Array containing the lines of the relay's descriptor.
-
 			@rtorctl = rtorctl
 			@descriptor = descriptor
 			process_descriptor(@descriptor)
 		end
 
+		# When did this relay come online?
+		# @return [Time]
 		def online_since
-			# When did this relay come online?
-
 			@published - @uptime
 		end
 
+		# Does this relay have the AllowSingleHopExits flag set to 1?
 		def allows_single_hop_exits?
-			# Does this relay have the AllowSingleHopExits flag set to 1?
-
 			@options.include? :allow_single_hop_exits
 		end
 
+		# Is this relay a hidden service directory?
 		def hidden_service_dir?
-			# Is this relay a hidden service directory?
-
 			@options.include? :hidden_service_dir
 		end
 
+		# Is this relay a directory cache that provides extra-info?
 		def caches_extra_info?
-			# Is this relay a directory cache that provides extra-info?
-
 			@options.include? :caches_extra_info
 		end
 	end
