@@ -43,13 +43,13 @@ module RTorCtl
 		end
 	end
 
+	# This class represents size in a user friendly way.
+	#
+	# @example
+	#  [141622, 142978, 4723985].map{|x| RTorCtl::Bytes.new(x).to_s}
+	#  # ["138.30KB", "139.63KB", "4.51MB"]
 	class Bytes
-		# Bytes represents size in a user friendly way.
-		#
-		# [141622, 142978, 4723985].map{|x| RTorCtl::Bytes.new(x).to_s}
-		# # ["138.30KB", "139.63KB", "4.51MB"]
-
-
+		# @param [Fixnum] bytes
 		def initialize(bytes)
 			@i = bytes
 		end
@@ -60,6 +60,7 @@ module RTorCtl
 		def gb() @i / 1024.0**3 end
 		def tb() @i / 1024.0**4 end
 
+		# @return [String] a string like "138.30KB" or "4.51MB"
 		def to_s
 			%w{ tb gb mb kb b }.each do |x|
 				if send(x) > 1
