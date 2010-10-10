@@ -4,11 +4,11 @@ require 'time'
 require 'set'
 
 module RTorCtl
+	# This class allows different Tor versions to be compared.
 	class TorVersion
-		# Allow us to compare Tor versions.
-
 		include Comparable
 
+		# @param [String] version a Tor version, like "0.2.3.0-alpha-dev"
 		def initialize(version)
 			unless v = version.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)/)
 				raise ArgumentError, "invalid version string"
@@ -25,6 +25,8 @@ module RTorCtl
 			return to_i.call(self) <=> to_i.call(v)
 		end
 
+		# @return [Array<Fixnum, Fixnum, Fixnum, Fixnum>] the version numbers as
+		#  separate integers
 		def to_a
 			@versions
 		end
