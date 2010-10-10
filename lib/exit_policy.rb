@@ -8,29 +8,36 @@ module RTorCtl
 		end
 	end
 
+	# This class represents an IP address.
 	class IPAddress
-		# ip = IPAddress.new("86.75.30.9") # <IPAddress: 86.75.30.9/32>
-		# ip.to_i # 2130706434
-		# ip.to_s # "86.75.30.9"
-		# ip/8 # <IPAddress: 86.0.0.0/32>
-		# (ip/8).to_s # "86.0.0.0/32"
-		# (ip/8/32).to_s
-
+		# our netmask
 		attr_reader :netmask
 
+		# Set our netmask to _val_.
 		def netmask=(val)
-			# Set our netmask to _val_.
-
 			@ip = mask(@ip, val)
 			@netmask = val
 		end
 
+		# @overload new(ip)
+		#  @param [String] ip an IP like "12.4.97.8"
+		# @overload new(ip)
+		#  @param [String] ip an IP like "12.4.97.0/24"
+		# @overload new(ip)
+		#  @param [String] ip an IP like [12, 4, 97, 8]
+		# @overload new(ip)
+		#  @param [IPAddress] ip another IPAddress instance
+		# @overload new(ip)
+		#  @param [Fixnum] ip an IP like (12*256**3 + 4*256**2 + 97*256 + 8)
 		def initialize(ip)
 			@ip, nmask = any_to_int_and_netmask(ip)
 
 			self.netmask = nmask
 		end
 
+		# Get our _indx_th quad.
+		# @example
+		#  IPAddress.new("12.4.97.8")[1] #=> 4
 		def [](index)
 			unless (0..3) === index
 				raise ArgumentError, "there are four parts to an IP address"
@@ -39,9 +46,12 @@ module RTorCtl
 			to_a[index]
 		end
 
+		# Set our _index_th quad to the integer _val_.
+		# @example
+		#  ip = IPAddress.new("12.4.97.0")
+		#  ip[3] = 8
+		#  ip #=> #<IPAddress: 12.4.97.8>
 		def []=(index, val)
-			# Set our _index_th quad to the integer _val_.
-
 			if not (0..3) === index
 				raise ArgumentError, "there are four parts to an IP address"
 			elsif not (0..256) === val
@@ -55,6 +65,7 @@ module RTorCtl
 			val
 		end
 
+		# our quads
 		def to_a
 			@as_array ||= int_to_array(@ip)
 		end
@@ -71,10 +82,11 @@ module RTorCtl
 			"#<#{self.class}: #{self}>"
 		end
 
+		# Return a new IPAddress instance with a netmask of _nmask_ with an IP the
+		# same as ours.
+		# @example
+		#  ip = IPAddress.new("12.4.97.8") / 24 #=> #<IPAddress: 12.4.97.0/24>
 		def /(nmask)
-			# Return a new IPAddress instance with a netmask of _nmask_ with an IP the
-			# same as ours.
-
 			self.class.new(self).tap{|x| x.netmask = nmask}
 		end
 
@@ -84,9 +96,8 @@ module RTorCtl
 			ip.to_i == to_i and ip.netmask == @netmask
 		end
 
+		# Is _ip_ in our IP range?
 		def ===(ip)
-			# Is _ip_ in our IP range?
-
 			self == ( self.class.new(ip) / @netmask )
 		end
 
@@ -95,9 +106,10 @@ module RTorCtl
 			(ip_int >> (32 - nmask)) << (32 - nmask)
 		end
 
+		# Convert an IP address of any of the forms supported by IPAddress#new() to
+		# a Fixnum (also described there) and a netmask.
+		# @return [Fixnum, Fixnum] something like [201613576, 32]
 		def any_to_int_and_netmask(ip)
-			# any_to_int_and_netmask("127.0.0.1/8") # 2130706432, 8
-
 			case ip
 				when /^((?:\d+\.){3}\d+)(?:\/(\d+))?$/
 					m = $~
@@ -120,21 +132,23 @@ module RTorCtl
 			end
 		end
 
+		# Turn an Array representation of an IP address _array_ to an equivalent
+		# Fixnum representation.
+		# @param [Array] array an Array like [12, 4, 97, 8]
+		# @return [Fixnum] array.reduce{ |x, y| x*256 + y }
 		def array_to_int(array)
-			# Turn an array representation of an IP address (e.g. [12, 21, 20, 12])
-			# _array_ to its an equivalent integer representation (e.g. 202707980).
-
 			unless array.all?{ |i| (0..256) === i } and array.length == 4
 				raise NotAnIPError.new(array)
 			end
 
-			return array.reduce(0){ |x, y| x*256 + y }
+			return array.reduce{ |x, y| x*256 + y }
 		end
 
+		# Turn a Fixnum representation of an IP address _ip_int_ to its Array
+		# equivalent.
+		# @param [Fixnum] ip_int something like 201613576
+		# @return [Array] something like [12, 4, 97, 8]
 		def int_to_array(ip_int)
-			# Turn an integer representation of an IP address (e.g. 202707980)
-			# _ip_int_ to its array equivalent (e.g.  [12, 21, 20, 12]).
-
 			ip_array = Array.new
 
 			4.times do
