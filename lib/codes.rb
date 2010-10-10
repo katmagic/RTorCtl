@@ -1,6 +1,8 @@
 #!/usr/bin/ruby
 
 module RTorCtl
+	# This class represents a response code recieved from Tor.
+	# @see section 4 of Tor's control-spec.txt
 	class Code
 		DESCRIPTIONS = {
 			250 => "OK",
@@ -22,12 +24,17 @@ module RTorCtl
 			650 => "Asynchronous event notification"
 		}
 
+		# the [Fixnum] response code
 		attr_reader :code
 
+		# @param [Fixnum] code a response code from Tor
 		def initialize(code)
 			@code = code.to_i
 		end
 
+		# @return [Symbol] one of +:positive_completion+,
+		#  +:temporary_negative_completion+, +:permanent_negative_completion+, or
+		#  +:asynchronous+
 		def reply_type
 			case @code
 				when 200...300 then :positive_completion
@@ -43,6 +50,7 @@ module RTorCtl
 			define_method( "#{reply_type}?" ) { reply_type() == reply_type }
 		end
 
+		# @return [Symbol] one of +:syntax+, +:protocol+, or +:tor+
 		def secondary_reply_type
 			case @code % 100
 				when 00...10 then :syntax
@@ -52,10 +60,12 @@ module RTorCtl
 			end
 		end
 
+		# Is this a successful reply?
 		def success?()
 			[:positive_completion, :asynchronous].include?( reply_type )
 		end
 
+		# a short description of the reply
 		def desc
 			DESCRIPTIONS[@code]
 		end
@@ -69,12 +79,15 @@ module RTorCtl
 			"#<#{self.class.name} #{@code}>"
 		end
 
+		# Return ourselves into a TorError, or nil if we're a success.
 		def exception
 			return nil if success?
 
 			TorError.new(self)
 		end
 
+		# Raise ourselves as an exception.
+		# @see Code#exception
 		def raise
 			return nil if success?
 
@@ -93,9 +106,15 @@ module RTorCtl
 		end
 	end
 
+	# This class is instanstiated by Code#exception
+	# @see Code#exception
 	class TorError < Exception
-		attr_reader :error_type, :error_expiry
+		# one of +:syntax+, +:protocol+, or +:tor+
+		attr_reader :error_type
+		# one of +:PERMANENT+, +:TEMPORARY+, or +:UNKNOWN+
+		attr_reader :error_expiry
 
+		# @param [Code] error the Code to derive the response from
 		def initialize(error)
 			super(error.desc)
 
