@@ -391,10 +391,8 @@ it to nil when we finish.
 		end
 	end
 
+	# This class is what's returned by RTorCtl#relays.
 	class Relays
-		# RTorCtl::RTorCtl.relays
-		# Warning: This is *very* slow at the moment.
-
 		include Enumerable
 
 		def initialize(rtorctl)
@@ -406,9 +404,8 @@ it to nil when we finish.
 			@relays.each(&proc)
 		end
 
+		# Repopulate our list of relays.
 		def reload()
-			# Repopulate our list of relays.
-
 			relays = []
 			# See doc/spec/dir-spec-v2.txt in Tor's source.
 			@rtorctl.getinfo("desc/all-recent").each do |l|
@@ -422,17 +419,14 @@ it to nil when we finish.
 			@relays = relays.map{|r| Relay.new(@rtorctl, r)}
 		end
 
+		# Find a relay by nickname, or return nil.
+		# @return [Relay]
 		def [](nickname)
-			# Find a relay by nickname, or return nil.
-
 			self.find{|r| r.nickname == nickname.to_s}
 		end
 
+		# @see Enumerable#grep
 		def grep(regexp, &block)
-			# Find all relays whose nickname's match a given regular expression. If
-			# the optional _block_ is supplied, each matching element is passed to it,
-			# and the block's result is stored in the output array.
-
 			matches = find_all{ |r| r.nickname =~ regexp }
 
 			block ? matches.map{|r| block[r] } : matches
