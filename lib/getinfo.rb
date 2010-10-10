@@ -3,9 +3,15 @@ require 'parse_response'
 
 module RTorCtl
 	class RTorCtl
+		# Get some data from Tor in a somewhat generic fashion.
+		# @overload getinfo(keyword)
+		#  @param [#to_s] keyword a keyword to pass to GETINFO
+		#  @return [String] Tor's response
+		# @overload getinfo(*keywords)
+		#  @param [Array] keywords an array of keywords to pass to GETINFO
+		#  @return [Array] the array of responses
+		# @see section 3.9 of control-spec.txt
 		def getinfo(*keywords)
-			# Get some data from Tor in a somewhat generic fashion. Return a hash with
-			# keywords mapped to their returned values.
 
 			@connection.puts("GETINFO #{keywords.join(" ")}")
 			code, response = get_response()
@@ -25,6 +31,7 @@ module RTorCtl
 			keywords.length == 1 ? info.first[1] : info
 		end
 
+		# These options will have their values returned as +Fixnum+.
 		INT_CONFOPT = [
 			:SocksPort, :BandwidthRate, :BandwidthBurst, :MaxAdvertisedBandwidth,
 			:RelayBandwidthRate, :RelayBandwidthBurst, :PerConnBWRate,
@@ -41,7 +48,9 @@ module RTorCtl
 			:TestingAuthDirTimeToLearnReachability,
 			:TestingEstimatedDescriptorPropagationTime
 		]
-		MULTI_INT_CONFOPT = [:FirewallPorts, :LongLivedPorts ]
+		# These options will be +Array+s of +Fixnum+.
+		MULTI_INT_CONFOPT = [:FirewallPorts, :LongLivedPorts]
+		# These options will be +true+ or +false+.
 		BOOL_CONFOPT = [
 			:SafeLogging, :ConstrainedSockets, :CookieAuthentication,
 			:CookieAuthFileGroupReadable, :DisableAllSwap, :FetchDirInfoEarly,
@@ -66,6 +75,7 @@ module RTorCtl
 			:AuthDirListBadExits, :AuthDirRejectUnlisted, :PublishHidServDescriptors,
 			:TestingTorNetwork
 		]
+		# These options will be +String+s.
 		STR_CONFOPT = [
 			:ControlListenAddress, :ControlSocket, :HashedControlPassword,
 			:CookieAuthFile, :DataDirectory, :HTTPProxy, :HTTPProxyAuthenticator,
@@ -76,6 +86,7 @@ module RTorCtl
 			:Address, :ContactInfo, :Nickname, :ORListenAddress,
 			:ServerDNSResolvConfFile, :GeoIPFile, :DirPortFrontPage, :DirListenAddress
 		]
+		# These options will be +Array+s of +String+s.
 		MULTI_STR_CONFOPT = [
 			:TrackHostExits, :AutomapHostsSuffixes, :ServerDNSTestAddresses,
 			:RecommendedVersions, :RecommendedClientVersions,
@@ -83,6 +94,7 @@ module RTorCtl
 			:AuthDirInvalid, :AuthDirReject, :HiddenServiceVersion,
 			:ExcludeNodes, :ExcludeExitNodes, :EntryNodes, :ExitNodes,
 		]
+		# These options will be converted on a case-by-case basis.
 		SPECIAL_CONFOPT = [
 			:DirServer, :AlternateDirAuthority, :AlternateHSAuthority,
 			:AlternateBridgeAuthority, :Log, :AllowInvalidNodes, :Bridge,
@@ -96,7 +108,6 @@ module RTorCtl
 		[INT_CONFOPT, MULTI_INT_CONFOPT, BOOL_CONFOPT, STR_CONFOPT,
 		 MULTI_STR_CONFOPT, SPECIAL_CONFOPT].each do |c|
 			# Make the case statement in convert_option much neater.
-
 			class << c
 				def ===(x)
 					include? x
@@ -104,9 +115,12 @@ module RTorCtl
 			end
 		end
 
+		# Convert +val+ to a format that makes the most sense for it to be
+		# represented as in a Ruby object on the basis of +opt+.
+		# @param [Symbol] opt the [Tor] option name
+		# @param [String] val the String to be converted
+		# @return [Object] the converted value
 		def convert_option_getter(opt, val)
-			# convert_option_getter( :SafeLogging, "1" ) # true
-
 			case opt.to_sym
 				when INT_CONFOPT then val.to_i
 				when MULTI_INT_CONFOPT then val.split(",").map{|x|x.to_i}
@@ -123,6 +137,10 @@ module RTorCtl
 			end
 		end
 
+		# Convert +val+ to a String that would make sense to Tor.
+		# @param [Symbol] opt the [Tor] option name
+		# @param val the value to be converted
+		# @return [String] the converted value
 		def convert_option_setter(opt, val)
 			case opt.to_sym
 				when INT_CONFOPT then val.to_s
@@ -142,11 +160,23 @@ module RTorCtl
 
 		private :convert_option_getter, :convert_option_setter
 
-		def getconf(*keywords)
-			# tor.getconf(:SocksPort) # "9050"
-			# tor.getconf(:SocksPort, :ControlPort)
-			# # {"SocksPort"=>"9050", "ControlPort"=>"9051"}
+=begin
+Get a configuration value from Tor.
+@see section 3.3 of control-spec.txt
 
+@overload getconf(keyword)
+ @param [String] keyword
+ @return [String] Tor's respons
+ @example
+  tor.getconf(:SocksPort) # "9050"
+
+@overload getconf(*keywords)
+ @param [Array] keywords an array of keywords
+ @return [Hash] a Hash of keyword-response pairs
+ @example
+  tor.getconf(:SocksPort, :ControlPort) # {:SocksPort=>9050, :ControlPort=>9051}
+=end
+		def getconf(*keywords)
 			@connection.puts("GETCONF #{keywords.join(" ")}")
 			code, response = get_response()
 
@@ -167,10 +197,14 @@ module RTorCtl
 			end
 		end
 
+		# Set Tor's configuration options.
+		# @overload setconf(option, value)
+		#  @param [String, Symbol] option
+		#  @param [Object] value a value to be converted to Tor-speak
+		#  @see section 3.1 of control-spec.txt
+		# @overload setconf(options)
+		#  @param [Hash] options a hash of key/value pairs to set
 		def setconf(opt, val=nil)
-			# setconf(:SocksPort, 9050)
-			# setconf(:SocksPort => 9050, :ControlPort => 9051)
-
 			unless opt.is_a? Hash
 				opt = {opt => val}
 			end
