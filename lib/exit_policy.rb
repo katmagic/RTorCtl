@@ -161,16 +161,17 @@ module RTorCtl
 	end
 
 	class ExitPolicy
+		# This class represents a single line in an exit policy.
 		class ExitPolicyLine
-			# epl = ExitPolicyLine.new("accept 1.2.3.4/8:666-1337")
-			# epl.acceptance # :accept
-			# epl.ip # #<IPAddress: 1.0.0.0/8>
-			# epl.netmask # 8
-			# epl.port_range # (666..1337)
 
 			REGEXP = /^(accept|reject) ([\d+.*\/]+):(\d+|\*)(?:-(\d+))?$/
 
-			attr_reader :acceptance, :ip, :netmask, :port_range
+			# either :accept or :reject
+			attr_reader :acceptance
+			# an instance of IPAddress
+			attr_reader :ip
+			# the Range of ports we affect
+			attr_reader :port_range
 
 			def initialize(policy_line)
 				policy_line = policy_line.rstrip
@@ -190,13 +191,17 @@ module RTorCtl
 				end
 			end
 
+			# Do we affect ip:port?
 			def matches?(ip, port)
 				@ip === ip and @port_range === port
 			end
+			# +matches?(*ip_port)+
 			def ===(ip_port)
 				matches?( *ip_port )
 			end
 
+			# Are we equivalent to another exit policy?
+			# @param [ExitPolicyLine] other
 			def ==(other)
 				@acceptance == other.acceptance and
 				@ip == other.ip and
