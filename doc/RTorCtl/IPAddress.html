@@ -1,0 +1,1051 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: RTorCtl::IPAddress</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (I)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../RTorCtl.html" title="RTorCtl (module)">RTorCtl</a></span></span>
+     &raquo; 
+    <span class="title">IPAddress</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: RTorCtl::IPAddress
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">RTorCtl::IPAddress</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/exit_policy.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+This class represents an IP address.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#netmask-instance_method" title="#netmask (instance method)">- (Object) <strong>netmask</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+our netmask.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%2F-instance_method" title="#/ (instance method)">- (Object) <strong>/</strong>(nmask) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return a new IPAddress instance with a netmask of <em>nmask</em> with an IP
+the same as ours.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3D%3D-instance_method" title="#== (instance method)">- (Object) <strong>==</strong>(ip) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3D%3D%3D-instance_method" title="#=== (instance method)">- (Object) <strong>===</strong>(ip) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Is <em>ip</em> in our IP range?.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D-instance_method" title="#[] (instance method)">- (Object) <strong>[]</strong>(index) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Get our _indx_th quad.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D%3D-instance_method" title="#[]= (instance method)">- (Object) <strong>[]=</strong>(index, val) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Set our _index_th quad to the integer <em>val</em>.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (IPAddress) <strong>initialize</strong>(ip) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of IPAddress.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inspect-instance_method" title="#inspect (instance method)">- (Object) <strong>inspect</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_a-instance_method" title="#to_a (instance method)">- (Object) <strong>to_a</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+our quads.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_i-instance_method" title="#to_i (instance method)">- (Object) <strong>to_i</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">- (Object) <strong>to_s</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+    
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of IPAddress
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>Overloads:</h3>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>ip</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an IP like &quot;12.4.97.8&quot;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>ip</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an IP like &quot;12.4.97.0/24&quot;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>ip</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an IP like [12, 4, 97, 8]
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="RTorCtl::IPAddress (class)">IPAddress</a></span></tt>)</span>
+      
+      
+        <span class='name'>ip</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+another IPAddress instance
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>new</strong>(ip) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <span class='name'>ip</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an IP like (12*256**3 + 4*256**2 + 97*256 + 8)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 32</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='rparen token'>)</span>
+  <span class='@ip ivar id'>@ip</span><span class='comma token'>,</span> <span class='nmask identifier id'>nmask</span> <span class='assign token'>=</span> <span class='any_to_int_and_netmask identifier id'>any_to_int_and_netmask</span><span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='rparen token'>)</span>
+
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='netmask identifier id'>netmask</span> <span class='assign token'>=</span> <span class='nmask identifier id'>nmask</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="netmask=-instance_method"></span>
+      <span id="netmask-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="netmask-instance_method">
+  
+    - (<tt>Object</tt>) <strong>netmask</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+our netmask
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 14</span>
+
+<span class='def def kw'>def</span> <span class='netmask identifier id'>netmask</span>
+  <span class='@netmask ivar id'>@netmask</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="/-instance_method">
+  
+    - (<tt>Object</tt>) <strong>/</strong>(nmask) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Return a new IPAddress instance with a netmask of <em>nmask</em> with an IP
+the same as ours.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='ip identifier id'>ip</span> <span class='assign token'>=</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;12.4.97.8&quot;</span><span class='rparen token'>)</span> <span class='div op'>/</span> <span class='integer val'>24</span> <span class='comment val'>#=&gt; #&lt;IPAddress: 12.4.97.0/24&gt;</span>
+</pre>
+    
+  </div>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 89</span>
+
+<span class='def def kw'>def</span> <span class='div op'>/</span><span class='lparen token'>(</span><span class='nmask identifier id'>nmask</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='tap identifier id'>tap</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span> <span class='x identifier id'>x</span><span class='dot token'>.</span><span class='netmask identifier id'>netmask</span> <span class='assign token'>=</span> <span class='nmask identifier id'>nmask</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="==-instance_method">
+  
+    - (<tt>Object</tt>) <strong>==</strong>(ip) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 93</span>
+
+<span class='def def kw'>def</span> <span class='eq op'>==</span><span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='rparen token'>)</span>
+  <span class='ip identifier id'>ip</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='ip identifier id'>ip</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span>
+
+  <span class='ip identifier id'>ip</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='eq op'>==</span> <span class='to_i identifier id'>to_i</span> <span class='and and kw'>and</span> <span class='ip identifier id'>ip</span><span class='dot token'>.</span><span class='netmask identifier id'>netmask</span> <span class='eq op'>==</span> <span class='@netmask ivar id'>@netmask</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="===-instance_method">
+  
+    - (<tt>Object</tt>) <strong>===</strong>(ip) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Is <em>ip</em> in our IP range?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 100</span>
+
+<span class='def def kw'>def</span> <span class='eqq op'>===</span><span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span> <span class='eq op'>==</span> <span class='lparen token'>(</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='rparen token'>)</span> <span class='div op'>/</span> <span class='@netmask ivar id'>@netmask</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="[]-instance_method">
+  
+    - (<tt>Object</tt>) <strong>[]</strong>(index) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Get our _indx_th quad.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;12.4.97.8&quot;</span><span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span> <span class='comment val'>#=&gt; 4</span>
+</pre>
+    
+  </div>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43
+44
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 41</span>
+
+<span class='def def kw'>def</span> <span class='aref op'>[]</span><span class='lparen token'>(</span><span class='index identifier id'>index</span><span class='rparen token'>)</span>
+  <span class='unless unless kw'>unless</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>3</span><span class='rparen token'>)</span> <span class='eqq op'>===</span> <span class='index identifier id'>index</span>
+    <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;there are four parts to an IP address&quot;</span>
+  <span class='end end kw'>end</span>
+
+  <span class='to_a identifier id'>to_a</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="[]=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>[]=</strong>(index, val) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Set our _index_th quad to the integer <em>val</em>.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='ip identifier id'>ip</span> <span class='assign token'>=</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;12.4.97.0&quot;</span><span class='rparen token'>)</span>
+<span class='ip identifier id'>ip</span><span class='lbrack token'>[</span><span class='integer val'>3</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='integer val'>8</span>
+<span class='ip identifier id'>ip</span> <span class='comment val'>#=&gt; #&lt;IPAddress: 12.4.97.8&gt;</span>
+</pre>
+    
+  </div>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 54</span>
+
+<span class='def def kw'>def</span> <span class='aset op'>[]=</span><span class='lparen token'>(</span><span class='index identifier id'>index</span><span class='comma token'>,</span> <span class='val identifier id'>val</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='not not kw'>not</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>3</span><span class='rparen token'>)</span> <span class='eqq op'>===</span> <span class='index identifier id'>index</span>
+    <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;there are four parts to an IP address&quot;</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='not not kw'>not</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>256</span><span class='rparen token'>)</span> <span class='eqq op'>===</span> <span class='val identifier id'>val</span>
+    <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;each of the IP parts is between 0 and 256&quot;</span>
+  <span class='end end kw'>end</span>
+
+  <span class='ip_as_array identifier id'>ip_as_array</span> <span class='assign token'>=</span> <span class='to_a identifier id'>to_a</span>
+  <span class='ip_as_array identifier id'>ip_as_array</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='val identifier id'>val</span>
+  <span class='@ip ivar id'>@ip</span><span class='comma token'>,</span> <span class='@netmask ivar id'>@netmask</span> <span class='assign token'>=</span> <span class='any_to_int_and_netmask identifier id'>any_to_int_and_netmask</span><span class='lparen token'>(</span><span class='ip_as_array identifier id'>ip_as_array</span><span class='rparen token'>)</span>
+
+  <span class='val identifier id'>val</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="inspect-instance_method">
+  
+    - (<tt>Object</tt>) <strong>inspect</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 81</span>
+
+<span class='def def kw'>def</span> <span class='inspect identifier id'>inspect</span>
+  <span class='dstring node'>&quot;#&lt;#{self.class}: #{self}&gt;&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_a-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_a</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+our quads
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 69</span>
+
+<span class='def def kw'>def</span> <span class='to_a identifier id'>to_a</span>
+  <span class='@as_array ivar id'>@as_array</span> <span class='opasgn op'>||=</span> <span class='int_to_array identifier id'>int_to_array</span><span class='lparen token'>(</span><span class='@ip ivar id'>@ip</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_i-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_i</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 77</span>
+
+<span class='def def kw'>def</span> <span class='to_i identifier id'>to_i</span>
+  <span class='@ip ivar id'>@ip</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_s-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_s</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/exit_policy.rb', line 73</span>
+
+<span class='def def kw'>def</span> <span class='to_s identifier id'>to_s</span>
+  <span class='to_a identifier id'>to_a</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;.&quot;</span><span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='@netmask ivar id'>@netmask</span> <span class='eq op'>==</span> <span class='integer val'>32</span> <span class='question op'>?</span> <span class='string val'>&quot;&quot;</span> <span class='colon op'>:</span> <span class='dstring node'>&quot;/#{@netmask}&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 10 16:15:25 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: ParseResponseTest</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo; 
+    
+    
+    <span class="title">ParseResponseTest</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: ParseResponseTest
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Test::Unit::TestCase</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Test::Unit::TestCase</li>
+          
+            <li class="next">ParseResponseTest</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">tests/parse_response.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="OK-constant" class="">OK =
+          
+        </dt>
+        <dd><pre class="code"><span class='RTorCtl constant id'>RTorCtl</span><span class='colon2 op'>::</span><span class='Code constant id'>Code</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='integer val'>250</span><span class='rparen token'>)</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup-instance_method" title="#setup (instance method)">- (Object) <strong>setup</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="setup-instance_method">
+  
+    - (<tt>Object</tt>) <strong>setup</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'tests/parse_response.rb', line 7</span>
+
+<span class='def def kw'>def</span> <span class='setup identifier id'>setup</span>
+  <span class='@rtorctl ivar id'>@rtorctl</span> <span class='assign token'>=</span> <span class='RTorCtl constant id'>RTorCtl</span><span class='colon2 op'>::</span><span class='RTorCtl constant id'>RTorCtl</span><span class='dot token'>.</span><span class='allocate identifier id'>allocate</span>
+  <span class='class class kw'>class</span> <span class='lshft op'>&lt;&lt;</span> <span class='@rtorctl ivar id'>@rtorctl</span>
+    <span class='public identifier id'>public</span> <span class='symbol val'>:get_response</span>
+    <span class='attr_accessor identifier id'>attr_accessor</span> <span class='symbol val'>:connection</span>
+
+    <span class='def def kw'>def</span> <span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='data identifier id'>data</span><span class='rparen token'>)</span>
+      <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='seek identifier id'>seek</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span>
+      <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='data identifier id'>data</span><span class='rparen token'>)</span>
+      <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='seek identifier id'>seek</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@rtorctl ivar id'>@rtorctl</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span> <span class='assign token'>=</span> <span class='StringIO constant id'>StringIO</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+  <span class='class class kw'>class</span> <span class='lshft op'>&lt;&lt;</span> <span class='@rtorctl ivar id'>@rtorctl</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span>
+    <span class='alias alias kw'>alias</span> <span class='symbol val'>:old_gets</span> <span class='symbol val'>:gets</span>
+    <span class='def def kw'>def</span> <span class='gets identifier id'>gets</span><span class='lparen token'>(</span><span class='sep identifier id'>sep</span><span class='assign token'>=</span><span class='string val'>&quot;\r\n&quot;</span><span class='rparen token'>)</span>
+      <span class='s identifier id'>s</span> <span class='assign token'>=</span> <span class='old_gets identifier id'>old_gets</span><span class='lparen token'>(</span><span class='sep identifier id'>sep</span><span class='rparen token'>)</span>
+      <span class='s identifier id'>s</span> <span class='and and kw'>and</span> <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='chomp identifier id'>chomp</span><span class='lparen token'>(</span><span class='sep identifier id'>sep</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 10 15:33:35 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

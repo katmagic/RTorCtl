@@ -1,0 +1,702 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: RTorCtl::Bytes</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (B)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../RTorCtl.html" title="RTorCtl (module)">RTorCtl</a></span></span>
+     &raquo; 
+    <span class="title">Bytes</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: RTorCtl::Bytes
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">RTorCtl::Bytes</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/relay.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+This class represents size in a user friendly way.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='lbrack token'>[</span><span class='integer val'>141622</span><span class='comma token'>,</span> <span class='integer val'>142978</span><span class='comma token'>,</span> <span class='integer val'>4723985</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span> <span class='RTorCtl constant id'>RTorCtl</span><span class='colon2 op'>::</span><span class='Bytes constant id'>Bytes</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrace token'>}</span>
+<span class='comment val'># [&quot;138.30KB&quot;, &quot;139.63KB&quot;, &quot;4.51MB&quot;]</span>
+</pre>
+    
+  </div>
+
+</div>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3D%3D-instance_method" title="#== (instance method)">- (Object) <strong>==</strong>(x) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#b-instance_method" title="#b (instance method)">- (Object) <strong>b</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gb-instance_method" title="#gb (instance method)">- (Object) <strong>gb</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Bytes) <strong>initialize</strong>(bytes) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of Bytes.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#kb-instance_method" title="#kb (instance method)">- (Object) <strong>kb</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mb-instance_method" title="#mb (instance method)">- (Object) <strong>mb</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">- (Object) <strong>method_missing</strong>(meth, *args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tb-instance_method" title="#tb (instance method)">- (Object) <strong>tb</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_i-instance_method" title="#to_i (instance method)">- (Object) <strong>to_i</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">- (String) <strong>to_s</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A string like &quot;138.30KB&quot; or &quot;4.51MB&quot;.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="RTorCtl::Bytes (class)">Bytes</a></span></tt>) <strong>initialize</strong>(bytes) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Bytes
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <span class='name'>bytes</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 53</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='bytes identifier id'>bytes</span><span class='rparen token'>)</span>
+  <span class='@i ivar id'>@i</span> <span class='assign token'>=</span> <span class='bytes identifier id'>bytes</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+<div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+  
+    <div class="method_details first">
+  <p class="signature first" id="method_missing-instance_method">
+  
+    - (<tt>Object</tt>) <strong>method_missing</strong>(meth, *args, &amp;block) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 82</span>
+
+<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='@i ivar id'>@i</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="==-instance_method">
+  
+    - (<tt>Object</tt>) <strong>==</strong>(x) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 78</span>
+
+<span class='def def kw'>def</span> <span class='eq op'>==</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='rparen token'>)</span>
+  <span class='@i ivar id'>@i</span> <span class='eq op'>==</span> <span class='x identifier id'>x</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="b-instance_method">
+  
+    - (<tt>Object</tt>) <strong>b</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 57</span>
+
+<span class='def def kw'>def</span>  <span class='b identifier id'>b</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='@i ivar id'>@i</span> <span class='div op'>/</span> <span class='float val'>1024.0</span><span class='pow op'>**</span><span class='integer val'>0</span> <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="gb-instance_method">
+  
+    - (<tt>Object</tt>) <strong>gb</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 60</span>
+
+<span class='def def kw'>def</span> <span class='gb identifier id'>gb</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='@i ivar id'>@i</span> <span class='div op'>/</span> <span class='float val'>1024.0</span><span class='pow op'>**</span><span class='integer val'>3</span> <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="kb-instance_method">
+  
+    - (<tt>Object</tt>) <strong>kb</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 58</span>
+
+<span class='def def kw'>def</span> <span class='kb identifier id'>kb</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='@i ivar id'>@i</span> <span class='div op'>/</span> <span class='float val'>1024.0</span><span class='pow op'>**</span><span class='integer val'>1</span> <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="mb-instance_method">
+  
+    - (<tt>Object</tt>) <strong>mb</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 59</span>
+
+<span class='def def kw'>def</span> <span class='mb identifier id'>mb</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='@i ivar id'>@i</span> <span class='div op'>/</span> <span class='float val'>1024.0</span><span class='pow op'>**</span><span class='integer val'>2</span> <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="tb-instance_method">
+  
+    - (<tt>Object</tt>) <strong>tb</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 61</span>
+
+<span class='def def kw'>def</span> <span class='tb identifier id'>tb</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='@i ivar id'>@i</span> <span class='div op'>/</span> <span class='float val'>1024.0</span><span class='pow op'>**</span><span class='integer val'>4</span> <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_i-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_i</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 74</span>
+
+<span class='def def kw'>def</span> <span class='to_i identifier id'>to_i</span>
+  <span class='@i ivar id'>@i</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_s-instance_method">
+  
+    - (<tt>String</tt>) <strong>to_s</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A string like &quot;138.30KB&quot; or &quot;4.51MB&quot;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+a string like &quot;138.30KB&quot; or &quot;4.51MB&quot;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 64</span>
+
+<span class='def def kw'>def</span> <span class='to_s identifier id'>to_s</span>
+  <span class='dstring node'>%w{ tb gb mb kb b }</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span>
+    <span class='if if kw'>if</span> <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='rparen token'>)</span> <span class='gt op'>&gt;</span> <span class='integer val'>1</span>
+      <span class='return return kw'>return</span> <span class='dstring node'>&quot;%.2f#{x.upcase}&quot;</span> <span class='mod op'>%</span> <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='return return kw'>return</span> <span class='string val'>&quot;0B&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 10 16:15:25 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: RTorCtl::TorVersion</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../RTorCtl.html" title="RTorCtl (module)">RTorCtl</a></span></span>
+     &raquo; 
+    <span class="title">TorVersion</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: RTorCtl::TorVersion
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">RTorCtl::TorVersion</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">Comparable</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/relay.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+This class allows different Tor versions to be compared.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3C%3D%3E-instance_method" title="#&lt;=&gt; (instance method)">- (Object) <strong>&lt;=&gt;</strong>(other) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (TorVersion) <strong>initialize</strong>(version) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of TorVersion.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_a-instance_method" title="#to_a (instance method)">- (Array&lt;Fixnum, Fixnum, Fixnum, Fixnum&gt;) <strong>to_a</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The version numbers as separate integers.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="RTorCtl::TorVersion (class)">TorVersion</a></span></tt>) <strong>initialize</strong>(version) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of TorVersion
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>version</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+a Tor version, like &quot;0.2.3.0-alpha-dev&quot;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 12</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='version identifier id'>version</span><span class='rparen token'>)</span>
+  <span class='unless unless kw'>unless</span> <span class='v identifier id'>v</span> <span class='assign token'>=</span> <span class='version identifier id'>version</span><span class='dot token'>.</span><span class='match identifier id'>match</span><span class='lparen token'>(</span><span class='regexp val'>/^(\d+)\.(\d+)\.(\d+)\.(\d+)/</span><span class='rparen token'>)</span>
+    <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;invalid version string&quot;</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@versions ivar id'>@versions</span> <span class='assign token'>=</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='captures identifier id'>captures</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span> <span class='x identifier id'>x</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="<=>-instance_method">
+  
+    - (<tt>Object</tt>) <strong>&lt;=&gt;</strong>(other) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 20</span>
+
+<span class='def def kw'>def</span> <span class='cmp op'>&lt;=&gt;</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='rparen token'>)</span>
+  <span class='base identifier id'>base</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='to_a identifier id'>to_a</span> <span class='plus op'>+</span> <span class='other identifier id'>other</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='max identifier id'>max</span>
+
+  <span class='to_i identifier id'>to_i</span> <span class='assign token'>=</span> <span class='lambda identifier id'>lambda</span><span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span><span class='dot token'>.</span><span class='reduce identifier id'>reduce</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='bitor op'>|</span> <span class='x identifier id'>x</span><span class='mult op'>*</span><span class='base identifier id'>base</span> <span class='plus op'>+</span> <span class='y identifier id'>y</span><span class='rbrace token'>}</span> <span class='rbrace token'>}</span>
+
+  <span class='return return kw'>return</span> <span class='to_i identifier id'>to_i</span><span class='dot token'>.</span><span class='call identifier id'>call</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span> <span class='cmp op'>&lt;=&gt;</span> <span class='to_i identifier id'>to_i</span><span class='dot token'>.</span><span class='call identifier id'>call</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_a-instance_method">
+  
+    - (<tt>Array&lt;Fixnum, Fixnum, Fixnum, Fixnum&gt;</tt>) <strong>to_a</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The version numbers as separate integers
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;Fixnum, Fixnum, Fixnum, Fixnum&gt;</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the version numbers as separate integers
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 30</span>
+
+<span class='def def kw'>def</span> <span class='to_a identifier id'>to_a</span>
+  <span class='@versions ivar id'>@versions</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 10 16:15:29 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

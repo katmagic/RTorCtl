@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: RTorCtl::Relays</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../RTorCtl.html" title="RTorCtl (module)">RTorCtl</a></span></span>
+     &raquo; 
+    <span class="title">Relays</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: RTorCtl::Relays
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">RTorCtl::Relays</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">Enumerable</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/relay.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+This class is what&#8217;s returned by RTorCtl#relays.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D-instance_method" title="#[] (instance method)">- (Relay) <strong>[]</strong>(nickname) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Find a relay by nickname, or return nil.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each-instance_method" title="#each (instance method)">- (Object) <strong>each</strong>(&amp;proc) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#grep-instance_method" title="#grep (instance method)">- (Object) <strong>grep</strong>(regexp, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Relays) <strong>initialize</strong>(rtorctl) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of Relays.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reload-instance_method" title="#reload (instance method)">- (Object) <strong>reload</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Repopulate our list of relays.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="RTorCtl::Relays (class)">Relays</a></span></tt>) <strong>initialize</strong>(rtorctl) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Relays
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+398
+399
+400</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 398</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='rtorctl identifier id'>rtorctl</span><span class='rparen token'>)</span>
+  <span class='@rtorctl ivar id'>@rtorctl</span> <span class='assign token'>=</span> <span class='rtorctl identifier id'>rtorctl</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="[]-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Relay.html" title="RTorCtl::Relay (class)">Relay</a></span></tt>) <strong>[]</strong>(nickname) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Find a relay by nickname, or return nil.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Relay.html" title="RTorCtl::Relay (class)">Relay</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+424
+425
+426</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 424</span>
+
+<span class='def def kw'>def</span> <span class='aref op'>[]</span><span class='lparen token'>(</span><span class='nickname identifier id'>nickname</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='r identifier id'>r</span><span class='bitor op'>|</span> <span class='r identifier id'>r</span><span class='dot token'>.</span><span class='nickname identifier id'>nickname</span> <span class='eq op'>==</span> <span class='nickname identifier id'>nickname</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="each-instance_method">
+  
+    - (<tt>Object</tt>) <strong>each</strong>(&amp;proc) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+402
+403
+404
+405</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 402</span>
+
+<span class='def def kw'>def</span> <span class='each identifier id'>each</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='proc identifier id'>proc</span><span class='rparen token'>)</span>
+  <span class='reload identifier id'>reload</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='@relays ivar id'>@relays</span>
+  <span class='@relays ivar id'>@relays</span><span class='dot token'>.</span><span class='each identifier id'>each</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='proc identifier id'>proc</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="grep-instance_method">
+  
+    - (<tt>Object</tt>) <strong>grep</strong>(regexp, &amp;block) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li>Enumerable#grep</li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+429
+430
+431
+432
+433</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 429</span>
+
+<span class='def def kw'>def</span> <span class='grep identifier id'>grep</span><span class='lparen token'>(</span><span class='regexp identifier id'>regexp</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='matches identifier id'>matches</span> <span class='assign token'>=</span> <span class='find_all identifier id'>find_all</span><span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='r identifier id'>r</span><span class='bitor op'>|</span> <span class='r identifier id'>r</span><span class='dot token'>.</span><span class='nickname identifier id'>nickname</span> <span class='match op'>=~</span> <span class='regexp identifier id'>regexp</span> <span class='rbrace token'>}</span>
+
+  <span class='block identifier id'>block</span> <span class='integer val'>? </span><span class='matches identifier id'>matches</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='r identifier id'>r</span><span class='bitor op'>|</span> <span class='block identifier id'>block</span><span class='lbrack token'>[</span><span class='r identifier id'>r</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span> <span class='colon op'>:</span> <span class='matches identifier id'>matches</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reload-instance_method">
+  
+    - (<tt>Object</tt>) <strong>reload</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Repopulate our list of relays.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 408</span>
+
+<span class='def def kw'>def</span> <span class='reload identifier id'>reload</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='relays identifier id'>relays</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='comment val'># See doc/spec/dir-spec-v2.txt in Tor's source.</span>
+  <span class='@rtorctl ivar id'>@rtorctl</span><span class='dot token'>.</span><span class='getinfo identifier id'>getinfo</span><span class='lparen token'>(</span><span class='string val'>&quot;desc/all-recent&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='l identifier id'>l</span><span class='bitor op'>|</span>
+    <span class='if if kw'>if</span> <span class='l identifier id'>l</span> <span class='match op'>=~</span> <span class='regexp val'>/^router /</span>
+      <span class='relays identifier id'>relays</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='l identifier id'>l</span><span class='rbrack token'>]</span>
+    <span class='else else kw'>else</span>
+      <span class='relays identifier id'>relays</span><span class='lbrack token'>[</span><span class='integer val'>-1</span><span class='rbrack token'>]</span> <span class='lshft op'>&lt;&lt;</span> <span class='l identifier id'>l</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@relays ivar id'>@relays</span> <span class='assign token'>=</span> <span class='relays identifier id'>relays</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='r identifier id'>r</span><span class='bitor op'>|</span> <span class='Relay constant id'>Relay</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='@rtorctl ivar id'>@rtorctl</span><span class='comma token'>,</span> <span class='r identifier id'>r</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 10 16:15:28 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

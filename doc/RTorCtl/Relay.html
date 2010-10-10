@@ -1,0 +1,905 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: RTorCtl::Relay</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../RTorCtl.html" title="RTorCtl (module)">RTorCtl</a></span></span>
+     &raquo; 
+    <span class="title">Relay</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: RTorCtl::Relay
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">RTorCtl::Relay</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/relay.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+This class represents a relay in the Tor network.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='nickname identifier id'>nickname</span> <span class='comment val'># &quot;molko&quot;</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='address identifier id'>address</span> <span class='comment val'># #&lt;IPAddress: 14.16.22.0&gt;</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='or_port identifier id'>or_port</span> <span class='comment val'># 443</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='dir_port identifier id'>dir_port</span> <span class='comment val'># nil</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='bandiwdth_average identifier id'>bandiwdth_average</span> <span class='comment val'># #&lt;Bytes:0x14029078 @i=968&gt;</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='platform identifier id'>platform</span> <span class='comment val'># &quot;Windows Vista&quot;</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='published identifier id'>published</span> <span class='comment val'># Tue Jan 19 03:14:07 UTC 2038</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='fingerprint identifier id'>fingerprint</span> <span class='comment val'># :&quot;4E1A97201B80A872DA4847ADF022E456876E73F8&quot;</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='hibernating identifier id'>hibernating</span> <span class='comment val'># false</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='uptime identifier id'>uptime</span> <span class='comment val'># 142978</span>
+<span class='comment val'># ^ THIS IS THE UPTIME AS OF relay.published!!! See relay.online_since for a</span>
+<span class='comment val'># more informative value.</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='exit_policy identifier id'>exit_policy</span> <span class='comment val'># #&lt;ExitPolicy: reject *:25,accept *:*&gt;</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='family identifier id'>family</span> <span class='comment val'># [&lt;Relay: brian@14.2,9.78&gt;]</span>
+<span class='relay identifier id'>relay</span><span class='dot token'>.</span><span class='online_since identifier id'>online_since</span> <span class='comment val'># Sat Oct 09 21:38:01 UTC 2010</span>
+</pre>
+    
+  </div>
+
+</div>
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#attributes-instance_method" title="#attributes (instance method)">- (Object) <strong>attributes</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+an Array of attributes has the descriptor defined.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#descriptor-instance_method" title="#descriptor (instance method)">- (Object) <strong>descriptor</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+a String containing the actual descriptor.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#options-instance_method" title="#options (instance method)">- (Object) <strong>options</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+an Array of symbols with the various options a router has set.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#allows_single_hop_exits%3F-instance_method" title="#allows_single_hop_exits? (instance method)">- (Boolean) <strong>allows_single_hop_exits?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Does this relay have the AllowSingleHopExits flag set to 1?.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#caches_extra_info%3F-instance_method" title="#caches_extra_info? (instance method)">- (Boolean) <strong>caches_extra_info?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Is this relay a directory cache that provides extra-info?.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#family-instance_method" title="#family (instance method)">- (Object) <strong>family</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+We have to define a family method separate from its parse method because it
+uses @rtorctl.relays, which calls Relay.initialize(), which in turn calss
+our parse_family().
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hidden_service_dir%3F-instance_method" title="#hidden_service_dir? (instance method)">- (Boolean) <strong>hidden_service_dir?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Is this relay a hidden service directory?.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Relay) <strong>initialize</strong>(rtorctl, descriptor) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of Relay.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inspect-instance_method" title="#inspect (instance method)">- (Object) <strong>inspect</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#online_since-instance_method" title="#online_since (instance method)">- (Time) <strong>online_since</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+When did this relay come online?.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="RTorCtl::Relay (class)">Relay</a></span></tt>) <strong>initialize</strong>(rtorctl, descriptor) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Relay
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="RTorCtl.html" title="RTorCtl::RTorCtl (class)">RTorCtl</a></span></tt>)</span>
+      
+      
+        <span class='name'>rtorctl</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an RTorCtl instance we can query for extra info
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>descriptor</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the lines of the relay&#8217;s descriptor.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+355
+356
+357
+358
+359</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 355</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='rtorctl identifier id'>rtorctl</span><span class='comma token'>,</span> <span class='descriptor identifier id'>descriptor</span><span class='rparen token'>)</span>
+  <span class='@rtorctl ivar id'>@rtorctl</span> <span class='assign token'>=</span> <span class='rtorctl identifier id'>rtorctl</span>
+  <span class='@descriptor ivar id'>@descriptor</span> <span class='assign token'>=</span> <span class='descriptor identifier id'>descriptor</span>
+  <span class='process_descriptor identifier id'>process_descriptor</span><span class='lparen token'>(</span><span class='@descriptor ivar id'>@descriptor</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="attributes-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="attributes-instance_method">
+  
+    - (<tt>Object</tt>) <strong>attributes</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+an Array of attributes has the descriptor defined
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+343
+344
+345</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 343</span>
+
+<span class='def def kw'>def</span> <span class='attributes identifier id'>attributes</span>
+  <span class='@attributes ivar id'>@attributes</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="descriptor-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="descriptor-instance_method">
+  
+    - (<tt>Object</tt>) <strong>descriptor</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+a String containing the actual descriptor
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+347
+348
+349</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 347</span>
+
+<span class='def def kw'>def</span> <span class='descriptor identifier id'>descriptor</span>
+  <span class='@descriptor ivar id'>@descriptor</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="options-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="options-instance_method">
+  
+    - (<tt>Object</tt>) <strong>options</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+an Array of symbols with the various options a router has set
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+345
+346
+347</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 345</span>
+
+<span class='def def kw'>def</span> <span class='options identifier id'>options</span>
+  <span class='@options ivar id'>@options</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="allows_single_hop_exits?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>allows_single_hop_exits?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Does this relay have the AllowSingleHopExits flag set to 1?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+368
+369
+370</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 368</span>
+
+<span class='def def kw'>def</span> <span class='allows_single_hop_exits? fid id'>allows_single_hop_exits?</span>
+  <span class='@options ivar id'>@options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='symbol val'>:allow_single_hop_exits</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="caches_extra_info?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>caches_extra_info?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Is this relay a directory cache that provides extra-info?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+378
+379
+380</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 378</span>
+
+<span class='def def kw'>def</span> <span class='caches_extra_info? fid id'>caches_extra_info?</span>
+  <span class='@options ivar id'>@options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='symbol val'>:caches_extra_info</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="family-instance_method">
+  
+    - (<tt>Object</tt>) <strong>family</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+We have to define a family method separate from its parse method because it
+uses @rtorctl.relays, which calls Relay.initialize(), which in turn calss
+our parse_family().
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+188
+189
+190</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 188</span>
+
+<span class='def def kw'>def</span> <span class='family identifier id'>family</span>
+  <span class='@family ivar id'>@family</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='f identifier id'>f</span><span class='bitor op'>|</span> <span class='@rtorctl ivar id'>@rtorctl</span><span class='dot token'>.</span><span class='relays identifier id'>relays</span><span class='lbrack token'>[</span><span class='f identifier id'>f</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='InvalidRelay constant id'>InvalidRelay</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='f identifier id'>f</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="hidden_service_dir?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>hidden_service_dir?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Is this relay a hidden service directory?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+373
+374
+375</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 373</span>
+
+<span class='def def kw'>def</span> <span class='hidden_service_dir? fid id'>hidden_service_dir?</span>
+  <span class='@options ivar id'>@options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='symbol val'>:hidden_service_dir</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="inspect-instance_method">
+  
+    - (<tt>Object</tt>) <strong>inspect</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+349
+350
+351</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 349</span>
+
+<span class='def def kw'>def</span> <span class='inspect identifier id'>inspect</span>
+  <span class='dstring node'>&quot;#&lt;#{self.class} #{@nickname}@#{@address}&gt;&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="online_since-instance_method">
+  
+    - (<tt>Time</tt>) <strong>online_since</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+When did this relay come online?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Time</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+363
+364
+365</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 363</span>
+
+<span class='def def kw'>def</span> <span class='online_since identifier id'>online_since</span>
+  <span class='@published ivar id'>@published</span> <span class='minus op'>-</span> <span class='@uptime ivar id'>@uptime</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 10 16:15:24 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: ExitPolicyTest</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (E)</a> &raquo; 
+    
+    
+    <span class="title">ExitPolicyTest</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: ExitPolicyTest
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Test::Unit::TestCase</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Test::Unit::TestCase</li>
+          
+            <li class="next">ExitPolicyTest</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="RTorCtl.html" title="RTorCtl (module)">RTorCtl</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">tests/exit_policy.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="ExitPolicyLine-constant" class="">ExitPolicyLine =
+          
+        </dt>
+        <dd><pre class="code"><span class='ExitPolicy constant id'>ExitPolicy</span><span class='colon2 op'>::</span><span class='ExitPolicyLine constant id'>ExitPolicyLine</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+  
+  
+  
+  
+  <h3 class="inherited">Constants included from <span class='object_link'><a href="RTorCtl.html" title="RTorCtl (module)">RTorCtl</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="RTorCtl.html#QUOTED_CHAR-constant" title="RTorCtl::QUOTED_CHAR (constant)">QUOTED_CHAR</a></span>, <span class='object_link'><a href="RTorCtl.html#Quote-constant" title="RTorCtl::Quote (constant)">Quote</a></span>, <span class='object_link'><a href="RTorCtl.html#Unquote-constant" title="RTorCtl::Unquote (constant)">Unquote</a></span></p>
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_any_to_ip_netmask-instance_method" title="#test_any_to_ip_netmask (instance method)">- (Object) <strong>test_any_to_ip_netmask</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_exit_policy-instance_method" title="#test_exit_policy (instance method)">- (Object) <strong>test_exit_policy</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_exit_policy_line-instance_method" title="#test_exit_policy_line (instance method)">- (Object) <strong>test_exit_policy_line</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_ip_address-instance_method" title="#test_ip_address (instance method)">- (Object) <strong>test_ip_address</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="RTorCtl.html" title="RTorCtl (module)">RTorCtl</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="RTorCtl.html#new-class_method" title="RTorCtl.new (method)">new</a></span></p>
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="test_any_to_ip_netmask-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_any_to_ip_netmask</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'tests/exit_policy.rb', line 9</span>
+
+<span class='def def kw'>def</span> <span class='test_any_to_ip_netmask identifier id'>test_any_to_ip_netmask</span>
+  <span class='ip identifier id'>ip</span> <span class='assign token'>=</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='allocate identifier id'>allocate</span>
+
+  <span class='lbrace token'>{</span>
+    <span class='lbrack token'>[</span><span class='integer val'>47</span><span class='comma token'>,</span> <span class='integer val'>23</span><span class='comma token'>,</span> <span class='integer val'>98</span><span class='comma token'>,</span> <span class='integer val'>5</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='integer val'>0x2f176205</span><span class='comma token'>,</span> <span class='integer val'>32</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='integer val'>0x2f176205</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='integer val'>0x2f176205</span><span class='comma token'>,</span> <span class='integer val'>32</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;47.23.98.5&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='integer val'>0x2f176205</span><span class='comma token'>,</span> <span class='integer val'>32</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;47.23.98.5&quot;</span><span class='rparen token'>)</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='integer val'>0x2f176205</span><span class='comma token'>,</span> <span class='integer val'>32</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;47.23.98.5/32&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='integer val'>0x2f176205</span><span class='comma token'>,</span> <span class='integer val'>32</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;47.23.98.5/8&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='integer val'>0x2f176205</span><span class='comma token'>,</span> <span class='integer val'>8</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;47.23.98.5/32&quot;</span><span class='rparen token'>)</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='integer val'>0x2f176205</span><span class='comma token'>,</span> <span class='integer val'>32</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;47.23.98.5/8&quot;</span><span class='rparen token'>)</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='integer val'>0x2f000000</span><span class='comma token'>,</span> <span class='integer val'>8</span><span class='rbrack token'>]</span>
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='input identifier id'>input</span><span class='comma token'>,</span> <span class='output identifier id'>output</span><span class='bitor op'>|</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span>
+      <span class='output identifier id'>output</span><span class='comma token'>,</span>
+      <span class='ip identifier id'>ip</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='symbol val'>:any_to_int_and_netmask</span><span class='comma token'>,</span> <span class='input identifier id'>input</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+      <span class='dstring node'>&quot;any_to_int_and_netmask(#{input.inspect}) should be #{output.inspect}&quot;</span>
+    <span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_exit_policy-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_exit_policy</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'tests/exit_policy.rb', line 102</span>
+
+<span class='def def kw'>def</span> <span class='test_exit_policy identifier id'>test_exit_policy</span>
+  <span class='lbrace token'>{</span>
+<span class='string val'>&quot;
+accept *:*
+reject *:*
+&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+<span class='symbol val'>:accepts</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;127.0.0.1:9050 14.16.22.36:1429 7.8.0.0:1114&quot;</span><span class='comma token'>,</span>
+<span class='symbol val'>:rejects</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;&quot;</span>
+<span class='rbrace token'>}</span><span class='comma token'>,</span>
+<span class='string val'>&quot;
+accept 127.0.0.1:9051
+reject *:9051
+accept *:*
+&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+<span class='symbol val'>:accepts</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;127.0.0.1:9051 10.0.0.1:12 14.16.22.36:14&quot;</span><span class='comma token'>,</span>
+<span class='symbol val'>:rejects</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;0.0.0.0:9051 1.1.1.1:9051 10.10.10.10:9051&quot;</span>
+<span class='rbrace token'>}</span>
+<span class='rbrace token'>}</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='policy identifier id'>policy</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='bitor op'>|</span>
+    <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='ExitPolicy constant id'>ExitPolicy</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='policy identifier id'>policy</span><span class='dot token'>.</span><span class='strip identifier id'>strip</span><span class='rparen token'>)</span>
+    <span class='results identifier id'>results</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='bitor op'>|</span>
+      <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='k identifier id'>k</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;:&quot;</span><span class='rparen token'>)</span><span class='rbrace token'>}</span><span class='dot token'>.</span><span class='each identifier id'>each</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span> <span class='x identifier id'>x</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='x identifier id'>x</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rbrace token'>}</span>
+    <span class='end end kw'>end</span>
+
+    <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='symbol val'>:accepts</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='host identifier id'>host</span><span class='comma token'>,</span> <span class='port identifier id'>port</span><span class='bitor op'>|</span>
+      <span class='assert identifier id'>assert</span><span class='lparen token'>(</span>
+        <span class='p identifier id'>p</span><span class='dot token'>.</span><span class='accepts? fid id'>accepts?</span><span class='lparen token'>(</span><span class='host identifier id'>host</span><span class='comma token'>,</span> <span class='port identifier id'>port</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+        <span class='dstring node'>&quot;#{p.inspect} should accept #{host}:#{port}&quot;</span>
+      <span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+
+    <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='symbol val'>:rejects</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='host identifier id'>host</span><span class='comma token'>,</span> <span class='port identifier id'>port</span><span class='bitor op'>|</span>
+      <span class='assert identifier id'>assert</span><span class='lparen token'>(</span>
+        <span class='p identifier id'>p</span><span class='dot token'>.</span><span class='rejects? fid id'>rejects?</span><span class='lparen token'>(</span><span class='host identifier id'>host</span><span class='comma token'>,</span> <span class='port identifier id'>port</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+        <span class='dstring node'>&quot;#{p.inspect} should reject #{host}:#{port}&quot;</span>
+      <span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='ep identifier id'>ep</span> <span class='assign token'>=</span> <span class='ExitPolicy constant id'>ExitPolicy</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+  <span class='lbrack token'>[</span> <span class='string val'>&quot;accept 127.0.0.1:9051&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;reject *:9051&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;accept *:*&quot;</span> <span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span>
+    <span class='ep identifier id'>ep</span> <span class='lshft op'>&lt;&lt;</span> <span class='x identifier id'>x</span>
+  <span class='end end kw'>end</span>
+
+  <span class='assert identifier id'>assert</span> <span class='ep identifier id'>ep</span><span class='dot token'>.</span><span class='accepts? fid id'>accepts?</span><span class='lparen token'>(</span><span class='string val'>'127.0.0.1'</span><span class='comma token'>,</span> <span class='integer val'>9051</span><span class='rparen token'>)</span>
+  <span class='assert identifier id'>assert</span> <span class='ep identifier id'>ep</span><span class='dot token'>.</span><span class='accepts? fid id'>accepts?</span><span class='lparen token'>(</span><span class='string val'>'10.0.0.1'</span><span class='comma token'>,</span> <span class='integer val'>12</span><span class='rparen token'>)</span>
+  <span class='assert identifier id'>assert</span> <span class='ep identifier id'>ep</span><span class='dot token'>.</span><span class='accepts? fid id'>accepts?</span><span class='lparen token'>(</span><span class='string val'>'14.16.22.34'</span><span class='comma token'>,</span> <span class='integer val'>14</span><span class='rparen token'>)</span>
+  <span class='assert identifier id'>assert</span> <span class='ep identifier id'>ep</span><span class='dot token'>.</span><span class='rejects? fid id'>rejects?</span><span class='lparen token'>(</span><span class='string val'>'0.0.0.0'</span><span class='comma token'>,</span> <span class='integer val'>9051</span><span class='rparen token'>)</span>
+  <span class='assert identifier id'>assert</span> <span class='ep identifier id'>ep</span><span class='dot token'>.</span><span class='rejects? fid id'>rejects?</span><span class='lparen token'>(</span><span class='string val'>'1.1.1.1'</span><span class='comma token'>,</span> <span class='integer val'>9051</span><span class='rparen token'>)</span>
+  <span class='assert identifier id'>assert</span> <span class='ep identifier id'>ep</span><span class='dot token'>.</span><span class='rejects? fid id'>rejects?</span><span class='lparen token'>(</span><span class='string val'>'10.10.10.10'</span><span class='comma token'>,</span> <span class='integer val'>9051</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_exit_policy_line-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_exit_policy_line</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'tests/exit_policy.rb', line 54</span>
+
+<span class='def def kw'>def</span> <span class='test_exit_policy_line identifier id'>test_exit_policy_line</span>
+  <span class='lines identifier id'>lines</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='string val'>&quot;accept 94.236.11.19:36&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+      <span class='symbol val'>:acceptance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:accept</span><span class='comma token'>,</span>
+      <span class='symbol val'>:ip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;94.236.11.19&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+      <span class='symbol val'>:netmask</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>32</span><span class='comma token'>,</span>
+      <span class='symbol val'>:port_range</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lparen token'>(</span><span class='float val'>36</span><span class='dot2 op'>..</span><span class='integer val'>36</span><span class='rparen token'>)</span>
+    <span class='rbrace token'>}</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;accept 94.236.11.19:36-1416&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+      <span class='symbol val'>:acceptance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:accept</span><span class='comma token'>,</span>
+      <span class='symbol val'>:ip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;94.236.11.19&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+      <span class='symbol val'>:netmask</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>32</span><span class='comma token'>,</span>
+      <span class='symbol val'>:port_range</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lparen token'>(</span><span class='float val'>36</span><span class='dot2 op'>..</span><span class='integer val'>1416</span><span class='rparen token'>)</span>
+    <span class='rbrace token'>}</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;reject 94.236.11.19/16:36&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+      <span class='symbol val'>:acceptance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:reject</span><span class='comma token'>,</span>
+      <span class='symbol val'>:ip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;94.236.11.19&quot;</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='integer val'>16</span><span class='comma token'>,</span>
+      <span class='symbol val'>:netmask</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>16</span><span class='comma token'>,</span>
+      <span class='symbol val'>:port_range</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lparen token'>(</span><span class='float val'>36</span><span class='dot2 op'>..</span><span class='integer val'>36</span><span class='rparen token'>)</span>
+    <span class='rbrace token'>}</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;reject 94.236.11.19:*&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+      <span class='symbol val'>:acceptance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:reject</span><span class='comma token'>,</span>
+      <span class='symbol val'>:ip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;94.236.11.19&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+      <span class='symbol val'>:netmask</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>32</span><span class='comma token'>,</span>
+      <span class='symbol val'>:port_range</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>65536</span><span class='rparen token'>)</span>
+    <span class='rbrace token'>}</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;reject *:*&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+      <span class='symbol val'>:acceptance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:reject</span><span class='comma token'>,</span>
+      <span class='symbol val'>:ip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;0.0.0.0&quot;</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='integer val'>0</span><span class='comma token'>,</span>
+      <span class='symbol val'>:netmask</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>0</span><span class='comma token'>,</span>
+      <span class='symbol val'>:port_range</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>65536</span><span class='rparen token'>)</span>
+    <span class='rbrace token'>}</span>
+  <span class='rbrace token'>}</span>
+
+  <span class='lines identifier id'>lines</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='line identifier id'>line</span><span class='comma token'>,</span> <span class='res identifier id'>res</span><span class='bitor op'>|</span>
+    <span class='epl identifier id'>epl</span> <span class='assign token'>=</span> <span class='ExitPolicyLine constant id'>ExitPolicyLine</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='line identifier id'>line</span><span class='rparen token'>)</span>
+
+    <span class='res identifier id'>res</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='bitor op'>|</span>
+      <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span> <span class='v identifier id'>v</span><span class='comma token'>,</span> <span class='epl identifier id'>epl</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='k identifier id'>k</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{line.inspect}'s #{k} is #{v}&quot;</span> <span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='line identifier id'>line</span> <span class='assign token'>=</span> <span class='ExitPolicyLine constant id'>ExitPolicyLine</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;reject 10.10.10.0/24:100-1024&quot;</span><span class='rparen token'>)</span>
+  <span class='assert identifier id'>assert</span><span class='lparen token'>(</span> <span class='line identifier id'>line</span><span class='dot token'>.</span><span class='matches? fid id'>matches?</span><span class='lparen token'>(</span> <span class='string val'>'10.10.10.10'</span><span class='comma token'>,</span> <span class='integer val'>150</span> <span class='rparen token'>)</span> <span class='rparen token'>)</span>
+  <span class='assert identifier id'>assert</span><span class='lparen token'>(</span> <span class='line identifier id'>line</span> <span class='eqq op'>===</span> <span class='lbrack token'>[</span><span class='string val'>'10.10.10.15'</span><span class='comma token'>,</span> <span class='integer val'>1024</span><span class='rbrack token'>]</span> <span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span> <span class='string val'>&quot;reject 10.10.10.0/24:100-1024&quot;</span><span class='comma token'>,</span> <span class='line identifier id'>line</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_ip_address-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_ip_address</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'tests/exit_policy.rb', line 30</span>
+
+<span class='def def kw'>def</span> <span class='test_ip_address identifier id'>test_ip_address</span>
+  <span class='ip identifier id'>ip</span> <span class='assign token'>=</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;47.23.98.5&quot;</span><span class='rparen token'>)</span>
+
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>47</span><span class='comma token'>,</span> <span class='ip identifier id'>ip</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>23</span><span class='comma token'>,</span> <span class='ip identifier id'>ip</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>98</span><span class='comma token'>,</span> <span class='ip identifier id'>ip</span><span class='lbrack token'>[</span><span class='integer val'>2</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span> <span class='integer val'>5</span><span class='comma token'>,</span> <span class='ip identifier id'>ip</span><span class='lbrack token'>[</span><span class='integer val'>3</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span>
+    <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;36.23.98.5&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='tap identifier id'>tap</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='y identifier id'>y</span><span class='bitor op'>|</span> <span class='y identifier id'>y</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='integer val'>36</span><span class='rbrace token'>}</span>
+  <span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span> <span class='lbrack token'>[</span><span class='integer val'>47</span><span class='comma token'>,</span> <span class='integer val'>23</span><span class='comma token'>,</span> <span class='integer val'>98</span><span class='comma token'>,</span> <span class='integer val'>5</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='ip identifier id'>ip</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span> <span class='rparen token'>)</span>
+
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>0x2f176205</span><span class='comma token'>,</span> <span class='ip identifier id'>ip</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='string val'>&quot;47.23.98.5&quot;</span><span class='comma token'>,</span> <span class='ip identifier id'>ip</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span> <span class='ip identifier id'>ip</span><span class='comma token'>,</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='rparen token'>)</span> <span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span> <span class='ip identifier id'>ip</span><span class='div op'>/</span><span class='integer val'>8</span><span class='comma token'>,</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;47.0.0.0/8&quot;</span><span class='rparen token'>)</span> <span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span> <span class='dstring node'>&quot;#&lt;#{ip.class.name}: 47.23.98.5&gt;&quot;</span><span class='comma token'>,</span> <span class='ip identifier id'>ip</span><span class='dot token'>.</span><span class='inspect identifier id'>inspect</span> <span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span> <span class='dstring node'>&quot;#&lt;#{ip.class.name}: 47.0.0.0/8&gt;&quot;</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='ip identifier id'>ip</span><span class='div op'>/</span><span class='integer val'>8</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='inspect identifier id'>inspect</span> <span class='rparen token'>)</span>
+
+  <span class='lbrack token'>[</span><span class='string val'>&quot;435425&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:erefd</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='string val'>&quot;1.4.2.978&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span>
+    <span class='assert_raise identifier id'>assert_raise</span><span class='lparen token'>(</span><span class='NotAnIPError constant id'>NotAnIPError</span><span class='rparen token'>)</span><span class='lbrace token'>{</span> <span class='IPAddress constant id'>IPAddress</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 10 15:33:38 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
