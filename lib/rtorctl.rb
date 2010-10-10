@@ -11,12 +11,17 @@ require 'getinfo'
 require 'relay'
 
 module RTorCtl
+	# Return an instance of RTorCtl (the class).
 	def self.new
 		RTorCtl.new
 	end
 
+	# This is the class that allows one to control Tor.
 	class RTorCtl
-		attr_reader :relays, :connection
+		# a +Relays+ instance
+		attr_reader :relays
+		# a +Connection+ instance
+		attr_reader :connection
 
 		def initialize(passwd=:IMPLIED, ctlport=9051)
 			if passwd == :IMPLIED
@@ -34,6 +39,7 @@ module RTorCtl
 			@relays = Relays.new(self)
 		end
 
+		# Automagically determine our controller's password.
 		def determine_control_password
 			ENV['TORCTL_PASSWD'] ||
 			( open(ENV['TORCTL_PASSWD_FILE']).read() rescue nil ) ||
@@ -42,6 +48,9 @@ module RTorCtl
 			or raise RTorCtlError, "couldn't determine password!"
 		end
 
+		# Send a signal +sig+ to Tor.
+		# @example Put new connections on new circuits.
+		#  signal(:NEWNYM)
 		def signal(sig)
 			@connection.puts("SIGNAL #{sig}")
 			get_response()[0].raise()
@@ -49,6 +58,7 @@ module RTorCtl
 
 		private
 
+		# Authenticate to the controller.
 		def authenticate()
 			passwd = @passwd.bytes.map{|x| "%02X" % x}.join
 			@connection.puts( "AUTHENTICATE #{passwd}" )
