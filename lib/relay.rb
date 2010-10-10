@@ -380,10 +380,8 @@ it to nil when we finish.
 		end
 	end
 
+	# This class represents a relay that's referenced but doesn't actually exist.
 	class InvalidRelay
-		# InvalidRelay is a class that represents a relay that is referenced, but
-		# which Tor doesn't know about.
-
 		def initialize(nickname)
 			@nickname = nickname
 		end
