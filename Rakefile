@@ -22,13 +22,38 @@ end
 test.comment = "Run all of the tests."
 
 mkdoc = task :mkdoc do
-	system "asciidoc README.asciidoc"
+	require 'fileutils'
+
+	alias :old_system :system
+	def system(str)
+		old_system(str) or raise "executing '#{str}' failed"
+	end
+
+	# Store any changes we might have made to the index.
+	local_changes = `git status --porcelain` != ""
+	system "git stash save" if local_changes
+
+	# Generate documentation.
+	FileUtils.rm_rf("doc") # Remove any old documentation we might have.
+	print "Generating documentation..."
+	output_dir = ".tmpdir_#{rand(10**10)}"
+	system "yardoc lib -o #{output_dir}"
+
+	# Commit the documentation to gh-pages.
+	system "git checkout gh-pages"
+	FileUtils.rm_rf("doc")
+	File.rename(output_dir, "doc")
+	system "git add doc"
+	system "git commit -m 'Update documentation.'"
+
+	# Restore our stored changes.
+	system "git checkout master"
+	system "git stash pop" if local_changes
 end
 mkdoc.comment = "Generate documentation."
-mkdoc.add_description <<EOT
-Make README.html from README.asciidoc. asciidoc must be be installed for this to
-work.
-EOT
+mkdoc.add_description <<END
+Generate documentation and check it in to the gh-pages branch.
+END
 
 gem = task :gem do |t|
   require 'rubygems'
@@ -52,7 +77,7 @@ END
 		s.required_ruby_version = ">= #{VERSION}"
 		s.add_development_dependency('rake')
 		s.add_development_dependency('yard')
-		s.requirements << 'Tor'
+		s.requirements += ['Tor', 'Git']
 
 		s.files = FileList["lib/**", "tests/**", "UNLICENSE", "README.asciidoc"]
 		s.test_files = FileList["tests/**"]
