@@ -84,28 +84,8 @@ module RTorCtl
 		end
 	end
 
-=begin
-This class represents a relay in the Tor network.
-
-@example
- relay.nickname # "molko"
- relay.address # #<IPAddress: 14.16.22.0>
- relay.or_port # 443
- relay.dir_port # nil
- relay.bandiwdth_average # #<Bytes:0x14029078 @i=968>
- relay.platform # "Windows Vista"
- relay.published # Tue Jan 19 03:14:07 UTC 2038
- relay.fingerprint # :"4E1A97201B80A872DA4847ADF022E456876E73F8"
- relay.hibernating # false
- relay.uptime # 142978
- # ^ THIS IS THE UPTIME AS OF relay.published!!! See relay.online_since for a
- # more informative value.
- relay.exit_policy # #<ExitPolicy: reject *:25,accept *:*>
- relay.family # [<Relay: brian@14.2,9.78>]
- relay.online_since # Sat Oct 09 21:38:01 UTC 2010
-=end
-	class Relay
-
+	# This module holds various sub-parsers of relay descriptors.
+	module RelayParsers
 		private
 
 		def parse_router(l)
@@ -237,6 +217,33 @@ This class represents a relay in the Tor network.
 		def parse_extra_info_digest(l)
 			l
 		end
+	end
+
+
+=begin
+This class represents a relay in the Tor network.
+
+@example
+ relay.nickname # "molko"
+ relay.address # #<IPAddress: 14.16.22.0>
+ relay.or_port # 443
+ relay.dir_port # nil
+ relay.bandiwdth_average # #<Bytes:0x14029078 @i=968>
+ relay.platform # "Windows Vista"
+ relay.published # Tue Jan 19 03:14:07 UTC 2038
+ relay.fingerprint # :"4E1A97201B80A872DA4847ADF022E456876E73F8"
+ relay.hibernating # false
+ relay.uptime # 142978
+ # ^ THIS IS THE UPTIME AS OF relay.published!!! See relay.online_since for a
+ # more informative value.
+ relay.exit_policy # #<ExitPolicy: reject *:25,accept *:*>
+ relay.family # [<Relay: brian@14.2,9.78>]
+ relay.online_since # Sat Oct 09 21:38:01 UTC 2010
+=end
+	class Relay
+		include RelayParsers
+
+		private
 
 		def process_descriptor( descriptor )
 			# Parse the descriptor, perform conversions, and set all the appropriate
