@@ -378,6 +378,13 @@ it to nil when we finish.
 		def caches_extra_info?
 			@options.include? :caches_extra_info
 		end
+
+		# Refresh all of our information about ourself.
+		def reload!()
+			@descriptor = @rtorctl.getinfo("dir/server/fp/#{self.fingerprint}")
+			process_descriptor(@descriptor)
+			nil
+		end
 	end
 
 	# This class represents a relay that's referenced but doesn't actually exist.
