@@ -93,7 +93,7 @@ Useful Things to do with RTorCtl
 ### Avoiding the NSA: A Multi-Step Example ###
 
 	# Find nodes operated by the NSA.
-	nsa = tor.nodes.find_all{|r| r.nickname.chars.to_a & %w{n s a} == %w{n s a} }
+	nsa = tor.relays.find_all{|r| r.nickname.chars.to_a & %w{n s a} == %w{n s a} }
 	# Get their nicknames.
 	nsa.map!{|r| r.nickname}
 	# Avoid them.
