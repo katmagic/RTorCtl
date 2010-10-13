@@ -160,15 +160,8 @@ module RTorCtl
 		end
 
 		def parse_family(l)
-			l.split
+			l.split()
 		end
-		# We have to define a family method separate from its parse method because
-		# it uses @rtorctl.relays, which calls Relay.initialize(), which in turn
-		# calss our parse_family().
-		def family
-			@family.map{|f| @rtorctl.relays[f] || InvalidRelay.new(f)}
-		end
-		public :family
 
 		def parse_history(l)
 			l =~ /^(\d{4}(?:-\d\d){2} \d\d(?::\d\d){2}) \((\d+) s\) ((?:\d+,)*\d+)$/
@@ -389,17 +382,6 @@ it to nil when we finish.
 
 			@_tmp = nil
 			[attributes, options]
-		end
-	end
-
-	# This class represents a relay that's referenced but doesn't actually exist.
-	class InvalidRelay
-		def initialize(nickname)
-			@nickname = nickname
-		end
-
-		def inspect
-			"#<#{self.class} #{@nickname}>"
 		end
 	end
 
