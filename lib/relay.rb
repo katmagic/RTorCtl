@@ -243,6 +243,53 @@ This class represents a relay in the Tor network.
 	class Relay
 		include RelayParsers
 
+		# an Array of attributes has the descriptor defined
+		attr_reader :attributes
+		# an Array of symbols with the various options a router has set
+		attr_reader :options
+		# a String containing the actual descriptor
+		attr_reader :descriptor
+
+		# @param [RTorCtl] rtorctl an RTorCtl instance we can query for extra info
+		# @param [Array] descriptor the lines of the relay's descriptor.
+		def initialize(rtorctl, descriptor)
+			@rtorctl = rtorctl
+			@descriptor = descriptor
+			process_descriptor(@descriptor)
+		end
+
+		# Refresh all of our information about ourself.
+		def reload!()
+			@descriptor = @rtorctl.getinfo("dir/server/fp/#{self.fingerprint}")
+			process_descriptor(@descriptor)
+			nil
+		end
+
+		# Does this relay have the AllowSingleHopExits flag set to 1?
+		def allows_single_hop_exits?
+			@options.include? :allow_single_hop_exits
+		end
+
+		# Is this relay a hidden service directory?
+		def hidden_service_dir?
+			@options.include? :hidden_service_dir
+		end
+
+		# Is this relay a directory cache that provides extra-info?
+		def caches_extra_info?
+			@options.include? :caches_extra_info
+		end
+
+		# When did this relay come online?
+		# @return [Time]
+		def online_since
+			@published - @uptime
+		end
+
+		def inspect
+			"#<#{self.class} #{@nickname}@#{@address}>"
+		end
+
 		private
 
 		def process_descriptor( descriptor )
@@ -342,55 +389,6 @@ it to nil when we finish.
 
 			@_tmp = nil
 			[attributes, options]
-		end
-
-		public
-
-		# an Array of attributes has the descriptor defined
-		attr_reader :attributes
-		# an Array of symbols with the various options a router has set
-		attr_reader :options
-		# a String containing the actual descriptor
-		attr_reader :descriptor
-
-		def inspect
-			"#<#{self.class} #{@nickname}@#{@address}>"
-		end
-
-		# @param [RTorCtl] rtorctl an RTorCtl instance we can query for extra info
-		# @param [Array] descriptor the lines of the relay's descriptor.
-		def initialize(rtorctl, descriptor)
-			@rtorctl = rtorctl
-			@descriptor = descriptor
-			process_descriptor(@descriptor)
-		end
-
-		# When did this relay come online?
-		# @return [Time]
-		def online_since
-			@published - @uptime
-		end
-
-		# Does this relay have the AllowSingleHopExits flag set to 1?
-		def allows_single_hop_exits?
-			@options.include? :allow_single_hop_exits
-		end
-
-		# Is this relay a hidden service directory?
-		def hidden_service_dir?
-			@options.include? :hidden_service_dir
-		end
-
-		# Is this relay a directory cache that provides extra-info?
-		def caches_extra_info?
-			@options.include? :caches_extra_info
-		end
-
-		# Refresh all of our information about ourself.
-		def reload!()
-			@descriptor = @rtorctl.getinfo("dir/server/fp/#{self.fingerprint}")
-			process_descriptor(@descriptor)
-			nil
 		end
 	end
 
