@@ -29,13 +29,22 @@ mkdoc = task :mkdoc do
 		old_system(str) or raise "executing '#{str}' failed"
 	end
 
+	# Find which version we're generating our documentation from, and don't do
+	# anything if it's the same as the last version.
+	doc_version = `git log -n 1 --format="%h" -- lib/ README.md`.strip()
+	/^Generate documentation from ([a-f0-9]+)\.$/ =~
+		`git log -n 1 --format="%s" --grep='Generate documentation from ' gh-pages`
+	if doc_version == $1
+		puts "Our documentation hasn't changed. Exiting."
+		exit
+	end
+
 	# Store any changes we might have made to the index.
 	local_changes = `git status --porcelain` != ""
 	system "git stash save" if local_changes
 
 	# Generate documentation.
 	FileUtils.rm_rf("doc") # Remove any old documentation we might have.
-	print "Generating documentation..."
 	output_dir = ".tmpdir_#{rand(10**10)}"
 	system "yardoc lib -o #{output_dir}"
 
@@ -44,7 +53,7 @@ mkdoc = task :mkdoc do
 	FileUtils.rm_rf("doc")
 	File.rename(output_dir, "doc")
 	system "git add doc"
-	system "git commit -m 'Update documentation.'"
+	system "git commit -m 'Generate documentation from #{doc_version}.'"
 
 	# Restore our stored changes.
 	system "git checkout master"
