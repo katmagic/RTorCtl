@@ -133,7 +133,7 @@ a semi-structured form, see the <code>*_CONFOPT</code> constants in RTorCtl defi
 <h3>Avoiding the NSA: A Multi-Step Example</h3>
 
 <pre class="code"><span class='comment val'># Find nodes operated by the NSA.</span>
-<span class='nsa identifier id'>nsa</span> <span class='assign token'>=</span> <span class='tor identifier id'>tor</span><span class='dot token'>.</span><span class='nodes identifier id'>nodes</span><span class='dot token'>.</span><span class='find_all identifier id'>find_all</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='r identifier id'>r</span><span class='bitor op'>|</span> <span class='r identifier id'>r</span><span class='dot token'>.</span><span class='nickname identifier id'>nickname</span><span class='dot token'>.</span><span class='chars identifier id'>chars</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span> <span class='bitand op'>&amp;</span> <span class='dstring node'>%w{n s a}</span> <span class='eq op'>==</span> <span class='dstring node'>%w{n s a}</span> <span class='rbrace token'>}</span>
+<span class='nsa identifier id'>nsa</span> <span class='assign token'>=</span> <span class='tor identifier id'>tor</span><span class='dot token'>.</span><span class='relays identifier id'>relays</span><span class='dot token'>.</span><span class='find_all identifier id'>find_all</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='r identifier id'>r</span><span class='bitor op'>|</span> <span class='r identifier id'>r</span><span class='dot token'>.</span><span class='nickname identifier id'>nickname</span><span class='dot token'>.</span><span class='chars identifier id'>chars</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span> <span class='bitand op'>&amp;</span> <span class='dstring node'>%w{n s a}</span> <span class='eq op'>==</span> <span class='dstring node'>%w{n s a}</span> <span class='rbrace token'>}</span>
 <span class='comment val'># Get their nicknames.</span>
 <span class='nsa identifier id'>nsa</span><span class='dot token'>.</span><span class='map! fid id'>map!</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='r identifier id'>r</span><span class='bitor op'>|</span> <span class='r identifier id'>r</span><span class='dot token'>.</span><span class='nickname identifier id'>nickname</span><span class='rbrace token'>}</span>
 <span class='comment val'># Avoid them.</span>
@@ -141,7 +141,7 @@ a semi-structured form, see the <code>*_CONFOPT</code> constants in RTorCtl defi
 </pre></div></div>
     
     <div id="footer">
-  Generated on Sun Oct 10 21:54:42 2010 by 
+  Generated on Wed Oct 13 00:40:47 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

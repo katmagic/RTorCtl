@@ -70,11 +70,15 @@
     
   
     
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="RelayParsers.html" title="RTorCtl::RelayParsers (module)">RelayParsers</a></span></dd>
+      
+    
   
   
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/relay.rb</dd>
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/relay.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -115,6 +119,10 @@ This class represents a relay in the Tor network.
 
 </div>
 
+  
+  
+  
+  
   <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
   <ul class="summary">
     
@@ -204,6 +212,36 @@ an Array of symbols with the various options a router has set.
 
   
     <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#attr_reader-class_method" title="attr_reader (class method)">+ (Object) <strong>attr_reader</strong>(*attr) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
       Instance Method Summary
       <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
     </h2>
@@ -252,32 +290,6 @@ Does this relay have the AllowSingleHopExits flag set to 1?.
   
     <span class="summary_desc"><div class='inline'><p>
 Is this relay a directory cache that provides extra-info?.
-</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#family-instance_method" title="#family (instance method)">- (Object) <strong>family</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-We have to define a family method separate from its parse method because it
-uses @rtorctl.relays, which calls Relay.initialize(), which in turn calss
-our parse_family().
 </p>
 </div></span>
   
@@ -358,6 +370,31 @@ A new instance of Relay.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">- (Object) <strong>method_missing</strong>(meth, *args, &amp;proc) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+This is so attributes created only when our descriptor must be parsed can
+function lazily.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#online_since-instance_method" title="#online_since (instance method)">- (Time) <strong>online_since</strong> </a>
     
 
@@ -379,10 +416,39 @@ When did this relay come online?.
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reload%21-instance_method" title="#reload! (instance method)">- (Object) <strong>reload!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Refresh all of our information about ourself.
+</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
-<div id="constructor_details" class="method_details_list">
+
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
@@ -447,19 +513,80 @@ the lines of the relay&#8217;s descriptor.
       <pre class="lines">
 
 
-355
-356
-357
-358
-359</pre>
+257
+258
+259
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 355</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 257</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='rtorctl identifier id'>rtorctl</span><span class='comma token'>,</span> <span class='descriptor identifier id'>descriptor</span><span class='rparen token'>)</span>
   <span class='@rtorctl ivar id'>@rtorctl</span> <span class='assign token'>=</span> <span class='rtorctl identifier id'>rtorctl</span>
   <span class='@descriptor ivar id'>@descriptor</span> <span class='assign token'>=</span> <span class='descriptor identifier id'>descriptor</span>
-  <span class='process_descriptor identifier id'>process_descriptor</span><span class='lparen token'>(</span><span class='@descriptor ivar id'>@descriptor</span><span class='rparen token'>)</span>
+  <span class='process_descriptor identifier id'>process_descriptor</span><span class='lparen token'>(</span> <span class='@descriptor ivar id'>@descriptor</span><span class='dot token'>.</span><span class='first identifier id'>first</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+<div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+  
+    <div class="method_details first">
+  <p class="signature first" id="method_missing-instance_method">
+  
+    - (<tt>Object</tt>) <strong>method_missing</strong>(meth, *args, &amp;proc) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+This is so attributes created only when our descriptor must be parsed can
+function lazily.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+301
+302
+303
+304
+305
+306
+307
+308
+309</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 301</span>
+
+<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='proc identifier id'>proc</span><span class='rparen token'>)</span>
+  <span class='lazy identifier id'>lazy</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+
+  <span class='if if kw'>if</span> <span class='respond_to? fid id'>respond_to?</span> <span class='meth identifier id'>meth</span>
+    <span class='__send__ identifier id'>__send__</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='proc identifier id'>proc</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='super super kw'>super</span>
+  <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -499,12 +626,12 @@ an Array of attributes has the descriptor defined
       <pre class="lines">
 
 
-343
-344
-345</pre>
+249
+250
+251</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 343</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 249</span>
 
 <span class='def def kw'>def</span> <span class='attributes identifier id'>attributes</span>
   <span class='@attributes ivar id'>@attributes</span>
@@ -542,12 +669,12 @@ a String containing the actual descriptor
       <pre class="lines">
 
 
-347
-348
-349</pre>
+253
+254
+255</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 347</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 253</span>
 
 <span class='def def kw'>def</span> <span class='descriptor identifier id'>descriptor</span>
   <span class='@descriptor ivar id'>@descriptor</span>
@@ -585,12 +712,12 @@ an Array of symbols with the various options a router has set
       <pre class="lines">
 
 
-345
-346
-347</pre>
+251
+252
+253</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 345</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 251</span>
 
 <span class='def def kw'>def</span> <span class='options identifier id'>options</span>
   <span class='@options ivar id'>@options</span>
@@ -603,6 +730,51 @@ an Array of symbols with the various options a router has set
     
   </div>
 
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="attr_reader-class_method">
+  
+    + (<tt>Object</tt>) <strong>attr_reader</strong>(*attr) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+239
+240
+241
+242
+243
+244
+245
+246</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 239</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='attr_reader identifier id'>attr_reader</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr identifier id'>attr</span><span class='rparen token'>)</span>
+  <span class='attr identifier id'>attr</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='a identifier id'>a</span><span class='bitor op'>|</span>
+    <span class='define_method identifier id'>define_method</span><span class='lparen token'>(</span><span class='a identifier id'>a</span><span class='rparen token'>)</span> <span class='do do kw'>do</span>
+      <span class='lazy identifier id'>lazy</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+      <span class='instance_variable_get identifier id'>instance_variable_get</span><span class='lparen token'>(</span><span class='dstring node'>&quot;@#{a}&quot;</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -645,14 +817,16 @@ Does this relay have the AllowSingleHopExits flag set to 1?
       <pre class="lines">
 
 
-368
-369
-370</pre>
+271
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 368</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 271</span>
 
 <span class='def def kw'>def</span> <span class='allows_single_hop_exits? fid id'>allows_single_hop_exits?</span>
+  <span class='lazy identifier id'>lazy</span>
   <span class='@options ivar id'>@options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='symbol val'>:allow_single_hop_exits</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -698,57 +872,17 @@ Is this relay a directory cache that provides extra-info?
       <pre class="lines">
 
 
-378
-379
-380</pre>
+283
+284
+285
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 378</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 283</span>
 
 <span class='def def kw'>def</span> <span class='caches_extra_info? fid id'>caches_extra_info?</span>
+  <span class='lazy identifier id'>lazy</span>
   <span class='@options ivar id'>@options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='symbol val'>:caches_extra_info</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="family-instance_method">
-  
-    - (<tt>Object</tt>) <strong>family</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-We have to define a family method separate from its parse method because it
-uses @rtorctl.relays, which calls Relay.initialize(), which in turn calss
-our parse_family().
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-188
-189
-190</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 188</span>
-
-<span class='def def kw'>def</span> <span class='family identifier id'>family</span>
-  <span class='@family ivar id'>@family</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='f identifier id'>f</span><span class='bitor op'>|</span> <span class='@rtorctl ivar id'>@rtorctl</span><span class='dot token'>.</span><span class='relays identifier id'>relays</span><span class='lbrack token'>[</span><span class='f identifier id'>f</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='InvalidRelay constant id'>InvalidRelay</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='f identifier id'>f</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -793,14 +927,16 @@ Is this relay a hidden service directory?
       <pre class="lines">
 
 
-373
-374
-375</pre>
+277
+278
+279
+280</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 373</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 277</span>
 
 <span class='def def kw'>def</span> <span class='hidden_service_dir? fid id'>hidden_service_dir?</span>
+  <span class='lazy identifier id'>lazy</span>
   <span class='@options ivar id'>@options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='symbol val'>:hidden_service_dir</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -822,12 +958,12 @@ Is this relay a hidden service directory?
       <pre class="lines">
 
 
-349
-350
-351</pre>
+295
+296
+297</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 349</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 295</span>
 
 <span class='def def kw'>def</span> <span class='inspect identifier id'>inspect</span>
   <span class='dstring node'>&quot;#&lt;#{self.class} #{@nickname}@#{@address}&gt;&quot;</span>
@@ -875,15 +1011,61 @@ When did this relay come online?
       <pre class="lines">
 
 
-363
-364
-365</pre>
+290
+291
+292
+293</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 363</span>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 290</span>
 
 <span class='def def kw'>def</span> <span class='online_since identifier id'>online_since</span>
+  <span class='lazy identifier id'>lazy</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='@published ivar id'>@published</span> <span class='minus op'>-</span> <span class='@uptime ivar id'>@uptime</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reload!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>reload!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Refresh all of our information about ourself.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+264
+265
+266
+267
+268</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relay.rb', line 264</span>
+
+<span class='def def kw'>def</span> <span class='reload! fid id'>reload!</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='@descriptor ivar id'>@descriptor</span> <span class='assign token'>=</span> <span class='@rtorctl ivar id'>@rtorctl</span><span class='dot token'>.</span><span class='getinfo identifier id'>getinfo</span><span class='lparen token'>(</span><span class='dstring node'>&quot;dir/server/fp/#{self.fingerprint}&quot;</span><span class='rparen token'>)</span>
+  <span class='process_descriptor identifier id'>process_descriptor</span><span class='lparen token'>(</span><span class='@descriptor ivar id'>@descriptor</span><span class='rparen token'>)</span>
+  <span class='nil nil kw'>nil</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -896,7 +1078,7 @@ When did this relay come online?
 </div>
     
     <div id="footer">
-  Generated on Sun Oct 10 21:54:44 2010 by 
+  Generated on Wed Oct 13 00:40:56 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>
