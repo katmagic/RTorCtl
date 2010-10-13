@@ -251,7 +251,7 @@ This class represents a relay in the Tor network.
 
 				instance_variable_set( "@#{k}".to_sym, v )
 
-				self.class.class_eval do
+				(class << self; self; end).class_eval do
 					define_method(k) { instance_variable_get("@#{k}".to_sym) }
 				end unless respond_to?(k)
 			end
