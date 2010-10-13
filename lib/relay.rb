@@ -236,6 +236,15 @@ This class represents a relay in the Tor network.
 	class Relay
 		include RelayParsers
 
+		def self.attr_reader(*attr)
+			attr.each do |a|
+				define_method(a) do
+					lazy()
+					instance_variable_get("@#{a}")
+				end
+			end
+		end
+
 		# an Array of attributes has the descriptor defined
 		attr_reader :attributes
 		# an Array of symbols with the various options a router has set
@@ -248,7 +257,7 @@ This class represents a relay in the Tor network.
 		def initialize(rtorctl, descriptor)
 			@rtorctl = rtorctl
 			@descriptor = descriptor
-			process_descriptor(@descriptor)
+			process_descriptor( @descriptor.first )
 		end
 
 		# Refresh all of our information about ourself.
@@ -260,22 +269,26 @@ This class represents a relay in the Tor network.
 
 		# Does this relay have the AllowSingleHopExits flag set to 1?
 		def allows_single_hop_exits?
+			lazy
 			@options.include? :allow_single_hop_exits
 		end
 
 		# Is this relay a hidden service directory?
 		def hidden_service_dir?
+			lazy
 			@options.include? :hidden_service_dir
 		end
 
 		# Is this relay a directory cache that provides extra-info?
 		def caches_extra_info?
+			lazy
 			@options.include? :caches_extra_info
 		end
 
 		# When did this relay come online?
 		# @return [Time]
 		def online_since
+			lazy()
 			@published - @uptime
 		end
 
@@ -283,7 +296,27 @@ This class represents a relay in the Tor network.
 			"#<#{self.class} #{@nickname}@#{@address}>"
 		end
 
+		# This is so attributes created only when our descriptor must be parsed can
+		# function lazily.
+		def method_missing(meth, *args, &proc)
+			lazy()
+
+			if respond_to? meth
+				__send__(meth, *args, &proc)
+			else
+				super
+			end
+		end
+
 		private
+
+		# Only parse our descriptor if we have an actual need for it.
+		def lazy()
+			unless @lazy_has_run
+				process_descriptor(@descriptor)
+				@lazy_has_run = true
+			end
+		end
 
 		def process_descriptor( descriptor )
 			# Parse the descriptor, perform conversions, and set all the appropriate
