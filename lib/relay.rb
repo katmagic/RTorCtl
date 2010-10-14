@@ -253,12 +253,26 @@ This class represents a relay in the Tor network.
 		attr_reader :descriptor
 
 		# @param [RTorCtl] rtorctl an RTorCtl instance we can query for extra info
-		# @param [Array] descriptor the lines of the relay's descriptor.
+		# @overload
+		#  @param [Array] descriptor a relay descriptor
 		def initialize(rtorctl, descriptor)
 			@rtorctl = rtorctl
-			@descriptor = descriptor
-			process_descriptor( @descriptor.first )
+
+			case descriptor
+				when Array
+					init_descriptor(descriptor)
+				when /\n/
+					init_descriptor(descriptor)
+				else
+					raise TypeError, "descriptor is of wrong type"
+			end
 		end
+		private
+			def init_descriptor(descriptor)
+				@descriptor = descriptor
+				process_descriptor( @descriptor.first )
+			end
+		public
 
 		# Refresh all of our information about ourself.
 		def reload!()
