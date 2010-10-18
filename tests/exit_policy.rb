@@ -1,52 +1,34 @@
 #!/usr/bin/ruby
 require 'test/unit'
 require 'rtorctl'
+require 'yaml'
 
 class ExitPolicyTest < Test::Unit::TestCase
 	include RTorCtl
 	ExitPolicyLine = ExitPolicy::ExitPolicyLine
 
-	def test_any_to_ip_netmask
-		ip = IPAddress.allocate
-
-		{
-			[47, 23, 98, 5] => [0x2f176205, 32],
-			0x2f176205 => [0x2f176205, 32],
-			"47.23.98.5" => [0x2f176205, 32],
-			IPAddress.new("47.23.98.5") => [0x2f176205, 32],
-			"47.23.98.5/32" => [0x2f176205, 32],
-			"47.23.98.5/8" => [0x2f176205, 8],
-			IPAddress.new("47.23.98.5/32") => [0x2f176205, 32],
-			IPAddress.new("47.23.98.5/8") => [0x2f000000, 8]
-		}.each do |input, output|
-			assert_equal(
-				output,
-				ip.send(:any_to_int_and_netmask, input),
-				"any_to_int_and_netmask(#{input.inspect}) should be #{output.inspect}"
-			)
-		end
+	def setup
+		@data = YAML.load_file( "data/ips.yaml" )
 	end
 
 	def test_ip_address
-		ip = IPAddress.new("47.23.98.5")
+		@data[:ips].each do |ip, attrs|
+			x = IPAddress.new(ip)
+			assert_equal( x.to_a, attrs[:parts], "array-like access to IPs" )
+			assert_equal(
+				[x[0], x[1], x[2], x[3]],
+				attrs[:parts],
+				"index-based access to IPs"
+			)
+			assert_equal( x.to_i, attrs[:integer], "integer conversion of IPs" )
+			assert_equal( x.to_s, ip, "string conversion of IPs" )
 
-		assert_equal(47, ip[0])
-		assert_equal(23, ip[1])
-		assert_equal(98, ip[2])
-		assert_equal( 5, ip[3])
-		assert_equal(
-			IPAddress.new("36.23.98.5"), IPAddress.new(ip).tap{|y| y[0] = 36}
-		)
-		assert_equal( [47, 23, 98, 5], ip.to_a )
+			attrs[:over].each do |netmask, result|
+				assert_equal( IPAddress.new(result), x/netmask, "masking of IPs" )
+			end
+		end
 
-		assert_equal(0x2f176205, ip.to_i)
-		assert_equal("47.23.98.5", ip.to_s)
-		assert_equal( ip, IPAddress.new(ip) )
-		assert_equal( ip/8, IPAddress.new("47.0.0.0/8") )
-		assert_equal( "#<#{ip.class.name}: 47.23.98.5>", ip.inspect )
-		assert_equal( "#<#{ip.class.name}: 47.0.0.0/8>", (ip/8).inspect )
-
-		["435425", :erefd, nil, "1.4.2.978"].each do |x|
+		@data[:invalid_ips].each do |x|
 			assert_raise(NotAnIPError){ IPAddress.new(x) }
 		end
 	end
