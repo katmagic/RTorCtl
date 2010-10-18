@@ -67,7 +67,7 @@ module RTorCtl
 
 		# our quads
 		def to_a
-			@as_array ||= int_to_array(@ip)
+			int_to_array(@ip)
 		end
 
 		def to_s
