@@ -7,7 +7,7 @@ require 'rtorctl'
 class QuoteTest < Test::Unit::TestCase
 	include RTorCtl
 
-	@@quotes = YAML.load_file('tests/quotes.yaml')
+	@@quotes = YAML.load_file("#{File.dirname(__FILE__)}/data/quotes.yaml")
 
 	def test_quote
 		@@quotes.each do |unquoted, quoted|
