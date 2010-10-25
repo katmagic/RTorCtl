@@ -9,6 +9,7 @@ require 'connection'
 require 'parse_response'
 require 'getinfo'
 require 'relay'
+require 'events'
 
 module RTorCtl
 	# Return an instance of RTorCtl (the class).
@@ -32,8 +33,11 @@ module RTorCtl
 			@ctlport = ctlport
 
 			@connection = Connection.new(@ctlport)
-
 			@connection.connect()
+
+			@responses = Queue.new
+			@response_parsing_thread = Thread.new{ response_parser_loop() }
+
 			authenticate()
 
 			@relays = Relays.new(self)

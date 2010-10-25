@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require 'codes'
 require 'exceptions'
+require 'events'
 
 module RTorCtl
 	class RTorCtl
@@ -18,11 +19,16 @@ Get a response from Tor.
    element in the innermost +Array+.
 =end
 		def get_response()
-			lines = []
-			while line = @connection.gets()
-				# The statements like `when (boolean_expr and line)` will be executed
-				# when boolean_expr is true.
+			@responses.deq()
+		end
 
+		# We read responses from +@connection+ and either put them in +@responses+
+		# so get_response() will return them or send them to handle_async()
+		# immediately.
+		def response_parser_loop()
+			lines = []
+
+			while line = @connection.gets()
 				case line
 					when /^(\d+)\+(.*)$/
 						data = @connection.gets("\r\n.\r\n")
@@ -34,14 +40,19 @@ Get a response from Tor.
 					when /^(\d+) (.*)$/
 						code = $1.to_i
 						lines << $2
-						break
+
+						if code == 650 # This is an asynchronous response.
+							handle_async(lines)
+						else # This is a normal response that get_response() should return.
+							@responses.enq( [Code.new(code), lines] )
+						end
+
+						lines = []
 
 					else
 						raise RTorCtlError, "we couldn't handle #{line.inspect}"
 				end
 			end
-
-			return [Code.new(code), lines]
 		end
 	end
 end
