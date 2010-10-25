@@ -60,9 +60,15 @@ module RTorCtl
 
 		# Authenticate to the controller.
 		def authenticate()
-			passwd = @passwd.bytes.map{|x| "%02X" % x}.join
-			@connection.puts( "AUTHENTICATE #{passwd}" )
+			@connection.puts( "AUTHENTICATE #{encode_password(@passwd)}" )
 			get_response()[0].raise
+		end
+
+		# Change a password to its hexadecimal representation.
+		# @example
+		#  encode_password("fag hag whore") # "666167206861672077686F7265"
+		def encode_password(passwd)
+			passwd.bytes.map{|x| "%02X" % x}.join
 		end
 	end
 end
