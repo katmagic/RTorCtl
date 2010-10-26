@@ -56,6 +56,11 @@ module RTorCtl
 			self.events += events
 		end
 
+		# We're called by handle_async() when an unknown event type is received.
+		def handle_unknown_event(event_type, first_line, args, kwd_args)
+			warn "ignoring #{event_type} event: we don't know how to handle it"
+		end
+
 		private
 
 		# Register ourselves for +events+, _unregistering_ ourselves for events not
@@ -66,10 +71,48 @@ module RTorCtl
 		end
 
 		# This method is called by +read_and_act_on_reply()+ when an asynchronous
-		# reply is received.
-		# @param [lines] This is an Array like the second element of
+		# reply is received. If, for example, we receive a CIRC event, if we have a
+		# method called +handle_CIRC_event()+, then it will be called with
+		# like +handle_CIRC_events(first_line, args, kwd_args)+. If no specific
+		# method handler for that event type exists, handle_unknown_event() will be5
+		# will be called like
+		# +handle_unknown_event(event_type, first_line, args, kwd_args)+.
+		#
+		# @param [lines] This is an Array like the second element get_response()
+		#                returns.
 		def handle_async(lines)
-			raise NotImplementedError, "RTorCtl can't handle asynchronous replies yet"
+			event_type, first_line, args, kwd_args = parse_async(lines)
+
+			if respond_to? "handle_#{event_type}_event"
+				send("handle_#{event_type}_event", first_line, args, kwd_args)
+			else
+				handle_unknown_event(event_type, first_line, args, kwd_args)
+			end
+		end
+
+		# Parse an asynchronous response into the event type, arguments, and keyword
+		# arguments.
+		# @return [event_type[Symbol], arguments[Array], keyword_arguments[Hash]]
+		def parse_async(lines)
+			event_type, first_line = lines.shift().split($;, 2)
+			event_type = event_type.to_sym
+
+			arguments = []
+			keyword_arguments = {}
+
+			lines.each do |l|
+				parts = l.split()
+				parts.each do |p|
+					if p =~ /=/
+						kwd, val = p.split("=", 2)
+						keyword_arguments[kwd.to_sym] = val
+					else
+						arguments << p
+					end
+				end
+			end
+
+			[ event_type, first_line, arguments, keyword_arguments ]
 		end
 	end
 end
