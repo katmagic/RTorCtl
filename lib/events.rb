@@ -56,6 +56,40 @@ module RTorCtl
 			self.events += events
 		end
 
+		# @return [String] stream_id
+		# @return [Symbol] stream_status
+		# @return [String] circ_id
+		# @return [Array<String, Fixnum>] target
+		# @return [Hash] attrs optional information provided by Tor
+		def parse_STREAM_event(first_line, args, kwd_args)
+			stream_id, stream_status, circ_id, target, extra = first_line.split($;, 5)
+			stream_status = stream_status.to_sym
+			target = target.split(':')
+			target[1] = target[1].to_i
+
+			attrs = Hash.new
+			extra.split.each do |p|
+				k, v = p.split("=", 2)
+				k = k.downcase.to_sym
+
+				case k
+					when :source_addr
+						v = v.split(":",2)
+						v[1] = v[1].to_i
+				end
+
+				attrs[k] = v
+			end
+
+			[stream_id, stream_status, circ_id, target, attrs]
+		end
+
+		# Handle a stream event. We don't do anything unless we have behavior
+		# defined in a subclass.
+		def handle_STREAM_event(stream_id, stream_status, circ_id, target, attrs)
+			nil
+		end
+
 		# We're called by handle_async() when an unknown event type is received.
 		def handle_unknown_event(event_type, first_line, args, kwd_args)
 			warn "ignoring #{event_type} event: we don't know how to handle it"
@@ -73,7 +107,8 @@ module RTorCtl
 		# This method is called by +read_and_act_on_reply()+ when an asynchronous
 		# reply is received. If, for example, we receive a CIRC event, if we have a
 		# method called +handle_CIRC_event()+, then it will be called with
-		# like +handle_CIRC_events(first_line, args, kwd_args)+. If no specific
+		# like +handle_CIRC_events(first_line, args, kwd_args)+ _unless_ there
+		# exists. If no specific
 		# method handler for that event type exists, handle_unknown_event() will be5
 		# will be called like
 		# +handle_unknown_event(event_type, first_line, args, kwd_args)+.
@@ -84,7 +119,14 @@ module RTorCtl
 			event_type, first_line, args, kwd_args = parse_async(lines)
 
 			if respond_to? "handle_#{event_type}_event"
-				send("handle_#{event_type}_event", first_line, args, kwd_args)
+				if respond_to? "parse_#{event_type}_event"
+					send(
+						"handle_#{event_type}_event",
+						*send("parse_#{event_type}_event", first_line, args, kwd_args)
+					)
+				else
+					send("handle_#{event_type}_event", first_line, args, kwd_args)
+				end
 			else
 				handle_unknown_event(event_type, first_line, args, kwd_args)
 			end
