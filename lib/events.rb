@@ -28,7 +28,11 @@ module RTorCtl
 		# Modifying or assigning events _will_ cause _set_events to be called with
 		# events.
 		def events
-			@events or self.events = []
+			unless @events
+				self.events = []
+			end
+
+			@events
 		end
 		def events=(x)
 			x = Set.new(x)
