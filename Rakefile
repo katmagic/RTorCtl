@@ -70,7 +70,7 @@ gem = task :gem do |t|
 	spec = Gem::Specification.new do |s|
 		s.author = 'katmagic'
 		s.email = 'the.magical.kat@gmail.com'
-		s.homepage = 'http://github.com/katmagic'
+		s.homepage = 'https://github.com/katmagic'
 		s.rubyforge_project = 'rtorctl'
 
 		s.name = 'rtorctl'

@@ -1,7 +1,7 @@
 RTorCtl: A Rubyonic Interface to Tor's Control Port
 ====================================================
 
-**Homepage**: [GitHub](http://github.com/katmagic/RTorCtl)  
+**Homepage**: [GitHub](https://github.com/katmagic/RTorCtl)  
 **Git**: [GitHub](git://github.com/katmagic/RTorCtl.git)  
 **License**: [UNLICENSE](http://unlicense.org)  
 **Author**: [katmagic](mailto:the.magical.kat@gmail.com) ([33E22AB1][key])
