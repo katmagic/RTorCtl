@@ -10,6 +10,7 @@ require 'parse_response'
 require 'getinfo'
 require 'relay'
 require 'events'
+require 'thread'
 
 module RTorCtl
 	# Return an instance of RTorCtl (the class).
