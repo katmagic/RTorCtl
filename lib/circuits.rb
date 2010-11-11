@@ -2,15 +2,16 @@
 require 'getinfo'
 require 'relay'
 require 'time'
+require 'exit_policy'
 
 module RTorCtl
 	class AddressMapping
 		attr_reader :type, :from, :to, :expiry
 
 		def initialize(type, from, to, expiry=nil)
-			@type = type
+			@type = type.to_sym
 			@from = from
-			@to = to
+			@to = IPAddress.is_an_ip?(to) ? IPAddress.new(to) : to
 			@expiry = Time.parse(expiry) if expiry
 		end
 
