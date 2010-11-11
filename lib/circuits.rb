@@ -35,11 +35,19 @@ module RTorCtl
 		def mappings
 			# Address mappings look something like
 			# 'upload.wikimedia.org 208.80.152.3 "2010-11-11 03:34:19"'
-			[:config, :cache, :control].map{ |mapping_type|
+
+			res = [:config, :cache, :control].map{ |mapping_type|
 				getinfo("address-mappings/#{mapping_type}").map{ |mapping|
 					AddressMapping.new( mapping_type, *mapping.split(" ", 3) )
 				}
 			}.flatten
+
+			# Allow the results to be accessed by name.
+			def res.[](key)
+				key.is_a?(String) ? find{|x| x.from == key} : fetch(key, nil)
+			end
+
+			res
 		end
 	end
 end
