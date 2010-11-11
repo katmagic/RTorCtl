@@ -10,6 +10,14 @@ module RTorCtl
 
 	# This class represents an IP address.
 	class IPAddress
+		# Things that match this are (mostly) IPs.
+		IP_REGEXP = /^(?:\d{1,3}\.){3}\d{1,3}$/
+
+		# Is _addr_ a string representation of an IP (without a netmask)?
+		def self.is_an_ip?(addr)
+			!!( IP_REGEXP =~ addr and addr.split(".").all?{|x| x.to_i < 256} )
+		end
+
 		# our netmask
 		attr_reader :netmask
 
