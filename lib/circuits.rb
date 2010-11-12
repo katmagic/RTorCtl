@@ -30,6 +30,22 @@ module RTorCtl
 		end
 	end
 
+	class Stream
+		attr_accessor :status
+		attr_reader :stream_id, :dest, :circuit_id
+
+		def initialize(stream_id, stream_status, circuit_id, dest)
+			@stream_id = stream_id.to_sym
+			@stream_status = stream_status.to_sym
+			@circuit_id = circuit_id.to_sym
+
+			@dest = dest.split(":", 2)
+				@dest[0] =
+					IPAddress.is_an_ip?(@dest[0]) ? IPAddress.new(@dest[0]) : @dest[0]
+				@dest[1] = @dest[1].to_i
+		end
+	end
+
 	class RTorCtl
 		# Get the address mappings Tor has. These are similar to cached DNS entries.
 		def mappings
@@ -48,6 +64,11 @@ module RTorCtl
 			end
 
 			res
+		end
+
+		# What streams has Tor opened?
+		def streams
+			getinfo("stream-status").map{ |l| Stream.new(*l.split()[0..3]) }
 		end
 	end
 end
