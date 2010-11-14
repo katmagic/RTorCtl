@@ -2,7 +2,7 @@
 # Proxies!
 
 # BasicObject exists by default in Ruby 1.9, so it might already exist.
-if defined? BasicObject
+unless defined? BasicObject
 	# BasicObject only has the minimal __send__ and __id__ methods. It's a useful
 	# base class for proxies.
 	class BasicObject
