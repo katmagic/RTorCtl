@@ -60,7 +60,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/codes.rb<span class="defines">,<br />
-  lib/quote.rb,<br /> lib/relay.rb,<br /> lib/getinfo.rb,<br /> lib/rtorctl.rb,<br /> lib/circuits.rb,<br /> lib/connection.rb,<br /> lib/exceptions.rb,<br /> lib/exit_policy.rb,<br /> lib/parse_response.rb</span>
+  lib/relay.rb,<br /> lib/quote.rb,<br /> lib/events.rb,<br /> lib/rtorctl.rb,<br /> lib/getinfo.rb,<br /> lib/circuits.rb,<br /> lib/exceptions.rb,<br /> lib/ip_address.rb,<br /> lib/connection.rb,<br /> lib/exit_policy.rb,<br /> lib/parse_response.rb</span>
 </dd>
   
 </dl>
@@ -85,7 +85,7 @@
     
    
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="RTorCtl/Bytes.html" title="RTorCtl::Bytes (class)">Bytes</a></span>, <span class='object_link'><a href="RTorCtl/Circuit.html" title="RTorCtl::Circuit (class)">Circuit</a></span>, <span class='object_link'><a href="RTorCtl/Code.html" title="RTorCtl::Code (class)">Code</a></span>, <span class='object_link'><a href="RTorCtl/Connection.html" title="RTorCtl::Connection (class)">Connection</a></span>, <span class='object_link'><a href="RTorCtl/ExitPolicy.html" title="RTorCtl::ExitPolicy (class)">ExitPolicy</a></span>, <span class='object_link'><a href="RTorCtl/IPAddress.html" title="RTorCtl::IPAddress (class)">IPAddress</a></span>, <span class='object_link'><a href="RTorCtl/NotAnIPError.html" title="RTorCtl::NotAnIPError (class)">NotAnIPError</a></span>, <span class='object_link'><a href="RTorCtl/RTorCtl.html" title="RTorCtl::RTorCtl (class)">RTorCtl</a></span>, <span class='object_link'><a href="RTorCtl/RTorCtlError.html" title="RTorCtl::RTorCtlError (class)">RTorCtlError</a></span>, <span class='object_link'><a href="RTorCtl/Relay.html" title="RTorCtl::Relay (class)">Relay</a></span>, <span class='object_link'><a href="RTorCtl/Relays.html" title="RTorCtl::Relays (class)">Relays</a></span>, <span class='object_link'><a href="RTorCtl/TorError.html" title="RTorCtl::TorError (class)">TorError</a></span>, <span class='object_link'><a href="RTorCtl/TorVersion.html" title="RTorCtl::TorVersion (class)">TorVersion</a></span>, <span class='object_link'><a href="RTorCtl/UnknownOptionError.html" title="RTorCtl::UnknownOptionError (class)">UnknownOptionError</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="RTorCtl/AddressMapping.html" title="RTorCtl::AddressMapping (class)">AddressMapping</a></span>, <span class='object_link'><a href="RTorCtl/Bytes.html" title="RTorCtl::Bytes (class)">Bytes</a></span>, <span class='object_link'><a href="RTorCtl/Code.html" title="RTorCtl::Code (class)">Code</a></span>, <span class='object_link'><a href="RTorCtl/Connection.html" title="RTorCtl::Connection (class)">Connection</a></span>, <span class='object_link'><a href="RTorCtl/ExitPolicy.html" title="RTorCtl::ExitPolicy (class)">ExitPolicy</a></span>, <span class='object_link'><a href="RTorCtl/IPAddress.html" title="RTorCtl::IPAddress (class)">IPAddress</a></span>, <span class='object_link'><a href="RTorCtl/NotAnIPError.html" title="RTorCtl::NotAnIPError (class)">NotAnIPError</a></span>, <span class='object_link'><a href="RTorCtl/RTorCtl.html" title="RTorCtl::RTorCtl (class)">RTorCtl</a></span>, <span class='object_link'><a href="RTorCtl/RTorCtlError.html" title="RTorCtl::RTorCtlError (class)">RTorCtlError</a></span>, <span class='object_link'><a href="RTorCtl/Relay.html" title="RTorCtl::Relay (class)">Relay</a></span>, <span class='object_link'><a href="RTorCtl/Relays.html" title="RTorCtl::Relays (class)">Relays</a></span>, <span class='object_link'><a href="RTorCtl/Stream.html" title="RTorCtl::Stream (class)">Stream</a></span>, <span class='object_link'><a href="RTorCtl/TorError.html" title="RTorCtl::TorError (class)">TorError</a></span>, <span class='object_link'><a href="RTorCtl/TorVersion.html" title="RTorCtl::TorVersion (class)">TorVersion</a></span>, <span class='object_link'><a href="RTorCtl/UnknownOptionError.html" title="RTorCtl::UnknownOptionError (class)">UnknownOptionError</a></span>
     
   
 </p>
@@ -194,12 +194,12 @@ Return an instance of RTorCtl (the class).
       <pre class="lines">
 
 
-15
-16
-17</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rtorctl.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/rtorctl.rb', line 18</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
   <span class='RTorCtl constant id'>RTorCtl</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
@@ -215,9 +215,9 @@ Return an instance of RTorCtl (the class).
 </div>
     
     <div id="footer">
-  Generated on Wed Oct 13 00:40:55 2010 by 
+  Generated on Mon Nov 15 23:46:08 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.1 (ruby-1.8.7).
+  0.6.2 (ruby-1.8.7).
 </div>
 
   </body>
