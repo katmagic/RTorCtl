@@ -875,11 +875,11 @@ a <tt>Relays</tt> instance
       <pre class="lines">
 
 
-83
-84</pre>
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 84</span>
 
 <span class='def def kw'>def</span> <span class='circuits identifier id'>circuits</span>
 <span class='end end kw'>end</span>
@@ -1607,7 +1607,8 @@ an Array of AddressMapping instances that <em>may</em> be indexed via
 67
 68
 69
-70</pre>
+70
+71</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 54</span>
@@ -1622,6 +1623,7 @@ an Array of AddressMapping instances that <em>may</em> be indexed via
     <span class='rbrace token'>}</span>
   <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span>
 
+  <span class='comment val'># :nodoc:</span>
   <span class='comment val'># Allow the results to be accessed by name.</span>
   <span class='def def kw'>def</span> <span class='res identifier id'>res</span><span class='dot token'>.</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span>
     <span class='key identifier id'>key</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='find identifier id'>find</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span> <span class='x identifier id'>x</span><span class='dot token'>.</span><span class='from identifier id'>from</span> <span class='eq op'>==</span> <span class='key identifier id'>key</span><span class='rbrace token'>}</span> <span class='colon op'>:</span> <span class='fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
@@ -2079,17 +2081,17 @@ What streams has Tor opened?
       <pre class="lines">
 
 
-74
 75
 76
 77
 78
 79
 80
-81</pre>
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 75</span>
 
 <span class='def def kw'>def</span> <span class='streams identifier id'>streams</span>
   <span class='Hash constant id'>Hash</span><span class='lbrack token'>[</span>
@@ -2110,7 +2112,7 @@ What streams has Tor opened?
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 16 00:09:23 2010 by 
+  Generated on Tue Nov 16 00:11:43 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.2 (ruby-1.8.7).
 </div>
