@@ -48,6 +48,9 @@ module RTorCtl
 
 	class RTorCtl
 		# Get the address mappings Tor has. These are similar to cached DNS entries.
+		#
+		# @return [Array<*AddressMapping>] an Array of AddressMapping instances
+		#                                  that _may_ be indexed via 'from' values
 		def mappings
 			# Address mappings look something like
 			# 'upload.wikimedia.org 208.80.152.3 "2010-11-11 03:34:19"'
@@ -58,6 +61,7 @@ module RTorCtl
 				}
 			}.flatten
 
+			# :nodoc:
 			# Allow the results to be accessed by name.
 			def res.[](key)
 				key.is_a?(String) ? find{|x| x.from == key} : fetch(key, nil)
@@ -67,7 +71,7 @@ module RTorCtl
 		end
 
 		# What streams has Tor opened?
-		# @returns [Hash<Symbol: Stream>]
+		# @return [Hash<Symbol: Stream>]
 		def streams
 			Hash[
 				getinfo("stream-status").map{ |l|
