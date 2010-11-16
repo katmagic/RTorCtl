@@ -550,7 +550,7 @@ A new instance of RTorCtl.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#mappings-instance_method" title="#mappings (instance method)">- (Object) <strong>mappings</strong> </a>
+      <a href="#mappings-instance_method" title="#mappings (instance method)">- (Array&lt;*AddressMapping&gt;) <strong>mappings</strong> </a>
     
 
     
@@ -667,7 +667,7 @@ Send a signal <tt>sig</tt> to Tor.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#streams-instance_method" title="#streams (instance method)">- (Object) <strong>streams</strong> </a>
+      <a href="#streams-instance_method" title="#streams (instance method)">- (Hash&lt;Symbol: Stream&gt;) <strong>streams</strong> </a>
     
 
     
@@ -875,11 +875,11 @@ a <tt>Relays</tt> instance
       <pre class="lines">
 
 
-80
-81</pre>
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 83</span>
 
 <span class='def def kw'>def</span> <span class='circuits identifier id'>circuits</span>
 <span class='end end kw'>end</span>
@@ -1550,7 +1550,7 @@ received.
       <div class="method_details ">
   <p class="signature " id="mappings-instance_method">
   
-    - (<tt>Object</tt>) <strong>mappings</strong> 
+    - (<tt>Array&lt;*<span class='object_link'><a href="AddressMapping.html" title="RTorCtl::AddressMapping (class)">AddressMapping</a></span>&gt;</tt>) <strong>mappings</strong> 
   
 
   
@@ -1564,16 +1564,33 @@ Get the address mappings Tor has. These are similar to cached DNS entries.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;*<span class='object_link'><a href="AddressMapping.html" title="RTorCtl::AddressMapping (class)">AddressMapping</a></span>&gt;</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an Array of AddressMapping instances that <em>may</em> be indexed via
+&#8216;from&#8217; values
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-51
-52
-53
 54
 55
 56
@@ -1587,10 +1604,13 @@ Get the address mappings Tor has. These are similar to cached DNS entries.
 64
 65
 66
-67</pre>
+67
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 54</span>
 
 <span class='def def kw'>def</span> <span class='mappings identifier id'>mappings</span>
   <span class='comment val'># Address mappings look something like</span>
@@ -2025,7 +2045,7 @@ Put new connections on new circuits.
       <div class="method_details ">
   <p class="signature " id="streams-instance_method">
   
-    - (<tt>Object</tt>) <strong>streams</strong> 
+    - (<tt>Hash&lt;Symbol: <span class='object_link'><a href="Stream.html" title="RTorCtl::Stream (class)">Stream</a></span>&gt;</tt>) <strong>streams</strong> 
   
 
   
@@ -2039,24 +2059,37 @@ What streams has Tor opened?
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Hash&lt;Symbol: <span class='object_link'><a href="Stream.html" title="RTorCtl::Stream (class)">Stream</a></span>&gt;</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-71
-72
-73
 74
 75
 76
 77
-78</pre>
+78
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/circuits.rb', line 74</span>
 
 <span class='def def kw'>def</span> <span class='streams identifier id'>streams</span>
   <span class='Hash constant id'>Hash</span><span class='lbrack token'>[</span>
@@ -2077,7 +2110,7 @@ What streams has Tor opened?
 </div>
     
     <div id="footer">
-  Generated on Mon Nov 15 23:46:16 2010 by 
+  Generated on Tue Nov 16 00:09:23 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.2 (ruby-1.8.7).
 </div>
