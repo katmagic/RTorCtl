@@ -86,7 +86,7 @@ END
 		s.required_ruby_version = ">= #{VERSION}"
 		s.add_development_dependency('rake')
 		s.add_development_dependency('yard')
-		s.dependencies = ['only_once']
+		s.dependencies = ['only_once', 'highline']
 		s.requirements += ['Tor', 'Git']
 
 		s.files = FileList["lib/**", "tests/**", "UNLICENSE", "README.asciidoc"]

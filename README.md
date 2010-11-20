@@ -20,6 +20,9 @@ Also, the command line options `-passwd=<passwd>` and
 `-passwd_file=<passwd_file>` have the same effects as their corresponding
 environment variables.
 
+If _that_ fails, it'll try asking you for the password, if STDIN and STDOUT are
+both on a tty.
+
 Instantiation
 -------------
 

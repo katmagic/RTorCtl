@@ -56,6 +56,11 @@ module RTorCtl
 					!(open("/etc/tor/torrc").grep(/^CookieAuthFile (\S+)/).empty?) and \
 					File.readable?($1)) \
 						then open($1).read()
+				when STDOUT.tty? and STDIN.tty?
+					# If all else fails, try asking.
+
+					require 'highline/import'
+					return ask("Tor controller password: "){|x| x.echo = "*"}
 				else
 					raise RTorCtlError, "couldn't determine password!"
 					nil # We need this so we won't warn about a useless assignment.
