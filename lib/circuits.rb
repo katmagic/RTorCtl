@@ -34,17 +34,29 @@ module RTorCtl
 		attr_accessor :status
 		attr_reader :stream_id, :dest, :circuit_id
 
+		# Subclassing AddrPort outright causes problems if it's redefined.
+		AddrPort = Struct.new(:addr, :port)
+		class AddrPort
+			def to_s
+				"#{addr}:#{port}"
+			end
+
+			def inspect
+				to_s
+			end
+		end
+
 		def initialize(addr_maps, stream_id, stream_status, circuit_id, dest)
 			@stream_id = stream_id.to_sym
 			@stream_status = stream_status.to_sym
 			@circuit_id = circuit_id.to_sym
 
-			@dest = dest.split(":", 2).tap do |d|
-				d[0] = IPAddress.is_an_ip?(d[0]) ? IPAddress.new(d[0]) : d[0]
-				d[1] = d[1].to_i
+			@dest = AddrPort.new(*dest.split(":", 2)).tap do |d|
+				d.addr = IPAddress.is_an_ip?(d.addr) ? IPAddress.new(d.addr) : d.addr
+				d.port = d.port.to_i
 
-				m = addr_maps.find{ |m| d[0] == m.to }
-				d[0] = m if m
+				m = addr_maps.find{ |m| d.addr == m.to }
+				d.addr = m if m
 			end
 		end
 	end
