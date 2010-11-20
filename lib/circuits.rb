@@ -34,15 +34,18 @@ module RTorCtl
 		attr_accessor :status
 		attr_reader :stream_id, :dest, :circuit_id
 
-		def initialize(stream_id, stream_status, circuit_id, dest)
+		def initialize(addr_maps, stream_id, stream_status, circuit_id, dest)
 			@stream_id = stream_id.to_sym
 			@stream_status = stream_status.to_sym
 			@circuit_id = circuit_id.to_sym
 
-			@dest = dest.split(":", 2)
-				@dest[0] =
-					IPAddress.is_an_ip?(@dest[0]) ? IPAddress.new(@dest[0]) : @dest[0]
-				@dest[1] = @dest[1].to_i
+			@dest = dest.split(":", 2).tap do |d|
+				d[0] = IPAddress.is_an_ip?(d[0]) ? IPAddress.new(d[0]) : d[0]
+				d[1] = d[1].to_i
+
+				m = addr_maps.find{ |m| d[0] == m.to }
+				d[0] = m if m
+			end
 		end
 	end
 
@@ -75,7 +78,7 @@ module RTorCtl
 		def streams
 			Hash[
 				getinfo("stream-status").map{ |l|
-					s = Stream.new(*l.split()[0..3])
+					s = Stream.new(mappings, *l.split()[0..3])
 					[ s.stream_id, s ]
 				}
 			]
