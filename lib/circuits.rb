@@ -47,7 +47,8 @@ module RTorCtl
 			end
 		end
 
-		def initialize(addr_maps, stream_id, stream_status, circuit_id, dest)
+		def initialize(rtorctl, stream_id, stream_status, circuit_id, dest)
+			@rtorctl = rtorctl
 			@stream_id = stream_id.to_sym
 			@stream_status = stream_status.to_sym
 			@circuit_id = circuit_id.to_sym
@@ -56,9 +57,13 @@ module RTorCtl
 				d.addr = IPAddress.is_an_ip?(d.addr) ? IPAddress.new(d.addr) : d.addr
 				d.port = d.port.to_i
 
-				m = addr_maps.find{ |m| d.addr == m.to }
+				m = @rtorctl.mappings.find{ |m| d.addr == m.to }
 				d.addr = m if m
 			end
+		end
+
+		def circuit
+			@circuit ||= @rtorctl.circuits.find{|c|c.circuit_id == @circuit_id}
 		end
 	end
 
@@ -131,7 +136,7 @@ module RTorCtl
 		def streams
 			Hash[
 				getinfo("stream-status").map{ |l|
-					s = Stream.new(mappings, *l.split()[0..3])
+					s = Stream.new(self, *l.split()[0..3])
 					[ s.stream_id, s ]
 				}
 			]
