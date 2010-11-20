@@ -62,6 +62,10 @@ module RTorCtl
 			get_response()[0].raise()
 		end
 
+		def inspect
+			to_s
+		end
+
 		private
 
 		# Authenticate to the controller.
