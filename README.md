@@ -7,6 +7,16 @@ RTorCtl: A Rubyonic Interface to Tor's Control Port
 **Author**: [katmagic](mailto:the.magical.kat@gmail.com) ([E51DFE2C][key])  
 [key]: https://keyserver.pgp.com/vkd/DownloadKey.event?keyid=0xD1EACB65E51DFE2C>
 
+Installation
+------------
+
+We're currently only suitable for development, really, so we're not available
+from RubyGems, so you'll have to download us and require `lib/rtorctl`
+yourself. You'll also need to download and install the _[highline][HighLine]_
+and _[only\_once][only_once]_ gems.
+[HighLine]: http://highline.rubyforge.org/
+[only_once]: https://rubygems.org/gems/only_once/
+
 Prior to Instantiation
 ----------------------
 
