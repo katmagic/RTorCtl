@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 require 'exit_policy'
+require 'only_once'
 require 'time'
 require 'set'
 
@@ -372,7 +373,7 @@ it to nil when we finish.
 				if PARSERS.include?(_opt.to_sym)
 					resp = send("parse_#{_opt}", _data)
 				else
-					warn "unrecognized option #{_opt}"
+					only_once(_opt){ warn "unrecognized option #{_opt}" }
 					attributes[:_unknowns] << _opt.to_sym
 					resp = _data
 				end

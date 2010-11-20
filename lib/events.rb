@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require 'set'
 require 'object_proxies'
+require 'only_once'
 
 module RTorCtl
 	class RTorCtl
@@ -54,7 +55,7 @@ module RTorCtl
 				path = []
 			end
 
-			warn "we don't parse reason or remote_reason at the moment"
+			only_once{ warn "we don't parse reason or remote_reason at the moment" }
 			return circuit_id, circuit_status, path, nil, nil
 		end
 
@@ -94,7 +95,9 @@ module RTorCtl
 
 		# We're called by handle_async() when an unknown event type is received.
 		def handle_unknown_event(event_type, first_line, args, kwd_args)
-			warn "ignoring #{event_type} event: we don't know how to handle it"
+			only_once(event_type) do
+				warn "ignoring #{event_type} event: we don't know how to handle it"
+			end
 		end
 
 		private
