@@ -47,11 +47,19 @@ module RTorCtl
 
 		# Automagically determine our controller's password.
 		def determine_control_password
-			ENV['TORCTL_PASSWD'] ||
-			( open(ENV['TORCTL_PASSWD_FILE']).read() rescue nil ) ||
-			(ARGV.grep(/^-passwd=(.*)/) && $1) ||
-			(ARGV.grep(/^-passwd_file=(.*)/) && $1) \
-			or raise RTorCtlError, "couldn't determine password!"
+			return case
+				when !ARGV.grep(/^-passwd=(.*)/).empty? then $1
+				when !ARGV.grep(/^-passwd_file=(.*)/).empty? then open($1).read()
+				when _=ENV['TORCTL_PASSWD'] then _
+				when _=ENV['TORCTL_PASSWD_FILE'] then _
+				when (File.readable?("/etc/tor/torrc") and \
+					!(open("/etc/tor/torrc").grep(/^CookieAuthFile (\S+)/).empty?) and \
+					File.readable?($1)) \
+						then open($1).read()
+				else
+					raise RTorCtlError, "couldn't determine password!"
+					nil # We need this so we won't warn about a useless assignment.
+			end
 		end
 
 		# Send a signal +sig+ to Tor.
