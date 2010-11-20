@@ -39,6 +39,25 @@ module RTorCtl
 			self.events += events
 		end
 
+		# @return [Symbol] circuit_id
+		# @return [Symbol] circuit_status
+		# @return [Array<*String>] path
+		# @return [Symbol, nil] reason
+		# @return [Symbol, nil] remote_reason
+		def parse_CIRC_event(first_line, args, kwd_args)
+			circuit_id, circuit_status, *other = first_line.split()
+			circuit_id = circuit_id.to_sym
+			circuit_status = circuit_status.to_sym
+			if other[0] !~ /\=/
+				path = other[0].split(",")
+			else
+				path = []
+			end
+
+			warn "we don't parse reason or remote_reason at the moment"
+			return circuit_id, circuit_status, path, nil, nil
+		end
+
 		# @return [String] stream_id
 		# @return [Symbol] stream_status
 		# @return [String] circ_id

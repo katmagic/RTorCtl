@@ -3,6 +3,7 @@ require 'getinfo'
 require 'relay'
 require 'time'
 require 'exit_policy'
+require 'object_proxies'
 
 module RTorCtl
 	class AddressMapping
@@ -61,6 +62,46 @@ module RTorCtl
 		end
 	end
 
+	class Circuit
+		attr_reader :circuit_id, :path
+		attr_writer :status
+
+		def initialize(rtorctl, circuit_id, status, path=[])
+			@rtorctl = rtorctl
+			@circuit_id = circuit_id.to_sym
+			@status = status
+			@path = Array.new
+
+			path.each do |p|
+				_extend(p)
+			end
+		end
+
+		def inspect
+			path = @path.map{|p| p.nickname}
+			"#<#{self.class}:#{@id} #{@status} #{path.join(",")}>"
+		end
+
+		# @return [Array<*Stream>] an Array of Streams associated with the circuit
+		def streams
+			@rtorctl.streams.values.find_all{|s| s.circuit_id == @circuit_id}
+		end
+
+		private
+
+		# Add a relay to our internal representation of our path. This *does not*
+		# issue any commands to Tor.
+		def _extend(relay)
+			if relay =~ /^\$(.*)/
+				@path << DelayedResult.new{
+					@rtorctl.relays.find{|r| r.fingerprint == $1.to_sym}
+				}
+			else
+				@path << DelayedResult.new{ @rtorctl.relays[relay] }
+			end
+		end
+	end
+
 	class RTorCtl
 		# Get the address mappings Tor has. These are similar to cached DNS entries.
 		#
@@ -97,6 +138,10 @@ module RTorCtl
 		end
 
 		def circuits
+			getinfo("circuit-status").map{ |l|
+				id, status, path = parse_CIRC_event(l, [], {})[0..2]
+				Circuit.new(self, id, status, path)
+			}
 		end
 	end
 end
