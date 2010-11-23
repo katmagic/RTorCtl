@@ -57,7 +57,7 @@ module RTorCtl
 					!(open("/etc/tor/torrc").grep(/^CookieAuthFile (\S+)/).empty?) and \
 					File.readable?($1)) \
 						then open($1).read()
-				when STDOUT.tty? and STDIN.tty?
+				when (STDOUT.tty? and STDIN.tty?)
 					# If all else fails, try asking.
 
 					require 'highline/import'
