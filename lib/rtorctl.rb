@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # RTorCtl presents a Rubyonic interface to Tor's control port.
 
-$LOAD_PATH.shift(File.dirname(File.abspath(__FILE__)))
+$LOAD_PATH.unshift(File.dirname(File.expand_path(__FILE__)))
 require 'codes'
 require 'quote'
 require 'exceptions'
