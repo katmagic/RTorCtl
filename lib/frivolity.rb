@@ -32,5 +32,10 @@ module RTorCtl
 		def tor_version
 			getinfo("tor-version")
 		end
+
+		# Shutdown Tor. If _force_ is set, we send HALT, otherwise we send SHUTDOWN.
+		def quit(force=false)
+			signal( force ? :HALT : :SHUTDOWN )
+		end
 	end
 end
