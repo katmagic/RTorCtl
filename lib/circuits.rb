@@ -62,6 +62,10 @@ module RTorCtl
 			end
 		end
 
+		def inspect
+			"#<#{self.class}: #{@dest}>"
+		end
+
 		def circuit
 			@circuit ||= @rtorctl.circuits.find{|c|c.circuit_id == @circuit_id}
 		end
