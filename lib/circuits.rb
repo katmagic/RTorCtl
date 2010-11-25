@@ -136,14 +136,8 @@ module RTorCtl
 		end
 
 		# What streams has Tor opened?
-		# @return [Hash<Symbol: Stream>]
 		def streams
-			Hash[
-				getinfo("stream-status").map{ |l|
-					s = Stream.new(self, *l.split()[0..3])
-					[ s.stream_id, s ]
-				}
-			]
+			getinfo("stream-status").map{ |l| Stream.new(*l.split()[0..3]) }
 		end
 
 		def circuits
