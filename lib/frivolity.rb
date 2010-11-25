@@ -9,12 +9,18 @@ module RTorCtl
 	# EXIT_TESTING_HOST:port.
 	EXIT_TESTING_HOST = IPAddress.new('14.29.7.8')
 
+	class Relay
+		def exit?(port=80)
+			exit_policy.accepts?(EXIT_TESTING_HOST, port)
+		end
+	end
+
 	class RTorCtl
 		# An Array of the last _count_ exits that came online that exit to _port_.
 		def latest_exits(port=80, count=5)
-			relays.find_all{ |r|
-				r.exit_policy.accepts?(EXIT_TESTING_HOST, port)
-			}.sort{ |a, b| a.uptime <=> b.uptime }[0...count]
+			relays.find_all{ |r| r.exit?(port) }.sort{ |a, b|
+				a.uptime <=> b.uptime
+			}[0...count]
 		end
 	end
 end
