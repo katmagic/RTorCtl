@@ -136,8 +136,30 @@ module RTorCtl
 		end
 
 		# What streams has Tor opened?
+		# @return [Array<*Stream>] an Array of Stream instances that _may_ be
+		#                          indexed via the host or IP they exit to. If
+		#                          multiple streams exit to an IP, the result of the
+		#                          lookup will be an Array.
+		#
+		# @example
+		#  tor.streams # [#<Stream: a.com:80>, #<Stream: a.com:443>,
+		#              #  #<Stream: b.com:80>]
+		#  tor.streams["a.com"] # [#<Stream: a.com:80>, #<Stream: a.com:443>]
+		#  tor.streams["b.com"] # #<Stream: b.com:80>
+		#  tor.streams[0]       # #<Stream: a.com:80>
 		def streams
-			getinfo("stream-status").map{ |l| Stream.new(*l.split()[0..3]) }
+			r = getinfo("stream-status").map{ |l| Stream.new(self, *l.split()[0..3]) }
+
+			def r.[](key)
+				if key.is_a?(String)
+					res = find_all{|x| x.dest[0] == key}
+					res.length > 1 ? res : res[0]
+				else
+					fetch(key, nil)
+				end
+			end
+
+			r
 		end
 
 		def circuits
