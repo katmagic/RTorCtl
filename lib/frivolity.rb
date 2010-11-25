@@ -22,5 +22,10 @@ module RTorCtl
 				a.uptime <=> b.uptime
 			}[0...count]
 		end
+
+		# Send a NEWNYM event to Tor.
+		def newnym()
+			signal(:NEWNYM)
+		end
 	end
 end
