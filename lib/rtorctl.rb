@@ -12,6 +12,7 @@ require 'circuits'
 require 'getinfo'
 require 'relay'
 require 'events'
+require 'frivolity'
 require 'thread'
 
 module RTorCtl
