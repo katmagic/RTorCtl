@@ -27,5 +27,10 @@ module RTorCtl
 		def newnym()
 			signal(:NEWNYM)
 		end
+
+		# What version of Tor are we connected to?
+		def tor_version
+			getinfo("tor-version")
+		end
 	end
 end
