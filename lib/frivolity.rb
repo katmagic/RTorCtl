@@ -19,7 +19,7 @@ module RTorCtl
 		# An Array of the last _count_ exits that came online that exit to _port_.
 		def latest_exits(port=80, count=5)
 			relays.find_all{ |r| r.exit?(port) }.sort{ |a, b|
-				a.uptime <=> b.uptime
+				b.online_since <=> a.online_since
 			}[0...count]
 		end
 
