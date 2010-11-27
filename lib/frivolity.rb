@@ -37,5 +37,8 @@ module RTorCtl
 		def quit(force=false)
 			signal( force ? :HALT : :SHUTDOWN )
 		end
+
+		alias :[] :getconf
+		alias :[]= :setconf
 	end
 end
