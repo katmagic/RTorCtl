@@ -13,11 +13,7 @@ test = task :test do
 	$LOAD_PATH.unshift( "lib" )
 
 	require 'test/unit'
-	require 'tests/getinfo'
-	require 'tests/exit_policy'
-	require 'tests/parse_response'
-	require 'tests/quote'
-	require 'tests/relay'
+	require 'tests/exit_policy_test'
 end
 test.comment = "Run all of the tests."
 
