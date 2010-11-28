@@ -26,7 +26,11 @@ module RTorCtl
 				end
 
 				@acceptance = $1.to_sym
-				@ip = IPAddress.new( $2 == "*" ? "0.0.0.0/0" : $2 )
+				begin
+					@ip = IPAddress.new( $2 == "*" ? "0.0.0.0/0" : $2 )
+				rescue NotAnIPError
+					raise ParsingError
+				end
 
 				@port_range = case
 					when $3 == "*" then (0..65536)
