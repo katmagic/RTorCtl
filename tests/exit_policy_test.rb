@@ -54,6 +54,9 @@ class ExitPolicyTest < Test::Unit::TestCase
 				assert( policy.rejects?(ip, port), msg["reject"] )
 				assert( !policy.accepts?(ip, port), msg["not accept"] )
 			end
+
+			assert_equal(policy, EP.new(ruleset),
+				"#{policy} should be equal to itself")
 		end
 	end
 
