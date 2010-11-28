@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require 'set'
 require 'object_proxies'
+require 'rubygems'
 require 'only_once'
 
 module RTorCtl

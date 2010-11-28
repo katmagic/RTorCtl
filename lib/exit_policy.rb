@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 require 'exceptions'
+require 'rubygems'
 require 'ip_address'
 
 module RTorCtl

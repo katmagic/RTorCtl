@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 require 'exit_policy'
+require 'rubygems'
 require 'only_once'
 require 'time'
 require 'set'
