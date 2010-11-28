@@ -12,10 +12,11 @@ Installation
 
 We're currently only suitable for development, really, so we're not available
 from RubyGems, so you'll have to download us and require `lib/rtorctl`
-yourself. You'll also need to download and install the _[highline][HighLine]_
-and _[only\_once][only_once]_ gems.
+yourself. You'll also need to download and install the _[highline][HighLine]_,
+_[ip\_address][ip_address]_, and _[only\_once][only_once]_ gems.
 [HighLine]: http://highline.rubyforge.org/
 [only_once]: https://rubygems.org/gems/only_once/
+[ip_address]: https://rubygems.org/gems/ip_address/
 
 Prior to Instantiation
 ----------------------
