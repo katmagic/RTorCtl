@@ -14,6 +14,7 @@ test = task :test do
 
 	require 'test/unit'
 	require 'tests/exit_policy_test'
+	require 'tests/quote_test'
 end
 test.comment = "Run all of the tests."
 
