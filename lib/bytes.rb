@@ -11,11 +11,9 @@ class Bytes
 		@i = bytes
 	end
 
-	def  b() @i / 1024.0**0 end
-	def kb() @i / 1024.0**1 end
-	def mb() @i / 1024.0**2 end
-	def gb() @i / 1024.0**3 end
-	def tb() @i / 1024.0**4 end
+	%w{ b kb mb gb tb }.each_with_index do |abbrev, index|
+		define_method(abbrev){ @i / 1024.0**index }
+	end
 
 	# @return [String] a string like "138.30KB" or "4.51MB"
 	def to_s
