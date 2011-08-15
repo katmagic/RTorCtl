@@ -1,0 +1,30 @@
+# This implements double quoted strings like those used in the control protocol.
+# See §2.1 of the control spec.
+grammar DoubleQuotedString
+	rule string
+		('"' qcontent '"') {
+			qcontent.value
+		}
+	end
+
+	rule qcontent
+		qatom* {
+			captures[:qatom].map(&:value).join()
+		}
+	end
+
+	rule qatom
+		unquoted_char | quoted_char
+	end
+
+	rule quoted_char
+		('\\' !unquoted_char actual:.) {
+			actual.value
+		}
+	end
+
+	rule unquoted_char
+		/[\x1-\x8\x11\x12\x14-\x21\x23-\x31\x127!#-\[\]-~]/
+	end
+end
+
