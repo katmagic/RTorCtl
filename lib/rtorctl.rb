@@ -52,6 +52,7 @@ module RTorCtl
 
 		# Send str + CRLF to the controller.
 		def writeline(str)
+			puts("writing #{(str+"\r\n").inspect}") if $DEBUG
 			@connection.write(str + "\r\n")
 		end
 
@@ -85,6 +86,7 @@ module RTorCtl
 				case data[-1]
 					when ' '
 						data += @connection.gets("\r\n")
+						puts("received #{data.inspect}") if $DEBUG
 						return data
 
 					when '-'
