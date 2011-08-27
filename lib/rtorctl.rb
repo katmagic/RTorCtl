@@ -4,6 +4,7 @@ require 'socket'
 
 require_relative 'grammars'
 require_relative 'quoting'
+require_relative 'errors'
 
 module RTorCtl
 	class RTorCtl
@@ -13,22 +14,68 @@ module RTorCtl
 			@connection = TCPSocket.new(host, port)
 			@passwd = passwd
 
-			authenticate(@passwd)
+			# class-local lock
+			@clock = Mutex.new
+
+			@reply_queue = Queue.new
+			@async_queue = Queue.new
+
+			start_response_queuing_thread()
+
+			unless authenticate(@passwd)
+				raise AuthenticationError
+			end
+		end
+
+		# Authenticate with passwd to the controller. We return true if
+		# authentication succeeds, and false if it fails.
+		def authenticate(passwd)
+			res = sendrecv(%Q<AUTHENTICATE #{quote(passwd)}>)
+
+			case res.status_code
+				when 250 then true # success
+				when 515 then false # failure
+				else raise(ControllerError, res)
+			end
+		end
+
+		# Send a synchronous command to the controller and receive a
+		# (Generic)Response.
+		def sendrecv(cmd)
+			@clock.synchronize do
+				writeline(cmd)
+				@reply_queue.pop()
+			end
 		end
 
 		private
-
-		# Authenticate with passwd to the controller.
-		def authenticate(passwd)
-			writeline(%Q<AUTHENTICATE "#{quote(passwd)}">)
-		end
 
 		# Send str + CRLF to the controller.
 		def writeline(str)
 			@connection.write(str + "\r\n")
 		end
 
+		# Start a thread that listens for the controller's responses and pushes them
+		# to @reply_queue and @async_queue.
+		def start_response_queuing_thread
+			@response_queuing_thread = Thread.new do
+				loop do
+					r = ControllerReply.parse(get_response()).value
+
+					# Integer division rounds down, so this is equivalent to getting just
+					# the third digit. (Status codes only have 3 digits.)
+					if (r.status_code / 100) == 6
+						@async_queue.push(r)
+					else
+						@reply_queue.push(r)
+					end
+				end
+			end
+		end
+
 		# Block until we get a single response from the controller, then return it.
+		# THIS SHOULD ONLY BE CALLED FROM start_response_queuing_thread().
+		# Everything else should use the queues.
 		def get_response()
 			data = ""
 
