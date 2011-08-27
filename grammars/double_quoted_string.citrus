@@ -23,6 +23,8 @@ grammar DoubleQuotedString
 		}
 	end
 
+	# RTorCtl::Quoting.quote() (in lib/rtorctl.rb) relies on this being *just* a
+	# regexp. DON'T CHANGE IT!
 	rule unquoted_char
 		/[\x1-\x8\x11\x12\x14-\x21\x23-\x31\x127!#-\[\]-~]/
 	end

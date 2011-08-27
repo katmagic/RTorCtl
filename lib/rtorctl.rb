@@ -3,9 +3,12 @@ require 'bundler/setup'
 require 'socket'
 
 require_relative 'grammars'
+require_relative 'quoting'
 
 module RTorCtl
 	class RTorCtl
+		include Quoting
+
 		def initialize()
 			@connection = TCPSocket.new('127.0.0.1', 9051)
 		end

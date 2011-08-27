@@ -3,6 +3,8 @@
 require 'bundler/setup'
 require 'citrus_test'
 
+require_relative '../lib/quoting'
+
 GrammarTest.grammar_dir = "../grammars"
 
 class TestDoubleQuotedString < GrammarTest
@@ -72,6 +74,24 @@ class TestDoubleQuotedString < GrammarTest
 
 		['', '"♥LOVE"', "\"\n\"", 'c"hi"', '"hi"c', '"yo', '"yo\\'].each do |s|
 			deny_parses(:string, s)
+		end
+	end
+end
+
+class QuotingTest
+	include RTorCtl::Quoting
+
+	def test_quoting_and_unquoting
+		{
+			%q{Hi!} => %q{"Hi!"},
+			%q{¡Hola!} => %q{"\¡Hola!"},
+			%q{"rabbits"} => %q{"\"rabbits\""},
+			%Q{"\r\nK¡"\n\\} => %Q{"\\"\\\r\\\nK\\¡\\"\\\n\\\\"},
+			%q{} => %q{""},
+			%q{\\} => %q{"\\"}
+		}.each do |unquoted, quoted|
+			assert_equal(quoted, quote(unquoted), "quoting failed")
+			assert_equal(unquoted, unquote(quoted), "unquoting failed")
 		end
 	end
 end
