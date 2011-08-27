@@ -9,11 +9,22 @@ module RTorCtl
 	class RTorCtl
 		include Quoting
 
-		def initialize()
-			@connection = TCPSocket.new('127.0.0.1', 9051)
+		def initialize(passwd, port=9051, host='127.0.0.1')
+			@connection = TCPSocket.new(host, port)
+			@passwd = passwd
+
+			authenticate(@passwd)
 		end
 
-		def write(str)
+		private
+
+		# Authenticate with passwd to the controller.
+		def authenticate(passwd)
+			writeline(%Q<AUTHENTICATE "#{quote(passwd)}">)
+		end
+
+		# Send str + CRLF to the controller.
+		def writeline(str)
 			@connection.write(str + "\r\n")
 		end
 
