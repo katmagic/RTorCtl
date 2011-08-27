@@ -1,19 +1,8 @@
 #!/usr/bin/env ruby
 require 'bundler/setup'
-require 'citrus'
 require 'socket'
 
-# Load all of our grammars.
-def load_grammars()
-	# This is a really long way of saying ../grammars/.
-	dot_dot = File.dirname(File.absolute_path(File.dirname(__FILE__)))
-	grammar_dir = File.join(dot_dot, 'grammars')
-
-	Dir.entries(grammar_dir).grep(/\.citrus$/) do |grammar|
-		Citrus.load( File.join(grammar_dir, grammar) )
-	end
-end
-load_grammars()
+require_relative 'grammars'
 
 module RTorCtl
 	class RTorCtl
