@@ -5,10 +5,12 @@ require 'socket'
 require_relative 'grammars'
 require_relative 'quoting'
 require_relative 'errors'
+require_relative 'configuration'
 
 module RTorCtl
 	class RTorCtl
 		include Quoting
+		include Configuration
 
 		def initialize(passwd, port=9051, host='127.0.0.1')
 			@connection = TCPSocket.new(host, port)
