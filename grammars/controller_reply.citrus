@@ -1,0 +1,46 @@
+# FIXME! This shouldn't hardcode the path of our RTorCtl directory.
+require "~/rtorctl/lib/controller_reply"
+
+# This is the general format for a reply from the controller.
+grammar ControllerReply
+	rule reply
+		((mid_reply_line | data_reply_line)* end_reply_line) {
+			m = matches.shift.matches + matches
+			RTorCtl::GenericReply.new(m.map(&:value))
+		}
+	end
+
+	rule mid_reply_line
+		(status_code "-" reply_line) <RTorCtl::ReplyLineInclude>
+	end
+
+	rule data_reply_line
+		(status_code "+" reply_line data) <RTorCtl::ReplyLineInclude>
+	end
+
+	rule end_reply_line
+		(status_code " " reply_line) <RTorCtl::ReplyLineInclude>
+	end
+
+	rule reply_line
+		# value will be parsed by a different grammar.
+		(real_value:(~CRLF | "") CRLF){ real_value.value }
+	end
+
+	rule status_code
+		([0-9]3*3) { to_i }
+	end
+
+	rule data
+		(real_value:(~data_terminator | "") data_terminator) { real_value.to_s }
+	end
+
+	rule data_terminator
+		CRLF "." CRLF
+	end
+
+	rule CRLF
+		"\r\n"
+	end
+end
+
