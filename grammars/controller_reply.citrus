@@ -1,5 +1,5 @@
 # FIXME! This shouldn't hardcode the path of our RTorCtl directory.
-require "~/rtorctl/lib/controller_reply"
+require "~/Code/rtorctl/lib/controller_reply"
 
 # This is the general format for a reply from the controller.
 grammar ControllerReply
