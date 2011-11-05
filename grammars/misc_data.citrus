@@ -1,0 +1,73 @@
+require 'time'
+require 'base64'
+
+grammar MiscData
+	rule nickname
+		[A-Za-z0-9]1*19
+	end
+
+	rule ipv4_address
+		ipv4_quad "." ipv4_quad "." ipv4_quad "." ipv4_quad
+	end
+
+	rule ipv4_quad
+		( "25" [0-5] | "2" [0-4] [0-9] | "1" [0-9]2*2 | [0-9]1*2 )
+	end
+
+	rule int
+		([0-9]+){ to_i }
+	end
+
+	rule CRLF
+		"\r\n"
+	end
+
+	rule date_time
+		(date " " time) {
+			begin
+				Time.parse(self.to_s + " UTC")
+			rescue ArgumentError
+				raise Citrus::ParseError,
+					"'#{self.to_s}' looks like a valid date/time, but it's not."
+			end
+		}
+	end
+
+	rule date
+		[0-9]4*4 "-" [0-9]2*2 "-" [0-9]2*2
+	end
+
+	rule time
+		[0-9]2*2 ":" [0-9]2*2 ":" [0-9]2*2
+	end
+
+	rule base64_data
+		( ([a-zA-Z0-9/+] | CRLF)* "="*2 ) {
+			Base64.decode64(self.to_s.gsub(/[\r\n]/, ""))
+		}
+	end
+
+	rule bool
+		("0" | "1") { to_s == "1" }
+	end
+
+	rule digest
+		[0-9A-F]40*40
+	end
+
+	rule opt
+		"opt "?
+	end
+
+	rule port_range
+		(from:int "-" to:int) { (from.to_i .. to.to_i) }
+	end
+
+	rule accept
+		"accept" { :accept }
+	end
+
+	rule reject
+		"reject" { :reject }
+	end
+end
