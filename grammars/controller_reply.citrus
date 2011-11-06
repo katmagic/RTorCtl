@@ -3,6 +3,8 @@ require "~/Code/rtorctl/lib/controller_reply"
 
 # This is the general format for a reply from the controller.
 grammar ControllerReply
+	include MiscData
+
 	rule reply
 		((mid_reply_line | data_reply_line)* end_reply_line) {
 			m = matches.shift.matches + matches
@@ -37,10 +39,6 @@ grammar ControllerReply
 
 	rule data_terminator
 		CRLF "." CRLF
-	end
-
-	rule CRLF
-		"\r\n"
 	end
 end
 
