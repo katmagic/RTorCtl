@@ -12,7 +12,9 @@ module RTorCtl
 		include Quoting
 		include Configuration
 
-		def initialize(passwd, port=9051, host='127.0.0.1')
+		def initialize(passwd=ENV['TOR_CONTROL_PASSWD'],
+		               port=(ENV['TOR_CONTROL_PORT'] || 9050).to_i,
+		               host='127.0.0.1')
 			@connection = TCPSocket.new(host, port)
 			@passwd = passwd
 
