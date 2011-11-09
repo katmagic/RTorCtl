@@ -1,6 +1,3 @@
-# FIXME! This shouldn't hardcode the path of our RTorCtl directory.
-require "~/Code/rtorctl/lib/controller_reply"
-
 # This is the general format for a reply from the controller.
 grammar ControllerReply
 	include MiscData

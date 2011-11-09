@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative 'grammars'
+require_grammar 'double_quoted_string'
 
 module RTorCtl::Quoting
 	UNQUOTED_CHARS = DoubleQuotedString.rule(:unquoted_char).regexp

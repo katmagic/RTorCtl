@@ -91,3 +91,4 @@ module RTorCtl
 	end
 end
 
+require_grammar 'controller_reply'

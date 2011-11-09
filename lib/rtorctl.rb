@@ -1,11 +1,24 @@
 #!/usr/bin/env ruby
 require 'bundler/setup'
 require 'socket'
+require 'citrus'
 
-require_relative 'grammars'
+# Load one of our Citrus grammars.
+def require_grammar(grammar)
+	Citrus.load( File.join($rtorctl_grammar_dir, grammar) )
+end
+$rtorctl_grammar_dir = File.join(
+	File.dirname(File.absolute_path(File.dirname(__FILE__))), 'grammars' )
+
+# Define the RTorCtl namespace.
+module RTorCtl; end
+
+require_grammar 'misc_data'
+
 require_relative 'quoting'
 require_relative 'errors'
 require_relative 'configuration'
+require_relative 'controller_reply'
 
 module RTorCtl
 	class RTorCtl
