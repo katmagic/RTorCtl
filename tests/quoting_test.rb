@@ -3,7 +3,7 @@
 require 'bundler/setup'
 require 'citrus_test'
 
-require_relative '../lib/quoting'
+require_relative '../lib/rtorctl'
 
 GrammarTest.grammar_dir = "../grammars"
 
@@ -95,4 +95,3 @@ class QuotingTest
 		end
 	end
 end
-

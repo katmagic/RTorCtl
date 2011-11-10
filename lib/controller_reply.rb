@@ -91,4 +91,5 @@ module RTorCtl
 	end
 end
 
+require_grammar 'misc_data'
 require_grammar 'controller_reply'

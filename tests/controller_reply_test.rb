@@ -3,6 +3,8 @@
 require 'bundler/setup'
 require 'citrus_test'
 
+require_relative '../lib/rtorctl'
+
 GrammarTest.grammar_dir = "../grammars"
 
 class TestControllerReply < GrammarTest
@@ -118,4 +120,3 @@ class TestControllerReply < GrammarTest
 		@devurand.read(count).encode("UTF-8", undef: :replace, invalid: :replace)
 	end
 end
-
