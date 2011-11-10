@@ -53,14 +53,15 @@ module RTorCtl
 		# an Array of *_reply_lines. data_reply_lines should have a data attribute
 		# containing their data, and all reply lines should have a status_code
 		# attribute containing their (integer) status code. *_reply_lines should not
-		# contain their status code, nor should they contain a CRLF.
+		# contain their status code, nor should they contain a CRLF; however
+		# data_reply_line.data *SHOULD* contain a trailing CRLF..
 		def initialize(lines)
 			@data = Array.new
 			@lines = Array.new
 
 			lines.each do |l|
 				if l.has_data?
-					@data << l.data
+					@data << (l.data + "\r\n")
 				end
 
 				if @status_code and @status_code != l.status_code.to_i

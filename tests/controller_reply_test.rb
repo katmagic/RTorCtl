@@ -93,16 +93,16 @@ class TestControllerReply < GrammarTest
 		{
 			"501 zed\r\n" => [501, %w{zed}, nil],
 			"666-satan\r\n666 lucifer\r\n" => [666, %w{satan lucifer}, nil],
-			"123+A\r\nDATA\r\n.\r\n123 B\r\n" => [123, %w{A B}, "DATA"],
-			"000+hello\r\ngoodbye\r\n.\r\n000 !\r\n" => [0, %w{hello !}, "goodbye"],
-			"151+bye\r\nhi\r\n\r\n.\r\n151 ¡\r\n" => [151, %w{bye ¡}, "hi\r\n"],
-			"777+god\r\n\r\n.\r\n777 damn\r\n" => [777, %w{god damn}, ""],
-			"011+\r\n\r\n.\r\n011 \r\n" => [11, ["", ""], ""],
+			"123+A\r\nDATA\r\n.\r\n123 B\r\n" => [123, %w{A B}, "DATA\r\n"],
+			"000+hello\r\nglob\r\n.\r\n000 !\r\n" => [0, %w{hello !}, "glob\r\n"],
+			"151+bye\r\nhi\r\n\r\n.\r\n151 ¡\r\n" => [151, %w{bye ¡}, "hi\r\n\r\n"],
+			"777+god\r\n\r\n.\r\n777 damn\r\n" => [777, %w{god damn}, "\r\n"],
+			"011+\r\n\r\n.\r\n011 \r\n" => [11, ["", ""], "\r\n"],
 			"189 \r\n" => [189, [""], nil],
 			"001+A\r\nB\r\n.\r\n001+C\r\nD\r\n.\r\n001 E\r\n" =>
-				[1, %w{A C E}, %w{B D}],
+				[1, %w{A C E}, %W{B\r\n D\r\n}],
 			"110+L1\r\nD1\r\n.\r\n110+L2\r\n\r\nD2\r\n.\r\n110 L3\r\n" =>
-				[110, %w{L1 L2 L3}, ["D1", "\r\nD2"]]
+				[110, %w{L1 L2 L3}, ["D1\r\n", "\r\nD2\r\n"]]
 		}.each do |str, (status, lines, data)|
 			assert_parses(:reply, str, status_code: status, lines: lines, data: data)
 		end
