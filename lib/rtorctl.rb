@@ -19,6 +19,7 @@ require_relative 'quoting'
 require_relative 'errors'
 require_relative 'getinfo'
 require_relative 'v3consensus'
+require_relative 'misc_methods'
 require_relative 'configuration'
 require_relative 'controller_reply'
 
@@ -28,6 +29,7 @@ module RTorCtl
 		include Quoting
 		include Configuration
 		include V3Consensus
+		include MiscMethods
 
 		def initialize(passwd=ENV['TOR_CONTROL_PASSWD'],
 		               port=(ENV['TOR_CONTROL_PORT'] || 9050).to_i,
