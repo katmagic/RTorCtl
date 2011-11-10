@@ -1,0 +1,69 @@
+grammar V3ConsensusGrammar
+	include MiscData
+
+	rule v3_consensus
+		(v3_consensus_statement)+ {
+			captures[:v3_consensus_statement].map(&:value)
+		}
+	end
+
+	rule v3_consensus_statement
+		(r_line CRLF ((s_line | v_line | w_line | p_line) CRLF)+) {
+			m = RTorCtl::V3ConsensusStatement.new
+
+			{ nick: :nick, key_hash: :identity_key_hash, published: :published,
+				ip: :ip, or_port: :or_port, dir_port: :dir_port
+			}.each do |m_attr, s_attr|
+				m.send("#{m_attr}=", r_line.send(s_attr).value)
+			end
+			m.desc_hash = r_line.desc_hash.value if r_line.desc_hash
+
+			m.version = v_line.value if v_line
+
+			if s_line
+				m.flags = s_line.value.freeze
+			else
+				m.flags = [].freeze
+			end
+
+			if w_line
+				m.reported_bw = w_line.reported_bw.value
+				m.measured_bw = w_line.measured_bw.value if w_line.measured_bw
+			end
+
+			m.micropolicy = p_line.value.freeze if p_line
+
+			m.freeze
+		}
+	end
+
+	rule r_line
+		("r " nick:nickname " " identity_key_hash:base64_data " "
+		 descriptor_hash:base64_data " " published:date_time " " ip:ipv4_address
+		 " " or_port:int " " dir_port:int)
+	end
+
+	rule s_line
+		("s" (" " flag:([^ \r\n]+))*) {
+			captures[:flag].map(&:value).map(&:to_sym)
+		}
+	end
+
+	rule v_line
+		("v " version:([^\r\n]+)) { version.to_s }
+	end
+
+	rule w_line
+		("w Bandwidth=" reported_bw:int (" Measured=" measured_bw:int)?)
+	end
+
+	rule p_line
+		("p " acceptance:(accept | reject) " "
+		 ports:(port_range|int)("," ports:(port_range|int))* ) {
+			RTorCtl::MicroPolicy.new(
+				acceptance.value,
+				*captures[:ports].map(&:value)
+			)
+		}
+	end
+end
