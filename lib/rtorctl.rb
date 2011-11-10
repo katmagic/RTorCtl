@@ -17,11 +17,13 @@ require_grammar 'misc_data'
 
 require_relative 'quoting'
 require_relative 'errors'
+require_relative 'getinfo'
 require_relative 'configuration'
 require_relative 'controller_reply'
 
 module RTorCtl
 	class RTorCtl
+		include GetInfo
 		include Quoting
 		include Configuration
 
@@ -118,4 +120,3 @@ module RTorCtl
 		end
 	end
 end
-
