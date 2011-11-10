@@ -33,7 +33,7 @@ module RTorCtl
 			@connection = TCPSocket.new(host, port)
 			@passwd = passwd
 
-			# class-local lock
+			# We use this to try to make sure all our commands are delivered in order.
 			@clock = Mutex.new
 
 			@reply_queue = Queue.new
@@ -59,11 +59,17 @@ module RTorCtl
 		end
 
 		# Send a synchronous command to the controller and receive a
-		# (Generic)Response.
+		# (Generic)Response. We may raise a RuntimeError through no fault of our own.
 		def sendrecv(cmd)
 			@clock.synchronize do
 				writeline(cmd)
-				@reply_queue.pop()
+
+				res = @reply_queue.pop()
+				if res.is_a?(Exception)
+					raise res
+				else
+					return res
+				end
 			end
 		end
 
@@ -80,13 +86,30 @@ module RTorCtl
 		def start_response_queuing_thread
 			@response_queuing_thread = Thread.new do
 				loop do
-					r = ControllerReply.parse(get_response()).value
+					begin
+						r = ControllerReply.parse(get_response()).value
+					rescue Exception => e
+						if @connection.closed?
+							@reply_queue.push(SocketError.new(
+								"Our connection to the control port was closed."
+							))
+						else
+							@reply_queue.push(RuntimeError.new(
+								"Something bad happened with our connection.  We're trying to "\
+								"recover."
+							))
+						end
+					end
 
 					# Integer division rounds down, so this is equivalent to getting just
 					# the third digit. (Status codes only have 3 digits.)
 					if (r.status_code / 100) == 6
 						@async_queue.push(r)
 					else
+						# We should never have items in here before we've pushed something.
+						# This sometimes occurs because of errors.
+						@reply_queue.clear()
+
 						@reply_queue.push(r)
 					end
 				end
